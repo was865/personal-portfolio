@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import SectionHeading from "./SectionHeading"
 import { useSectionInView } from "@/lib/hooks"
 import { useLocale, useTranslations } from "next-intl"

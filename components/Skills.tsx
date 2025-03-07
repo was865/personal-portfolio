@@ -3,7 +3,7 @@
 import React from "react"
 import { headerLanguageMap, skillsData } from "@/lib/data"
 import { useSectionInView } from "@/lib/hooks"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import SectionHeading from "./SectionHeading"
 import { useLocale } from "next-intl"
 

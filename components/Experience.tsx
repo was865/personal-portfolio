@@ -12,7 +12,7 @@ import {
   headerLanguageMap,
 } from "@/lib/data"
 import SectionHeading from "./SectionHeading"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { useTheme } from "@/context/theme-context"
 import { ExperienceLabel } from "./ExperienceLabel"
 import { useLocale } from "next-intl"
@@ -81,8 +81,8 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
                 }}
               >
                 <h3 className="font-bold capitalize">{item.title}</h3>
-                <p className="font-normal !mt-0">{item.location}</p>
-                <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
+                <p className="font-normal mt-0!">{item.location}</p>
+                <p className="mt-1! font-normal! text-gray-700 dark:text-white/75">
                   {item.description}
                 </p>
               </VerticalTimelineElement>
@@ -102,8 +102,8 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
               {item.date}
               <div className="flex flex-col gap-2">
                 <h3 className="font-bold capitalize">{item.title}</h3>
-                <p className="font-normal !mt-0">{item.location}</p>
-                <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
+                <p className="font-normal mt-0!">{item.location}</p>
+                <p className="mt-1! font-normal! text-gray-700 dark:text-white/75">
                   {item.description}
                 </p>
               </div>

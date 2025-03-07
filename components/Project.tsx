@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import { projectsData } from "@/lib/data"
 import Image from "next/image"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform } from "motion/react"
 import { FaGithubSquare } from "react-icons/fa"
 import Link from "next/link"
 import { FiExternalLink } from "react-icons/fi"
@@ -89,9 +89,9 @@ export default function Project({
         group-hover:translate-y-3
         group-hover:-rotate-2
 
-        group-even:group-hover:translate-x-3
-        group-even:group-hover:translate-y-3
-        group-even:group-hover:rotate-2
+        group-hover:group-even:translate-x-3
+        group-hover:group-even:translate-y-3
+        group-hover:group-even:rotate-2
 
         group-even:right-[initial] group-even:-left-32"
         />

@@ -1,7 +1,7 @@
 // "use client"
 // import React from "react"
 // import SectionHeading from "./SectionHeading"
-// import { motion } from "framer-motion"
+// import { motion } from "motion/react"
 // import { useSectionInView } from "@/lib/hooks"
 // import toast, { Toaster } from "react-hot-toast"
 // import SubmitBtn from "./SubmitBtn"
@@ -47,7 +47,7 @@
 //         }}
 //       >
 //         <input
-//           className="h-14 px-4 rounded-lg border dark:bg-white dark:bg-opacity-90 dark:focus:bg-opacity-100 transition-all outline-none"
+//           className="h-14 px-4 rounded-lg border dark:bg-white dark:bg-opacity-90 dark:focus:bg-opacity-100 transition-all outline-hidden"
 //           name="senderEmail"
 //           type="email"
 //           required
@@ -56,13 +56,13 @@
 //         />
 
 //         <input
-//           className="h-14 border-t border-x mt-3 px-4 rounded-tl-lg rounded-tr-lg  dark:bg-white dark:bg-opacity-90 dark:focus:bg-opacity-100 transition-all outline-none "
+//           className="h-14 border-t border-x mt-3 px-4 rounded-tl-lg rounded-tr-lg  dark:bg-white dark:bg-opacity-90 dark:focus:bg-opacity-100 transition-all outline-hidden "
 //           name="subject"
 //           maxLength={500}
 //           placeholder="Subject (optional)"
 //         />
 //         <textarea
-//           className=" h-52 border-b border-x  p-4 rounded-bl-lg rounded-br-lg  dark:bg-white dark:bg-opacity-90 dark:focus:bg-opacity-100  transition-all outline-none max-h-[20rem] resize-none"
+//           className=" h-52 border-b border-x  p-4 rounded-bl-lg rounded-br-lg  dark:bg-white dark:bg-opacity-90 dark:focus:bg-opacity-100  transition-all outline-hidden max-h-[20rem] resize-none"
 //           name="message"
 //           placeholder="Your message"
 //           required
