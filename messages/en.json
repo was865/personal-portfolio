@@ -1,0 +1,18 @@
+{
+    "IntroSection": {
+        "hello_im": "Hi, my name is",
+        "name": "Dane Quest",
+        "short_intro": "I enjoy exploring new things...",
+        "download_cv": "Download CV",
+        "blog": "Blog"
+    },
+    "SectionName": {
+        "about": "About me",
+        "experience": "Experience",
+        "projects": "Projects",
+        "skills": "Skills"
+    },
+    "AboutSection": {
+        "desc": "Hello everyone, I am a passionate person who loves learning and exploration. Now I am an undergraduate majoring in electrical engineering. Although my professional background is more traditional engineering, I have a strong interest in emerging technology fields, especially AI, programming and development."
+    }
+}

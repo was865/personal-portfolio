@@ -1,0 +1,18 @@
+{
+    "IntroSection": {
+        "hello_im": "你好，我是",
+        "name": "周宇骐",
+        "short_intro": "我享受探索的乐趣！",
+        "download_cv": "下载简历",
+        "blog": "个人网站"
+    },
+    "SectionName": {
+        "about": "",
+        "experience": "我的经历",
+        "projects": "我的项目",
+        "skills": "我的技能"
+    },
+    "AboutSection": {
+        "desc": "大家好，我是一个充满激情、热爱学习与探索的人。现在是一名电气工程专业的本科生，虽然我的专业背景偏向传统工科，但我对新兴的技术领域充满了浓厚的兴趣，特别是AI、编程和开发等方面。"
+    }
+}
