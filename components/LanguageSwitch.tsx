@@ -10,20 +10,24 @@ export default function LanguageSwitch() {
   const router = useRouter()
   const pathname = usePathname()
   
-const [playEnToZhSound] = useSound('zh.mp3');
-const [playZhToEnSound] = useSound('en.mp3');
-  const onChangeLanguage = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const nextLocale = localActive === "en" ? "zh" : "en"
-    const newPath = pathname.replace(/^\/(en|zh)/, `/${nextLocale}/`)
 
-    if (localActive === "en") {
-      playEnToZhSound(); // 播放从英文切换到中文的音效
-    } else {
-      playZhToEnSound(); // 播放从中文切换到英文的音效
-    }
+  const onChangeLanguage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const nextLocale = localActive === "en" ? "zh" : localActive === "zh" ? "ja" : "en"
+    const newPath = pathname.replace(/^\/(en|zh|ja)/, `/${nextLocale}/`)
+
     router.replace(newPath, {
       scroll: false,
     })
+  }
+
+  // 获取当前语言的显示文本
+  const getLanguageDisplay = () => {
+    switch (localActive) {
+      case "en": return "EN";
+      case "zh": return "ZH";
+      case "ja": return "JA";
+      default: return "EN";
+    }
   }
 
   return (
@@ -37,7 +41,7 @@ const [playZhToEnSound] = useSound('en.mp3');
 
         <span className="text-sm hover:scale-[1.15] active:scale-105 transition-all">
           {" "}
-          {localActive == "en" ? "EN" : "ZH"}
+          {getLanguageDisplay()}
         </span>
       </button>
     </>

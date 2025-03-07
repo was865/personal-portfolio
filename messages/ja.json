@@ -1,0 +1,34 @@
+{
+    "IntroSection": {
+        "hello_im": "こんにちは、私は",
+        "name": "オウ アンシン",
+        "short_intro": "新しいものを探索するのが好きです！",
+        "download_cv": "履歴書をダウンロード",
+        "blog": "ブログ",
+        "focus_is": "私の焦点は",
+        "innovation_ai": "イノベーション（AI）",
+        "im_a": "I'm a "
+    },
+    "Header": {
+        "home": "ホーム",
+        "about": "紹介",
+        "projects": "プロジェクト",
+        "skills": "スキル",
+        "experiences": "経歴",
+        "contact": "連絡先"
+    },
+    "SectionName": {
+        "home": "ホーム",
+        "about": "私について",
+        "projects": "主なプロジェクト",
+        "skills": "スキル",
+        "experiences": "経歴",
+        "contact": "連絡先"
+    },
+    "AboutSection": {
+        "desc": "皆さん、こんにちは。私は学習と探索が大好きな情熱的な人間です。現在は社会文化研究の修士号を持つ大学院生で、学部時代は医学生でした。私の専門的なバックグラウンドは多様ですが、特にAI、プログラミング、開発など、新興技術分野に強い関心を持っています。"
+    },
+    "ProjectsSection": {
+        "view_all": "全てのプロジェクトを見る"
+    }
+} 
