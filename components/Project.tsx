@@ -4,7 +4,6 @@ import { useRef } from "react"
 import { projectsData } from "@/lib/data"
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "motion/react"
-import { FaGithubSquare } from "react-icons/fa"
 import Link from "next/link"
 import { FiExternalLink } from "react-icons/fi"
 import { useLocale } from "next-intl"
@@ -14,8 +13,10 @@ type ProjectProps = (typeof projectsData)[number]
 export default function Project({
   title,
   description,
-  desc_zh,
   title_zh,
+  desc_zh,
+  title_ja,
+  desc_ja,
   tags,
   imageUrl,
   //projectUrl,
@@ -39,12 +40,12 @@ export default function Project({
       }}
       className="group mb-3 sm:mb-8 last:mb-0"
     >
-      <section className="bg-[#e8eaea] max-w-[45rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative sm:h-[28rem]  transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 ">
+      <section className="bg-[#e8eaea] max-w-[45rem] border border-black/5 rounded-lg overflow-hidden sm:pr-8 relative transition sm:group-even:pl-8 dark:text-white dark:bg-white/10 ">
         <div className="group pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col items-start gap-3 h-full sm:group-even:ml-[18rem]">
           <div className="flex flex-col gap-3 items-start ">
             <h3 className="text-2xl font-semibold group-hover:text-[#e9882a] dark:group-hover:text-yellow hover:underline">
               <Link href={demoUrl} target="_blank">
-                {activeLocale === "zh" ? title_zh : title}
+                {activeLocale === "zh" ? title_zh : activeLocale === "ja" ? title_ja : title}
               </Link>
             </h3>
 
@@ -64,7 +65,7 @@ export default function Project({
           </div>
 
           <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70">
-            {activeLocale === "zh" ? desc_zh : description}
+            {activeLocale === "zh" ? desc_zh : activeLocale === "ja" ? desc_ja : description}
           </p>
           <ul className="flex flex-wrap mt-auto gap-2">
             {tags.map((tag, index) => (
@@ -83,17 +84,17 @@ export default function Project({
           alt="Project I worked on"
           quality={100}
           className="absolute hidden sm:block top-8 -right-24 w-[28.25rem] rounded-t-lg shadow-2xl
-        transition 
-        group-hover:scale-[1.04]
-        group-hover:-translate-x-3
-        group-hover:translate-y-3
-        group-hover:-rotate-2
+          transition 
+          group-hover:scale-[1.04]
+          group-hover:-translate-x-3
+          group-hover:translate-y-3
+          group-hover:-rotate-2
 
-        group-hover:group-even:translate-x-3
-        group-hover:group-even:translate-y-3
-        group-hover:group-even:rotate-2
+          group-hover:group-even:translate-x-3
+          group-hover:group-even:translate-y-3
+          group-hover:group-even:rotate-2
 
-        group-even:right-[initial] group-even:-left-32"
+          group-even:right-[initial] group-even:-left-32"
         />
       </section>
     </motion.div>

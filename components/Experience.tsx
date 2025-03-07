@@ -8,7 +8,8 @@ import {
 import "react-vertical-timeline-component/style.min.css"
 import {
   experiencesData,
-  experiencesDataZn,
+  experiencesDataZn as experiencesDataZh,
+  experiencesDataJa,
 } from "@/lib/data"
 import SectionHeading from "./SectionHeading"
 import { motion } from "motion/react"
@@ -33,7 +34,7 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
   const t = useTranslations("SectionName")
 
   const experienceDataShown =
-    activeLocale == "zh" ? experiencesDataZn : experiencesData
+    activeLocale == "zh" ? experiencesDataZh : activeLocale == "ja" ? experiencesDataJa : experiencesData
 
   return (
     <section className="sm:mb-40 relative mb-20">

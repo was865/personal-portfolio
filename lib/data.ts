@@ -4,12 +4,11 @@ import { LuGraduationCap, LuMusic } from "react-icons/lu";
 import { BiLogoGit } from "react-icons/bi";
 import { FaCode } from "react-icons/fa6";
 import { SiScratch } from "react-icons/si";
-import tank from '@/public/tank.png';
-import NetEasemusic from "@/public/NetEasemusic.png";
-import cupt from "@/public/cupt.jpg";
-import xb2 from "@/public/xb2-node.jpg";
-import airiot from "@/public/airiot.png";
-import draws from "@/public/draws.jpg";
+import gpt5 from "@/public/ai-images/gpt5.jpg";
+import claude from "@/public/ai-images/claude.jpg";
+import gemini from "@/public/ai-images/gemini.jpg";
+import midjourney from "@/public/ai-images/midjourney.jpg";
+import dalle from "@/public/ai-images/dalle.jpg";
 
 export const links = [
     {
@@ -40,144 +39,182 @@ export const links = [
 
 export const experiencesData = [
     {
-        title: "Personal website building",
-        location: "spongebob.vip",
+        title: "Sunborn Corporation",
+        location: "Software Engineer",
         description:
-            "With a strong interest, independent learning to build a personal website, equivalent to the completion of a wish. From the purchase and registration of the server and domain name to the subsequent complex filing, as well as the deployment and launch of the final project, a person went through a lot of learning and consulting materials to complete the whole process, during which I encountered a lot of bugs, but continuous learning makes me feel happy! Full of power!",
-        icon: React.createElement(FaGlobe),
-        date: "2024 Dec - 2025 Feb",
+            "Working on various projects including development of consolidated accounting systems for major trading companies. Responsible for detailed design, development, testing, and production operations. Technical stack includes TypeScript, Python, SQL, React, Django, AWS, DBT, Power BI, and Snowflake databases. Successfully improved code maintainability through readable SQL and thorough DBT execution verification.",
+        icon: React.createElement(FaCode),
+        date: "2023 Jan - Present",
     },
     {
-        title: "Personal wechat public account creation and operation",
-        // location: React.createElement("span", {},
-        //     React.createElement("a", {
-        //         href: "https://www.nio.com/",
-        //         style: { textDecoration: 'underline' },
-        //         target: "_blank"
-        //     }, "NIO Inc."),
-        //     " Wuhan, China"
-        // ),
-        location: "JieNitang",
+        title: "Otus Corporation (Part-time)",
+        location: "Web Developer",
         description:
-            "When the website was being built, I opened the growth footprint of my wechat public account, and it showed that I had only published three articles since I registered it on October 5th. The last article was on October 8th, and I had not published any more since then. Due to my studies and various miscellaneous trifles, I did not develop the habit of constantly updating my public account. I hope I can take this private traffic platform and help myself become a super individual!",
-        icon: React.createElement(FaWeixin),
-        date: "2024 Oct - On the way",
+            "Side job while working full-time. Developing portal sites for gas and electricity contractors and converting core system functions to web applications. Using technologies like PHP/CakePHP, TypeScript/Next.js/Prisma. Successfully led initial sprints of a project alone, building a highly extensible project base with component development focused on reusability (Atomic design, Storybook).",
+        icon: React.createElement(FaReact),
+        date: "2022 Oct - Present",
     },
     {
-        title: "NetEase cloud music partner",
-        location: "JieNitang",
+        title: "M.I.S. Corporation",
+        location: "Software Engineer",
         description:
-            "October 18 officially became NetEase cloud music partner, very happy! Since I went to college, the entertainment I choose most is listening to music. Music can cheer me up and make me face all kinds of difficulties positively. It is an indispensable part of relieving pressure in my study and life. However, sometimes I will be addicted to the song, and even sway my body to the melody, and make a video for it because I love a song.",
-        icon: React.createElement(LuMusic),
-        date: "2024 Oct - In progress",
+            "Developed business management systems for factory operations and created a staff location management web application from scratch that was later commercialized. Worked on full-stack development using C#, JavaScript, .Net, Azure, Express, Node.js, and databases like SQL Server, SQLite, and PostgreSQL. Successfully covered for a colleague who left during a development phase, delivering the project on deadline.",
+        icon: React.createElement(FaCode),
+        date: "2020 Jul - 2022 Oct",
     },
     {
-        title: "Join Github",
-        location: "SpongeYuqi",
+        title: "Graduate School, Yamagata University",
+        location: "Master's in Cultural Systems",
         description:
-            "Late at night on September 12th, I remembered that I was still studying in the dormitory with my computer on, and my roommates were already lying in bed. I turned on the lamp to successfully enter the big family of Github. I felt very happy, because I realized that this was another new attempt. Improving myself, I enjoy it!",
-        icon: React.createElement(FaGithub),
-        date: "2024 Sep - In practice",
+            "Completed graduate studies in the Faculty of Humanities and Social Sciences, Cultural Systems program. During this period, began working part-time at M.I.S. Corporation, which led to full-time employment after graduation.",
+        icon: React.createElement(LuGraduationCap),
+        date: "2019 Apr - 2021 Mar",
     },
-
+    {
+        title: "Chengdu Medical College University",
+        location: "Bachelor's in Rehabilitation Medicine",
+        description:
+            "Completed undergraduate studies in the Faculty of Clinical Medicine, Department of Rehabilitation. Also obtained Level 3 National Public Nutritionist certification in China and passed the Japanese Language Proficiency Test (JLPT N1) during this period.",
+        icon: React.createElement(LuGraduationCap),
+        date: "2013 Sep - 2017 Jun",
+    },
 ]
 
 export const experiencesDataZn = [
     {
-        "title": "个人网站搭建",
-        "location": "spongebob.vip",
-        "description": "凭借浓厚的兴趣，自主学习搭建起个人网站，相当于完成了一个心愿。从服务器和域名的购买注册到后续的复杂备案，以及最终项目的全部部署上线，一个人通过大量的学习和查阅资料走完了全程，这期间遇到的Bug不少，但是不断地学习让我感到快乐！动力十足！",
-        icon: React.createElement(FaGlobe),
-        "date": "2024年12月 - 2025年2月"
+        "title": "株式会社Sunborn",
+        "location": "软件工程师",
+        "description": "负责多个项目，包括为大型贸易公司开发合并会计系统。担任详细设计、开发、测试和生产运营职责。技术栈包括TypeScript、Python、SQL、React、Django、AWS、DBT、Power BI和Snowflake数据库。通过编写可读性强的SQL和彻底验证DBT执行效果，成功提高了代码的可维护性。",
+        icon: React.createElement(FaCode),
+        "date": "2023年1月 - 至今"
     },
     {
-        "title": "个人微信公众号创建运营",
-        "location": "芥泥糖",
-        "description": `在网站搭建之时，我翻开我的微信公众号的成长足迹，显示从10月5日注册的公众号，只发表了3次文章，最后一次文章是在10月8日，之后就再也没发表过了，因为学业以及各种乱七八糟的琐事，使我没有养成这个习惯去不断地更新我的公众号，希望自己能够好好把我这个私域流量平台，助力自己成为超级个体！`,
-        "icon": React.createElement(FaWeixin),
-        "date": "2024年10月 - 在路上"
+        "title": "株式会社Otus（兼职）",
+        "location": "Web开发工程师",
+        "description": "全职工作的同时进行兼职。为燃气和电力承包商开发门户网站，并将核心系统功能转换为Web应用程序。使用PHP/CakePHP、TypeScript/Next.js/Prisma等技术。成功独自领导项目的初始冲刺阶段，构建了高度可扩展的项目基础，组件开发注重重用性（原子设计、Storybook）。",
+        "icon": React.createElement(FaReact),
+        "date": "2022年10月 - 至今"
     },
     {
-        "title": "网易云音乐合伙人",
-        "location": "芥泥糖",
-        "description": "10月18日正式成为网易云音乐合伙人，异常高兴！自从上大学后，选择的娱乐方式最多的就是听歌，音乐能振奋我，让我积极的面对种种的困难，是我在学习生活中舒缓压力的不可缺少的一部分。不过有时候会听歌上瘾，甚至会随着旋律摇摆身体，也会因为爱上一首歌而为它特地制作视频。",
-        "icon": React.createElement(LuMusic),
-        "date": "2024年10月 - 持续中"
+        "title": "株式会社M.I.S.",
+        "location": "软件工程师",
+        "description": "为工厂运营开发业务管理系统，并从零开始创建了员工位置管理Web应用程序，该应用后来实现了商业化。进行全栈开发，使用C#、JavaScript、.Net、Azure、Express、Node.js和SQL Server、SQLite、PostgreSQL等数据库。在开发阶段，当同事因个人原因离职时，成功接手工作，按期交付项目。",
+        "icon": React.createElement(FaCode),
+        "date": "2020年7月 - 2022年10月"
     },
     {
-        "title": "入驻Github",
-        "location": "SpongeYuqi",
-        "description": "9月12日深夜我记着我还在开着电脑在寝室进行学习，室友们都已经躺床上了，我开着台灯操作到入驻Github这个大家庭成功这一步骤，我深感喜悦，因为我意识到，这是又一次的新尝试，人生就是不断的尝试和历练自己，接触不同的领域就是不断地刷新自我，提升自我，我乐在其中！",
-        "icon": React.createElement(FaGithub),
-        "date": "2024年9月 - 践行中"
+        "title": "山形大学研究生院",
+        "location": "文化系统专业硕士",
+        "description": "完成了人文社会科学研究科文化系统专业的研究生学习。在此期间，开始在M.I.S.公司兼职工作，毕业后转为全职雇用。",
+        "icon": React.createElement(LuGraduationCap),
+        "date": "2019年4月 - 2021年3月"
+    },
+    {
+        "title": "成都医学院大学",
+        "location": "康复医学学士",
+        "description": "完成了临床医学系康复学专业的本科学习。在此期间，还取得了中国三级国家公共营养师资格证书，并通过了日语能力测试（JLPT N1）。",
+        "icon": React.createElement(LuGraduationCap),
+        "date": "2013年9月 - 2017年6月"
     },
 ]
 
+export const experiencesDataJa = [
+    {
+        "title": "株式会社Sunborn",
+        "location": "ソフトウェアエンジニア",
+        "description": "大手商社向けの連結会計システム開発など複数のプロジェクトを担当。詳細設計、開発、テスト、本番運用の責任者として活躍。技術スタックはTypeScript、Python、SQL、React、Django、AWS、DBT、Power BI、Snowflakeデータベースなど。読みやすいSQLの作成とDBT実行効果の徹底検証により、コードの保守性向上に成功。",
+        "icon": React.createElement(FaCode),
+        "date": "2023年1月 - 現在"
+    },
+    {
+        "title": "株式会社オータス（副業）",
+        "location": "Webデベロッパー",
+        "description": "本業と並行して副業に従事。ガス・電気契約者向けのポータルサイト開発や、基幹システム機能のWebアプリケーション化を担当。PHP/CakePHP、TypeScript/Next.js/Prismaなどの技術を活用。プロジェクト始動期のスプリントを一人で担当し、再利用性を重視したコンポーネント開発（Atomic design、Storybookなど）により、拡張性の高いプロジェクトのベースを構築。",
+        "icon": React.createElement(FaReact),
+        "date": "2022年10月 - 現在"
+    },
+    {
+        "title": "株式会社エム・アイ・エス",
+        "location": "ソフトウェアエンジニア",
+        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、JavaScript、.Net、Azure、Express、Node.jsなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。開発フェーズで同僚が離脱した際も一人で作業をカバーし、期限内にプロジェクトを納品。",
+        "icon": React.createElement(FaCode),
+        "date": "2020年7月 - 2022年10月"
+    },
+    {
+        "title": "山形大学大学院",
+        "location": "人文社会科学研究科・文化システム専攻",
+        "description": "人文社会科学研究科・文化システム専攻の修士課程を修了。この期間中、株式会社エム・アイ・エスでアルバイトを始め、卒業後に正社員として採用される。",
+        "icon": React.createElement(LuGraduationCap),
+        "date": "2019年4月 - 2021年3月"
+    },
+    {
+        "title": "成都医学院大学",
+        "location": "臨床医学部リハビリテーション学科",
+        "description": "臨床医学部リハビリテーション学科の学士課程を修了。この期間中、中国の国家公共栄養師（三級）資格を取得し、日本語能力試験（JLPT・N1）にも合格。",
+        "icon": React.createElement(LuGraduationCap),
+        "date": "2013年9月 - 2017年6月"
+    },
+]
 
 export type ProjectTags = typeof projectsData[number]["tags"];
 
 export const projectsData = [
     {
-        "title": "Multi-functional fire tank 3D digital innovation design",
-        "title_zh": "绝境卫戍——全维度智能应急平台",
+        "title": "GPT-5: OpenAI's Next Generation AI Model",
+        "title_zh": "GPT-5：OpenAI的下一代AI模型",
+        "title_ja": "GPT-5：OpenAIの次世代AIモデル",
         "description":
-            "It aims to innovate the design of a multi-functional anti-disaster tank track vehicle, which integrates multiple functional modules in one, and this highly integrated design greatly improves the comprehensive rescue capability of a single platform.",
-        "desc_zh": "旨在创新设计一款多功能抗灾坦克履带车，其集成了高强度履带、深度相机、热融合夜视仪、消防喷头、液压破拆钳、激光雷达、爆闪警示灯以及UWB定位系统等多个功能模块于一身，这种高度集成化设计极大地提高了单一平台的综合救援能力。",
-        "tags": ["Fusion360", "C4D", "PR", "PS"],
-        "imageUrl": tank,
-        //"projectUrl": "https://b23.tv/bEJYAIN",
-        "demoUrl": " https://b23.tv/bEJYAIN"
+            "OpenAI plans to release GPT-5 in mid-2024, likely during summer. This new model promises to unify reasoning capabilities with powerful language processing, potentially eliminating the need for separate AI models in business applications.",
+        "desc_zh": "OpenAI计划在2024年中期（可能在夏季）发布GPT-5。这个新模型承诺将推理能力与强大的语言处理能力统一起来，有可能消除企业应用中对单独AI模型的需求。据报道，一些企业客户最近已经收到了最新模型的演示。",
+        "desc_ja": "OpenAIは2024年中頃（おそらく夏頃）にGPT-5をリリースする予定です。この新しいモデルは推論能力と強力な言語処理能力を統合し、ビジネスアプリケーションにおける別個のAIモデルの必要性を排除する可能性があります。",
+        "tags": ["OpenAI", "GPT-5", "AI", "LLM", "NLP"],
+        "imageUrl": gpt5,
+        "demoUrl": "https://openai.com/"
     },
     {
-        title: "Backend service based on Node.js combined with \"express\"",
-        title_zh: '基于Node.js结合express框架的后端服务',
-        description:
-            "The service integrates user login, authentication, comment, upload files, delete resources and other functions, and brings together the basic application framework and interface usage of nodejs.",
-        desc_zh: "该服务集成了用户登录、验证、评论、上传文件、删除资源等功能，汇集了nodejs基本的应用框架和接口用法，并使用Navicate作为后台Mysql数据集成管理，通过Insomnia验证项目。",
-        tags: ["Nodejs", "TypeScript", "express", "Mysql", "Navicate", "Insomnia"],
-        imageUrl: xb2,
-        demoUrl: 'https://github.com/spongeYuqi/xb2-node',
+        "title": "Claude 3.5 Sonnet: Anthropic's Latest AI Assistant",
+        "title_zh": "Claude 3.5 Sonnet：Anthropic的最新AI助手",
+        "title_ja": "Claude 3.5 Sonnet：Anthropicの最新AIアシスタント",
+        "description": "Anthropic's Claude 3.5 Sonnet shows wide-ranging improvements on industry benchmarks, with particularly strong gains in agentic coding and tool use tasks. It outperforms all publicly available models on coding tasks, scoring higher than specialized systems designed for agentic coding.",
+        "desc_zh": "Anthropic的Claude 3.5 Sonnet在行业基准测试中表现出广泛的改进，特别是在代理编码和工具使用任务方面取得了显著进步。在编码任务上，它的表现优于所有公开可用的模型，得分高于专为代理编码设计的专业系统。",
+        "desc_ja": "AnthropicのClaude 3.5 Sonnetは業界のベンチマークで幅広い改善を示し、特にエージェンティックコーディングとツール使用タスクで大きな進歩を遂げています。コーディングタスクではすべての公開モデルを上回り、エージェンティックコーディング向けに設計された専門システムよりも高いスコアを記録しています。",
+        "tags": ["Anthropic", "Claude", "AI", "Coding", "Tool Use"],
+        "imageUrl": claude,
+        "demoUrl": "https://www.anthropic.com/claude"
     },
     {
-        title: "Smart healthcare regulatory system (AIRIOT)",
-        title_zh: '基于AIRIOT的智慧医疗监管系统',
-        description: "The intelligent medical system monitoring platform is committed to improving hospital operation efficiency and optimizing resource allocation, while strengthening patient experience and service quality, and forming a comprehensive hospital operation monitoring system.",
-        desc_zh: "本项目旨在构建一个基于AIRIOT平台的智能医疗系统监管平台，致力于提升医院运营效率、优化资源配置与管理，同时强化患者体验和服务质量，形成全面的医院运营监控体系。通过操作快捷入口，管理者可快速访问各详细管理模块，实现深度数据挖掘与精细化管理。",
-        tags: ["AIRIOT", "Mysql", "Navicate", ],
-        imageUrl: airiot,
-        demoUrl: 'https://www.airiot.tech/',
+        "title": "Google Gemini 1.5 Pro: Breakthrough in Long-Context Understanding",
+        "title_zh": "Google Gemini 1.5 Pro：长上下文理解的突破",
+        "title_ja": "Google Gemini 1.5 Pro：長文脈理解の革新",
+        "description": "Google's Gemini 1.5 Pro delivers dramatically enhanced performance with a breakthrough in long-context understanding across modalities. It can process large amounts of data at once, including 2 hours of video, 19 hours of audio, codebases with 60,000 lines of code, or 2,000 pages of text.",
+        "desc_zh": "Google的Gemini 1.5 Pro在多模态长上下文理解方面取得了突破性进展，性能得到显著提升。它可以一次处理大量数据，包括2小时的视频、19小时的音频、60,000行代码的代码库或2,000页的文本。",
+        "desc_ja": "GoogleのGemini 1.5 Proはモダリティ全体で長文脈理解の革新により劇的に性能が向上しています。2時間の動画、19時間の音声、6万行のコードベース、または2,000ページのテキストなど、大量のデータを一度に処理できます。",
+        "tags": ["Google", "Gemini", "AI", "Multimodal", "Long Context"],
+        "imageUrl": gemini,
+        "demoUrl": "https://ai.google.dev/"
     },
     {
-        title: "The 11th CUPT",
-        title_zh: '第十一届大学生物理学术竞赛',
-        description: "I participated in this competition as a representative of Harbin Institute of Technology in my freshman year. At that time, my research ability and debate ability were relatively weak. This competition laid the foundation for me to dare to go to the platform, be willing to show myself, constantly improve myself and explore myself.",
-        desc_zh: "这项比赛是我在大一时作为代表前往哈尔滨工业大学参加的，那时候还很稚嫩，无论是研究能力还是辩论能力，都是比较弱的。对于我来说，这次竞赛奠定了我大学敢于上讲台，乐于展现自己，不断提升自我，自我探索的基础。",
-        tags: ["cupt", "iypt", "gypt", "matlab", ],
-        imageUrl: cupt,
-        demoUrl: 'https://gypt.org/',
+        "title": "Midjourney V6: The Evolution of AI Image Generation",
+        "title_zh": "Midjourney V6：AI图像生成的进化",
+        "title_ja": "Midjourney V6：AI画像生成の進化",
+        "description": "Midjourney V6 offers more control over the style and details of generated images. It encourages longer and more detailed prompts for better results and introduces new features like upscaling and remixing. The latest version produces higher resolution images up to 2048×2048 pixels with improved text handling.",
+        "desc_zh": "Midjourney V6提供了对生成图像的风格和细节的更多控制。它鼓励使用更长、更详细的提示以获得更好的结果，并引入了升级和重混等新功能。最新版本可以生成高达2048×2048像素的高分辨率图像，并改进了文本处理能力。",
+        "desc_ja": "Midjourney V6は生成画像のスタイルと詳細な制御を強化しています。より良い結果を得るために長く詳細なプロンプトを推奨し、アップスケーリングやリミックスなどの新機能を導入しています。最新バージョンでは最大2048×2048ピクセルの高解像度画像を生成し、テキスト処理も改善されています。",
+        "tags": ["Midjourney", "AI", "Image Generation", "Art", "Design"],
+        "imageUrl": midjourney,
+        "demoUrl": "https://www.midjourney.com/"
     },
     {
-        title: "NetEase cloud music partner",
-        title_zh: "网易云音乐合伙人",
-        description:
-            `Because of the love of music, willing to share, to become a master of pictures and notes, soon after, received an invitation from the official, became the 1080412 NetEase cloud music partner, and enjoy lifelong VIP rights for 100 days, the current accumulation of more than 2W songs, Lv10, often in the platform to share themselves.
-            `,
-        desc_zh: "因为热爱音乐，乐于分享，成为图文笔记达人，不久之后，收到来自官方的邀请，成为第1080412位网易云音乐合伙人，并享受终身VIP权益百天，目前累计听歌2W多首，Lv10，时常在平台分享自己。",
-        tags: ["NetEase cloud", "Passion", "Music"],
-        imageUrl: NetEasemusic,
-        demoUrl: 'https://music.163.com/#/user/home?id=7816209974',
-    },
-    {
-        title: "Drawing & Reflection",
-        title_zh: "绘画 & 反思",
-        description:
-            `When I was a child, I could be said to be a painting genius, but as I grew up, I gradually stopped picking up a pen, perhaps because of laziness, hopelessness, and no motivation to stick to it. But from the beginning to the end, the artistic cells still flow, which also allows me to find beauty, create beauty, and strive to do everything I want to do well, adding personal characteristics. 
-            `,
-        desc_zh: "小时候，可谓是绘画天才，但随着长大，渐渐不再拿起笔，可能因为懒惰、无望，也没有坚持下去的动力，即使是天才，也逐渐淹没才能。但是从始至终，艺术细胞依旧流淌，这也让我能发现美，创造美，力求每件我想要做好的事都精益求精，加入个人的特色。这也造就了我爱探索新事物的品质，例如此次个人网站的搭建！",
-        tags: [ "perseverance", "reproduction"],
-        imageUrl: draws,
-        demoUrl: '',
-    },
+        "title": "DALL-E 3: OpenAI's Advanced Image Generator",
+        "title_zh": "DALL-E 3：OpenAI的高级图像生成器",
+        "title_ja": "DALL-E 3：OpenAIの高度画像生成器",
+        "description": "DALL-E 3 follows complex prompts with more accuracy and detail than its predecessors, and is able to generate more coherent and accurate text within images. It's now integrated into ChatGPT Plus, allowing users to generate images directly from conversations.",
+        "desc_zh": "DALL-E 3比其前代产品能够更准确、更详细地遵循复杂的提示，并能在图像中生成更连贯、更准确的文本。它现已集成到ChatGPT Plus中，允许用户直接从对话中生成图像。",
+        "desc_ja": "DALL-E 3は前身モデルよりも複雑なプロンプトをより正確かつ詳細に処理し、画像内により一貫性のある正確なテキストを生成できます。現在はChatGPT Plusに統合され、会話から直接画像を生成することが可能になりました。",
+        "tags": ["OpenAI", "DALL-E", "AI", "Image Generation", "Text-to-Image"],
+        "imageUrl": dalle,
+        "demoUrl": "https://openai.com/dall-e-3"
+    }
 ]
 
 export const skillsDataWithIcons = [
@@ -187,7 +224,8 @@ export const skillsDataWithIcons = [
     icon: React.createElement(FaPython, { className: "text-xl" }), 
     desc: {
       zh: "熟悉Python编程",
-      en: "Python Programming"
+      en: "Python Programming",
+      ja: "Pythonプログラミング"
     } 
   },
   { 
@@ -196,7 +234,8 @@ export const skillsDataWithIcons = [
     icon: React.createElement(FaCode, { className: "text-xl" }), 
     desc: {
       zh: "Web开发",
-      en: "Web Development"
+      en: "Web Development",
+      ja: "Web開発"
     } 
   },
   { 
@@ -205,7 +244,8 @@ export const skillsDataWithIcons = [
     icon: React.createElement(BiLogoGit, { className: "text-xl" }), 
     desc: {
       zh: "版本控制",
-      en: "Version Control"
+      en: "Version Control",
+      ja: "バージョン管理"
     } 
   },
   { 
@@ -214,7 +254,8 @@ export const skillsDataWithIcons = [
     icon: React.createElement(FaGithub, { className: "text-xl" }), 
     desc: {
       zh: "代码托管",
-      en: "Code Hosting"
+      en: "Code Hosting",
+      ja: "コードホスティング"
     } 
   },
   { 
@@ -223,7 +264,8 @@ export const skillsDataWithIcons = [
     icon: React.createElement(FaGamepad, { className: "text-xl" }), 
     desc: {
       zh: "游戏开发",
-      en: "Game Development"
+      en: "Game Development",
+      ja: "ゲーム開発"
     } 
   },
   { 
@@ -232,7 +274,8 @@ export const skillsDataWithIcons = [
     icon: React.createElement(SiScratch, { className: "text-xl" }), 
     desc: {
       zh: "图形化编程",
-      en: "Visual Programming"
+      en: "Visual Programming",
+      ja: "ビジュアルプログラミング"
     } 
   },
 ];
