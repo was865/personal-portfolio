@@ -26,7 +26,7 @@ export default function Skills() {
   const { ref } = useSectionInView("Skills")
   const activeLocale = useLocale()
   const sectionLan = useTranslations("SectionName")
-  const [playPop] = useSound("/bubble.wav", { volume: 0.5 });
+  const [playPop] = useSound("/sounds/bubble.wav", { volume: 0.5 });
 
   return (
     <section

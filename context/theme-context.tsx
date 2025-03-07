@@ -16,8 +16,8 @@ const ThemeContext = createContext<ThemeContextType | null>(null)
 
 const ThemeContextProvider = ({ children }: ThemeContextProviderProp) => {
   const [theme, setTheme] = useState("light")
-  const [playLight] = useSound("/light-on.mp3", { volume: 0.5 })
-  const [playDark] = useSound("/light-off.mp3", { volume: 0.5 })
+  const [playLight] = useSound("/sounds/light-on.mp3", { volume: 0.5 })
+  const [playDark] = useSound("/sounds/light-off.mp3", { volume: 0.5 })
 
   const toggleTheme = () => {
     if (theme === "light") {
