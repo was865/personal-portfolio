@@ -5,8 +5,6 @@ import { useLocale } from "next-intl"
 import { usePathname, useRouter } from "next/navigation"
 import { useSound } from 'use-sound';
 
-
-
 export default function LanguageSwitch() {
   const localActive = useLocale()
   const router = useRouter()
