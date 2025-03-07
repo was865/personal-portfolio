@@ -1,7 +1,7 @@
 {
     "IntroSection": {
         "hello_im": "Hi, my name is",
-        "name": "Dane Quest",
+        "name": "Anshin O",
         "short_intro": "I enjoy exploring new things...",
         "download_cv": "Download CV",
         "blog": "Blog"
@@ -13,6 +13,6 @@
         "skills": "Skills"
     },
     "AboutSection": {
-        "desc": "Hello everyone, I am a passionate person who loves learning and exploration. Now I am an undergraduate majoring in electrical engineering. Although my professional background is more traditional engineering, I have a strong interest in emerging technology fields, especially AI, programming and development."
+        "desc": "Hello everyone, I am a passionate person who loves learning and exploring. Currently, I am a graduate student with a master's degree in socio-cultural studies, and I was a medical student during my undergraduate years. Although my professional background is quite diverse, I have a strong interest in emerging technology fields, especially AI, programming, and development."
     }
 }

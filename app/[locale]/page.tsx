@@ -12,8 +12,8 @@ export const metadata = {
   description: "Yuqi is a developer who enjoys exploring full stack development and AI innovation.",
 }
 
-export default function Home() {
-  const isMobile = isMobileDevice()
+export default async function Home() {
+  const isMobile = await isMobileDevice()
 
   return (
     <main className="flex flex-col items-center justify-center px-4 overflow-x-hidden">

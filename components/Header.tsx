@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { links } from "@/lib/data"
 import Link from "next/link"
 import clsx from "clsx"

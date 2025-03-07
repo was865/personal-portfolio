@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { BsArrowRight, BsLinkedin,  BsMusicNoteBeamed,  } from "react-icons/bs"
 import { HiDownload,  } from "react-icons/hi"
 import { FaGithubSquare, FaEnvelope, FaFileWord } from "react-icons/fa"
@@ -148,7 +148,6 @@ export default function Intro() {
               ? "/en-resume.pdf"
               : "/zh-简历.pdf"
           }
-          locale={false}
         >
           {t("download_cv")}
           <HiDownload />
