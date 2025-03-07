@@ -11,16 +11,15 @@ import { Source_Code_Pro } from "next/font/google"
 import { useLocale } from "next-intl"
 import { useSectionInView } from "@/lib/hooks"
 import { TypeAnimation } from "react-type-animation"
-import { useActiveSectionContext } from "@/context/action-section-context"
 import { useTranslations } from "next-intl"
 import useSound from "use-sound"
+import ClickSpark from "@/components/reactbits/ClickSpark"
 
 const sourceCodePro = Source_Code_Pro({ subsets: ["latin"], weight: "400" })
 
 export default function Intro() {
   const { ref } = useSectionInView("Home")
   const activeLocale = useLocale()
-  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext()
   const t = useTranslations("IntroSection")
   const [playHover] = useSound("/bubble.wav", { volume: 0.5 })
 
@@ -32,21 +31,29 @@ export default function Intro() {
     >
       <div className="flex items-center justify-center">
         <div className="relative">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "tween", duration: 0.2 }}
+          <ClickSpark
+            sparkColor='#fff'
+            sparkSize={10}
+            sparkRadius={15}
+            sparkCount={8}
+            duration={400}
           >
-            <Image
-              src="/profile.png"
-              alt="developer-image"
-              width="250"
-              height="250"
-              quality="95"
-              priority={true}
-              className="h-28 w-28 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
-            />
-          </motion.div>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "tween", duration: 0.2 }}
+            >
+              <Image
+                src="/profile.png"
+                alt="developer-image"
+                width="250"
+                height="250"
+                quality="95"
+                priority={true}
+                className="h-28 w-28 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
+              />
+            </motion.div>
+          </ClickSpark>
           <motion.span
             onHoverStart={() => {
               console.log("sound")
@@ -89,7 +96,7 @@ export default function Intro() {
             <span
               className={`${sourceCodePro.className} text-sm tracking-wider`}
             >
-              I&apos;m a{" "}
+              {t("im_a")}
             </span>
             <h2
               id="name"
@@ -97,7 +104,7 @@ export default function Intro() {
             >
               <TypeAnimation
                 sequence={[
-                  "Super Individual",
+                  "Genshin Impact Player",
                   1000,
                   "Full Stack Developer",
                   1000,
@@ -112,12 +119,10 @@ export default function Intro() {
           </div>
         </motion.div>
         <p>{t("short_intro")}</p>
-        {activeLocale === "en" && (
-          <p>
-            My focus is{" "}
-            <span className="italic font-bold">Innovation (AI)</span>.
-          </p>
-        )}
+        <p>
+          {t("focus_is")}{" "}
+          <span className="italic font-bold">{t("innovation_ai")}</span>.
+        </p>
       </motion.h1>
 
       <motion.div

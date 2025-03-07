@@ -4,7 +4,10 @@
         "name": "Anshin O",
         "short_intro": "I enjoy exploring new things...",
         "download_cv": "Download CV",
-        "blog": "Blog"
+        "blog": "Blog",
+        "focus_is": "My focus is",
+        "innovation_ai": "Innovation (AI)",
+        "im_a": "I'm a "
     },
     "Header": {
         "home": "Home",

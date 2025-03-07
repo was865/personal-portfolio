@@ -43,11 +43,11 @@ export default function NotFound() {
               baseIntensity={0.3} 
               hoverIntensity={hoverIntensity} 
               enableHover={enableHover}
-              fontSize="clamp(1.5rem, 4vw, 2.5rem)"
+              fontSize="clamp(4.5rem, 4vw, 2.5rem)"
               fontWeight={700}
               color="#ffffff"
             >
-              NOT FOUND
+              not found
             </FuzzyText>
           </div>
           </div>
