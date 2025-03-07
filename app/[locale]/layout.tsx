@@ -1,6 +1,5 @@
 import { use } from "react";
 import Header from "@/components/Header"
-import "./globals.css"
 import { Inter } from "next/font/google"
 import ThemeContextProvider from "@/context/theme-context"
 import { ActionSectionContextProvider } from "@/context/action-section-context"
@@ -13,7 +12,7 @@ import WidgetWrapper from "@/components/WidgetWrapper"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export default function RootLayout(
+export default function LocaleLayout(
   props: {
     children: React.ReactNode
     params: Promise<{ locale: string }>
@@ -33,7 +32,7 @@ export default function RootLayout(
   // const pathname = usePathname()
   // const isProjectDetail = pathname.includes("projects")
   return (
-    <html lang={locale} className="scroll-smooth!">
+    <html lang={locale} className="scroll-smooth! relative">
       <body
         className={`${inter.className} bg-gray-50 text-gray-950 relative dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
       >
