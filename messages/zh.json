@@ -6,13 +6,26 @@
         "download_cv": "下载简历",
         "blog": "个人网站"
     },
-    "SectionName": {
-        "about": "",
-        "experience": "我的经历",
+    "Header": {
+        "home": "首页",
+        "about": "关于我",
         "projects": "我的项目",
-        "skills": "我的技能"
+        "skills": "我的技能",
+        "experiences": "我的经历",
+        "contact": "联系我"
+    },
+    "SectionName": {
+        "home": "首页",
+        "about": "关于我",
+        "projects": "我的项目",
+        "skills": "我的技能",
+        "experiences": "我的经历",
+        "contact": "联系我"
     },
     "AboutSection": {
         "desc": "大家好，我是一个充满激情、热爱学习与探索的人。现在是一名社会文化学科毕业的硕士生，本科时期是医学生。虽然我的专业经历比较繁杂，但我对新兴的技术领域充满了浓厚的兴趣，特别是AI、编程和开发等方面。"
+    },
+    "ProjectsSection": {
+        "view_all": "查看所有项目"
     }
 }

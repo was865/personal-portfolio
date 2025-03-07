@@ -6,13 +6,26 @@
         "download_cv": "Download CV",
         "blog": "Blog"
     },
-    "SectionName": {
-        "about": "About me",
-        "experience": "Experience",
+    "Header": {
+        "home": "Home",
+        "about": "About",
         "projects": "Projects",
-        "skills": "Skills"
+        "skills": "Skills",
+        "experiences": "Experiences",
+        "contact": "Contact"
+    },
+    "SectionName": {
+        "home": "Home",
+        "about": "About me",
+        "projects": "Featured Projects",
+        "skills": "Skills",
+        "experiences": "My Experiences",
+        "contact": "Contact"
     },
     "AboutSection": {
         "desc": "Hello everyone, I am a passionate person who loves learning and exploring. Currently, I am a graduate student with a master's degree in socio-cultural studies, and I was a medical student during my undergraduate years. Although my professional background is quite diverse, I have a strong interest in emerging technology fields, especially AI, programming, and development."
+    },
+    "ProjectsSection": {
+        "view_all": "View All Projects"
     }
 }

@@ -1,25 +1,23 @@
 "use client"
 
 import React from "react"
-import { headerLanguageMap, projectsData } from "@/lib/data"
+import { projectsData } from "@/lib/data"
 import { useSectionInView } from "@/lib/hooks"
 import SectionHeading from "./SectionHeading"
 import Project from "./Project"
-import { useLocale } from "next-intl"
+import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { FaAngleRight } from "react-icons/fa6"
 
 export default function Projects() {
   const { ref } = useSectionInView("Projects", 0.1)
-  const activeLocale = useLocale()
+  const sectionT = useTranslations("SectionName")
+  const projectsT = useTranslations("ProjectsSection")
 
   return (
     <section ref={ref} id="projects" className="scroll-mt-28 mb-28">
       <SectionHeading>
-        {" "}
-        {activeLocale === "zh"
-          ? headerLanguageMap["Projects"]
-          : "Featured Projects"}
+        {sectionT("projects")}
       </SectionHeading>
       <div>
         {projectsData.map((project, index) => (
@@ -33,7 +31,7 @@ export default function Projects() {
         target="_blank"
         href="https://github.com/spongeYuqi"
       >
-        View All Projects
+        {projectsT("view_all")}
         <FaAngleRight className="group-hover:translate-x-2 transition" />
       </Link>
     </section>

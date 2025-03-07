@@ -1,6 +1,9 @@
 import React from "react";
-import { FaReact, FaVuejs, FaGithub, FaWeixin, FaGlobe  } from "react-icons/fa";
-import { LuGraduationCap, LuMusic, LuGlobe2 } from "react-icons/lu";
+import { FaReact, FaVuejs, FaGithub, FaWeixin, FaGlobe, FaPython, FaGamepad } from "react-icons/fa";
+import { LuGraduationCap, LuMusic } from "react-icons/lu";
+import { BiLogoGit } from "react-icons/bi";
+import { FaCode } from "react-icons/fa6";
+import { SiScratch } from "react-icons/si";
 import tank from '@/public/tank.png';
 import NetEasemusic from "@/public/NetEasemusic.png";
 import cupt from "@/public/cupt.jpg";
@@ -34,15 +37,6 @@ export const links = [
     //     hash: "#contact",
     // },
 ] as const;
-
-
-export const headerLanguageMap = {
-    Home: '首页',
-    About: '关于我',
-    Projects: '我的项目',
-    Skills: '我的技能',
-    Experiences: '我的经历',
-}
 
 export const experiencesData = [
     {
@@ -184,10 +178,64 @@ export const projectsData = [
         imageUrl: draws,
         demoUrl: '',
     },
-    
-
-
 ]
+
+export const skillsDataWithIcons = [
+  { 
+    id: "python",
+    name: "Python", 
+    icon: React.createElement(FaPython, { className: "text-xl" }), 
+    desc: {
+      zh: "熟悉Python编程",
+      en: "Python Programming"
+    } 
+  },
+  { 
+    id: "web",
+    name: "Web", 
+    icon: React.createElement(FaCode, { className: "text-xl" }), 
+    desc: {
+      zh: "Web开发",
+      en: "Web Development"
+    } 
+  },
+  { 
+    id: "git",
+    name: "Git", 
+    icon: React.createElement(BiLogoGit, { className: "text-xl" }), 
+    desc: {
+      zh: "版本控制",
+      en: "Version Control"
+    } 
+  },
+  { 
+    id: "github",
+    name: "Github", 
+    icon: React.createElement(FaGithub, { className: "text-xl" }), 
+    desc: {
+      zh: "代码托管",
+      en: "Code Hosting"
+    } 
+  },
+  { 
+    id: "minecraft",
+    name: "Minecraft", 
+    icon: React.createElement(FaGamepad, { className: "text-xl" }), 
+    desc: {
+      zh: "游戏开发",
+      en: "Game Development"
+    } 
+  },
+  { 
+    id: "scratch",
+    name: "Scratch", 
+    icon: React.createElement(SiScratch, { className: "text-xl" }), 
+    desc: {
+      zh: "图形化编程",
+      en: "Visual Programming"
+    } 
+  },
+];
 
 export const skillsData = [
     "Innovation",

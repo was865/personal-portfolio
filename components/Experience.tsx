@@ -9,13 +9,12 @@ import "react-vertical-timeline-component/style.min.css"
 import {
   experiencesData,
   experiencesDataZn,
-  headerLanguageMap,
 } from "@/lib/data"
 import SectionHeading from "./SectionHeading"
 import { motion } from "motion/react"
 import { useTheme } from "@/context/theme-context"
 import { ExperienceLabel } from "./ExperienceLabel"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 
 export default function Experience({ isMobile }: { isMobile: boolean }) {
   const { theme } = useTheme()
@@ -31,6 +30,7 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
   }
 
   const activeLocale = useLocale()
+  const t = useTranslations("SectionName")
 
   const experienceDataShown =
     activeLocale == "zh" ? experiencesDataZn : experiencesData
@@ -39,10 +39,7 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
     <section className="sm:mb-40 relative mb-20">
       <ExperienceLabel />
       <SectionHeading>
-        {" "}
-        {activeLocale === "zh"
-          ? headerLanguageMap["Experiences"]
-          : "My Experiences"}
+        {t("experiences")}
       </SectionHeading>
       {!isMobile ? (
         <VerticalTimeline lineColor={theme == "light" ? "#e9e9ea" : "#3b3d4f"}>

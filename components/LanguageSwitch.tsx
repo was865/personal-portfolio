@@ -39,7 +39,7 @@ const [playZhToEnSound] = useSound('en.mp3');
 
         <span className="text-sm hover:scale-[1.15] active:scale-105 transition-all">
           {" "}
-          {localActive == "en" ? "EN" : "中"}
+          {localActive == "en" ? "EN" : "ZH"}
         </span>
       </button>
     </>
