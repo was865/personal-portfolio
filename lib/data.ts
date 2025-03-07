@@ -55,7 +55,7 @@ export const experiencesData = [
         date: "2022 Oct - Present",
     },
     {
-        title: "M.I.S. Corporation",
+        title: "M.S.I Corporation",
         location: "Software Engineer",
         description:
             "Developed business management systems for factory operations and created a staff location management web application from scratch that was later commercialized. Worked on full-stack development using C#, JavaScript, .Net, Azure, Express, Node.js, and databases like SQL Server, SQLite, and PostgreSQL. Successfully covered for a colleague who left during a development phase, delivering the project on deadline.",
@@ -66,7 +66,7 @@ export const experiencesData = [
         title: "Graduate School, Yamagata University",
         location: "Master's in Cultural Systems",
         description:
-            "Completed graduate studies in the Faculty of Humanities and Social Sciences, Cultural Systems program. During this period, began working part-time at M.I.S. Corporation, which led to full-time employment after graduation.",
+            "Completed graduate studies in the Faculty of Humanities and Social Sciences, Cultural Systems program. During this period, began working part-time at M.S.I Corporation, which led to full-time employment after graduation.",
         icon: React.createElement(LuGraduationCap),
         date: "2019 Apr - 2021 Mar",
     },
@@ -96,7 +96,7 @@ export const experiencesDataZn = [
         "date": "2022年10月 - 至今"
     },
     {
-        "title": "株式会社M.I.S.",
+        "title": "株式会社M.S.I",
         "location": "软件工程师",
         "description": "为工厂运营开发业务管理系统，并从零开始创建了员工位置管理Web应用程序，该应用后来实现了商业化。进行全栈开发，使用C#、JavaScript、.Net、Azure、Express、Node.js和SQL Server、SQLite、PostgreSQL等数据库。在开发阶段，当同事因个人原因离职时，成功接手工作，按期交付项目。",
         "icon": React.createElement(FaCode),
@@ -105,7 +105,7 @@ export const experiencesDataZn = [
     {
         "title": "山形大学研究生院",
         "location": "文化系统专业硕士",
-        "description": "完成了人文社会科学研究科文化系统专业的研究生学习。在此期间，开始在M.I.S.公司兼职工作，毕业后转为全职雇用。",
+        "description": "完成了人文社会科学研究科文化系统专业的研究生学习。在此期间，开始在M.S.I公司兼职工作，毕业后转为全职雇用。",
         "icon": React.createElement(LuGraduationCap),
         "date": "2019年4月 - 2021年3月"
     },
@@ -134,7 +134,7 @@ export const experiencesDataJa = [
         "date": "2022年10月 - 現在"
     },
     {
-        "title": "株式会社エム・アイ・エス",
+        "title": "株式会社エム・エス・アイ",
         "location": "ソフトウェアエンジニア",
         "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、JavaScript、.Net、Azure、Express、Node.jsなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。開発フェーズで同僚が離脱した際も一人で作業をカバーし、期限内にプロジェクトを納品。",
         "icon": React.createElement(FaCode),
@@ -143,7 +143,7 @@ export const experiencesDataJa = [
     {
         "title": "山形大学大学院",
         "location": "人文社会科学研究科・文化システム専攻",
-        "description": "人文社会科学研究科・文化システム専攻の修士課程を修了。この期間中、株式会社エム・アイ・エスでアルバイトを始め、卒業後に正社員として採用される。",
+        "description": "人文社会科学研究科・文化システム専攻の修士課程を修了。この期間中、株式会社エム・エス・アイでアルバイトを始め、卒業後に正社員として採用される。",
         "icon": React.createElement(LuGraduationCap),
         "date": "2019年4月 - 2021年3月"
     },
