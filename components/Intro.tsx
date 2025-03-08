@@ -21,7 +21,7 @@ export default function Intro() {
   const { ref } = useSectionInView("Home")
   const activeLocale = useLocale()
   const t = useTranslations("IntroSection")
-  const [playHover] = useSound("/sounds/bubble.wav", { volume: 0.5 })
+  const [playHover] = useSound("/sounds/bubble.wav", { volume: 0.2 })
 
   return (
     <section
