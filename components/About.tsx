@@ -4,8 +4,7 @@ import React from "react"
 import { motion } from "motion/react"
 import SectionHeading from "./SectionHeading"
 import { useSectionInView } from "@/lib/hooks"
-import { useLocale, useTranslations } from "next-intl"
-
+import { useTranslations } from "next-intl"
 export default function About() {
   const { ref } = useSectionInView("About")
   const t = useTranslations("AboutSection")
