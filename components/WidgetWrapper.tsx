@@ -4,7 +4,7 @@ export default function WidgetWrapper({
   children: React.ReactNode
 }) {
   return (
-    <div className="fixed bottom-5 right-3 sm:bottom-[3rem] sm:right-[3rem] flex flex-col items-center justify-between p-1  bg-opacity-80 backdrop-blur-[0.5rem] border border-white border-opacity-70 shadow-2xl rounded-lg transition-all dark:bg-gray-950/100 dark:border-slate-700">
+    <div className="fixed bottom-5 right-3 sm:bottom-[3rem] sm:right-[3rem] flex flex-col items-center justify-between p-1 bg-white/70 backdrop-blur-[0.5rem] border border-white/40 shadow-2xl rounded-lg transition-all dark:bg-gray-950/50 dark:border-slate-700">
       {children}
     </div>
   )
