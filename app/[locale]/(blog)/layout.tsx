@@ -24,7 +24,7 @@ export default function LocaleLayout(
 
   const messages = useMessages()
   return (
-    <html lang={locale} className="scroll-smooth! relative">
+    <html lang={locale} className="scroll-smooth!">
       <body
         className={`${fontUbuntu.className} bg-gray-50 text-gray-950 relative dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
       >
@@ -35,9 +35,9 @@ export default function LocaleLayout(
           <ThemeContextProvider>
               {children}
               <Footer />
-              <WidgetWrapper>
+              {/* <WidgetWrapper>
                 <ThemeSwitch />
-              </WidgetWrapper>
+              </WidgetWrapper> */}
           </ThemeContextProvider>
         </NextIntlClientProvider>
       </body>
