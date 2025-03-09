@@ -1,4 +1,4 @@
-import { NotionPage } from "@/components/notion-page";
+import { NotionPage } from "@/components/NotionPage";
 import { getPageContent } from "@/lib/notion";
 
 type Props = {

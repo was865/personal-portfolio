@@ -1,10 +1,12 @@
 'use client'
 
 import Link from "next/link";
-import { Button, Card, CardBody, CardFooter } from "@heroui/react";
 import { RxCross2 } from "react-icons/rx";
 import Image from "next/image";
 import { customMapImageUrl } from "@/lib/notion";
+import TiltedCard from '@/components/reactbits/TiltedCard';
+import { motion } from "motion/react";
+import { useState } from "react";
 
 type BlogPost = {
   id: string;
@@ -20,40 +22,46 @@ interface BlogUIProps {
 }
 
 const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
+
   return (
     <div className="px-4 pb-10">
-      <div className="flex flex-col items-center mb-4 gap-2">
+      <div className="flex flex-col items-center mb-8 gap-8">
         <Link href="/" prefetch={true}>
-          <Button
-            isIconOnly
-            className="dark:border-knight dark:bg-transparent dark:border-2 bg-[#ece7e7] border-0"
-            radius="full"
-            variant="bordered"
+          <motion.button 
+            className="flex items-center justify-center cursor-pointer w-10 h-10 rounded-full bg-[#ece7e7] transition-all border dark:bg-gray-950/30 dark:hover:bg-gray-950/85 dark:border-gray-700 dark:text-white"
           >
-            <RxCross2 />
-          </Button>
+            <RxCross2 className="w-4 h-4" />
+          </motion.button>
         </Link>
-        <h1 className="text-2xl font-[500]">My Blog</h1>
+        <div className="w-full text-center">
+          <h1 className="text-2xl font-[500]">My Blog</h1>
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogPosts.map(({ id, title, block, pageCover, createdAt }) => (
-          <Link key={id} href={`/${locale}/blog/${id}`}>
-            <Card className="dark:bg-darkBg dark:border-2 dark:border-knight rounded-[2rem]">
-              <CardBody className="p-0">
-                <Image
-                  alt="cover"
-                  className="rounded-b-none object-cover h-[200px]"
-                  height={500}
-                  src={customMapImageUrl(pageCover, block)}
-                  width={500}
-                />
-              </CardBody>
-              <CardFooter className="flex justify-between">
-                <h3 className="font-[500] text-lg">{title}</h3>
-                <h3 className="text-sm">{createdAt.toDateString()}</h3>
-              </CardFooter>
-            </Card>
-          </Link>
+          <div key={id} className="relative h-[300px]">
+            <Link href={`/${locale}/blog/${id}`} className="block h-[300px]">
+              <TiltedCard
+                imageSrc={customMapImageUrl(pageCover, block)}
+                altText={title}
+                captionText={title}
+                containerHeight="300px"
+                containerWidth="100%"
+                imageHeight="300px"
+                imageWidth="100%"
+                rotateAmplitude={8}
+                scaleOnHover={1.05}
+                showMobileWarning={false}
+                showTooltip={false}
+                displayOverlayContent={true}
+                overlayContent={
+                  <p className="text-white capitalize tracking-[-0.5px] font-black shadow-[0_5px_30px_#06060659] m-[2em] px-[1em] py-2 rounded-[15px] bg-[#0006]">
+                    {title}
+                  </p>
+                }
+              />
+            </Link>
+          </div>
         ))}
       </div>
     </div>
