@@ -5,14 +5,12 @@ import { motion } from "motion/react"
 import { HiDownload } from "react-icons/hi"
 import { FaGithubSquare, FaEnvelope } from "react-icons/fa"
 import Link from "next/link"
-import { Source_Code_Pro } from "next/font/google"
 import { useLocale, useTranslations } from "next-intl"
 import { useSectionInView } from "@/lib/hooks"
 import { TypeAnimation } from "react-type-animation"
 import useSound from "use-sound"
 import ClickSpark from "@/components/reactbits/ClickSpark"
-
-const sourceCodePro = Source_Code_Pro({ subsets: ["latin"], weight: "400" })
+import { fontSourceCodePro } from "@/config/fonts"
 
 export default function Intro() {
   const { ref } = useSectionInView("Home")
@@ -76,7 +74,7 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className={`${sourceCodePro.className} text-sm tracking-wider `}>
+        <span className={`${fontSourceCodePro.className} text-sm tracking-wider `}>
           {t("hello_im")}
         </span>
         <motion.div
@@ -91,7 +89,7 @@ export default function Intro() {
 
           <div className="text-center">
             <span
-              className={`${sourceCodePro.className} text-sm tracking-wider`}
+              className={`${fontSourceCodePro.className} text-sm tracking-wider`}
             >
               {t("im_a")}
             </span>
