@@ -2,16 +2,13 @@
 
 import Image from "next/image"
 import { motion } from "motion/react"
-import { BsArrowRight, BsLinkedin,  BsMusicNoteBeamed,  } from "react-icons/bs"
-import { HiDownload,  } from "react-icons/hi"
-import { FaGithubSquare, FaEnvelope, FaFileWord } from "react-icons/fa"
-import { FaBilibili } from "react-icons/fa6";
+import { HiDownload } from "react-icons/hi"
+import { FaGithubSquare, FaEnvelope } from "react-icons/fa"
 import Link from "next/link"
 import { Source_Code_Pro } from "next/font/google"
-import { useLocale } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useSectionInView } from "@/lib/hooks"
 import { TypeAnimation } from "react-type-animation"
-import { useTranslations } from "next-intl"
 import useSound from "use-sound"
 import ClickSpark from "@/components/reactbits/ClickSpark"
 
@@ -159,48 +156,38 @@ export default function Intro() {
         </Link>
         <a
           className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://github.com/spongeYuqi"
+          href="https://github.com/was865"
           target="_blank"
         >
           <FaGithubSquare />
         </a>
-        <a
+        {/* <a
           className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://music.163.com/#/user/home?id=7816209974"
-          target="_blank"
-        >
-          <BsMusicNoteBeamed />
-        </a>
-        <a
-          className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://space.bilibili.com/1994639130?spm_id_from=333.1007.0.0"
+          href="https://space.bilibili.com/"
           target="_blank"
         >
           <FaBilibili />
-        </a>
+        </a> */}
         <a
           className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="mailto:2280356057@qq.com"
+          href="mailto:wangansen865@gmail.com"
           target="_blank"
         >
           <FaEnvelope />
         </a>
-        <Link
-          
+        {/* <Link
           className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href="/部署教程指南.docx"
           download
         >
           <FaFileWord />
-        </Link>
+        </Link> */}
         <a
           className=" bg-white py-2 px-3 text-sm text-gray-700 flex items-center gap-2  rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://spongebob.vip"
-          target="_blank"
+          href={`/${activeLocale}/blog`}
+          // target="_blank"
         >
           {t("blog")}
-
-          {/* <FaGithubSquare /> */}
         </a>
       </motion.div>
     </section>

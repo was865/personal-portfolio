@@ -11,6 +11,18 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+      },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.notion.so",
+      },
     ],
   },
 }
