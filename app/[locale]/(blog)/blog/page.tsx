@@ -4,8 +4,12 @@ import BlogUI from "@/components/blog/BlogUI";
 
 export const revalidate = 0;
 
-const Page = async ({ params }: { params: { locale: string } }) => {
-  const { locale } = params;
+type Props = {
+  params: Promise<{ locale: string }>
+}
+
+const Page = async ({ params }: Props) => {
+  const { locale } = await params;
   const blogPosts = await getAllBlogPosts(notionBlogConfig.blogParentId);
 
   return <BlogUI blogPosts={blogPosts} locale={locale} />;

@@ -1,10 +1,12 @@
 import { NotionPage } from "@/components/notion-page";
 import { getPageContent } from "@/lib/notion";
 
-export const revalidate = 0;
+type Props = {
+  params: Promise<{ locale: string, blogId: string }>
+}
 
-export default async function Page({ params }: { params: { locale: string, blogId: string } }) {
-  const { locale, blogId } = params;
+export default async function Page({ params }: Props) {
+  const { locale, blogId } = await params;
   const { recordMap, title } = await getPageContent(blogId);
 
   return (
