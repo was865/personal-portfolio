@@ -152,13 +152,13 @@ export default function Intro() {
           {t("download_cv")}
           <HiDownload />
         </Link>
-        <a
+        <Link
           className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href="https://github.com/was865"
           target="_blank"
         >
           <FaGithubSquare />
-        </a>
+        </Link>
         {/* <a
           className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href="https://space.bilibili.com/"
@@ -166,13 +166,13 @@ export default function Intro() {
         >
           <FaBilibili />
         </a> */}
-        <a
+        <Link
           className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href="mailto:wangansen865@gmail.com"
           target="_blank"
         >
           <FaEnvelope />
-        </a>
+        </Link>
         {/* <Link
           className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href="/部署教程指南.docx"
@@ -180,13 +180,12 @@ export default function Intro() {
         >
           <FaFileWord />
         </Link> */}
-        <a
+        <Link
           className=" bg-white py-2 px-3 text-sm text-gray-700 flex items-center gap-2  rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
           href={`/${activeLocale}/blog`}
-          // target="_blank"
         >
           {t("blog")}
-        </a>
+        </Link>
       </motion.div>
     </section>
   )
