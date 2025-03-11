@@ -23,13 +23,15 @@ export async function getAllBlogPosts(pageId: string) {
 
   Object.entries(blocks).map(([key, value]) => {
     if (key !== notionBlogConfig.blogParentId) {
-      blogPosts.push({
-        id: key,
-        block: value.value,
-        pageCover: value.value.format?.page_cover,
-        title: value.value.properties?.title[0][0],
-        createdAt: new Date(value.value.created_time),
-      });
+      if (value.value?.properties?.title) {
+        blogPosts.push({
+          id: key,
+          block: value.value,
+          pageCover: value.value.format?.page_cover,
+          title: value.value.properties?.title[0][0],
+          createdAt: new Date(value.value.created_time),
+        });
+      }
     }
   });
 
@@ -38,7 +40,7 @@ export async function getAllBlogPosts(pageId: string) {
 
 export const customMapImageUrl = (url: string, block: Block): string => {
   if (!url) {
-    throw new Error("URL can't be empty");
+    throw new Error("URL can't be empty");
   }
 
   if (url.startsWith("data:")) {
