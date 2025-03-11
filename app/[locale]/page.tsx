@@ -5,6 +5,7 @@ import Projects from "@/components/Projects"
 import Skills from "@/components/Skills"
 import Experience from "@/components/Experience"
 import { isMobileDevice } from "@/lib/utils"
+import Header from "@/components/Header"
 // import Contact from "@/components/Contact"
 
 export const metadata = {
@@ -16,14 +17,17 @@ export default async function Home() {
   const isMobile = await isMobileDevice()
 
   return (
-    <main className="flex flex-col items-center justify-center px-4 overflow-x-hidden">
-      <Intro />
-      <SectionDivider />
-      <About />
-      <Projects />
-      <Skills />
-      <Experience isMobile={isMobile} />
-      {/* <Contact /> */}
-    </main>
+    <>
+      <Header />
+      <main className="flex flex-col items-center justify-center px-4 overflow-x-hidden">
+        <Intro />
+        <SectionDivider />
+        <About />
+        <Projects />
+        <Skills />
+        <Experience isMobile={isMobile} />
+        {/* <Contact /> */}
+      </main>
+    </>
   )
 }
