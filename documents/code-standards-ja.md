@@ -1,4 +1,4 @@
-# Next.js プロジェクトコード規範
+# Next.js プロジェクトコーディングルール
 
 ## 目次
 
@@ -18,7 +18,7 @@
 
 ## プロジェクト構造
 
-Next.js 13/14のApp Routerを使用する場合の推奨プロジェクト構造：
+Next.js 13/14/15のApp Routerを使用する場合の推奨プロジェクト構造：
 
 ```
 /
@@ -51,7 +51,7 @@ Next.js 13/14のApp Routerを使用する場合の推奨プロジェクト構造
   - コンポーネント: PascalCase (例: `UserProfile.tsx`)
   - 関数と変数: camelCase (例: `getUserData`)
   - 定数: UPPER_SNAKE_CASE (例: `MAX_RETRY_COUNT`)
-  - ファイル名: kebab-case (例: `user-profile.ts`)またはコンポーネントの場合はPascalCase
+  - ファイル名: コンポーネントの場合はPascalCase, カスタムフットなどはkebab-case (例: `user-profile.ts`)または
 - **インデント**: 2スペース
 - **セミコロン**: 文末にセミコロンを付ける
 - **引用符**: シングルクォート (`'`) を使用する

@@ -51,7 +51,7 @@
   - 组件: PascalCase (例: `UserProfile.tsx`)
   - 函数和变量: camelCase (例: `getUserData`)
   - 常量: UPPER_SNAKE_CASE (例: `MAX_RETRY_COUNT`)
-  - 文件名: kebab-case (例: `user-profile.ts`)或组件使用PascalCase
+  - 文件名: 组件使用PascalCase, 自定义hooks等使用kebab-case (例: `user-profile.ts`)
 - **缩进**: 2空格
 - **分号**: 语句末尾加分号
 - **引号**: 使用单引号 (`'`)
