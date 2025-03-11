@@ -70,7 +70,7 @@ export default function Skills() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
             >
-              {activeLocale === "zh" ? skill.desc.zh : skill.desc.en}
+              {activeLocale === "zh" ? skill.desc.zh : activeLocale === "ja" ? skill.desc.ja : skill.desc.en}
               <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
             </motion.div>
           </motion.li>
