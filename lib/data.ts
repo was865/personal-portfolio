@@ -1,9 +1,11 @@
 import React from "react";
-import { FaReact, FaVuejs, FaGithub, FaWeixin, FaGlobe, FaPython, FaGamepad } from "react-icons/fa";
+import { FaReact, FaGithub, FaPython, FaGitlab, FaNodeJs } from "react-icons/fa";
 import { LuGraduationCap, LuMusic } from "react-icons/lu";
 import { BiLogoGit } from "react-icons/bi";
 import { FaCode } from "react-icons/fa6";
-import { SiScratch } from "react-icons/si";
+import { SiTypescript, SiDjango, SiDbt, SiSnowflake, SiVercel } from "react-icons/si";
+import { RiNextjsFill } from "react-icons/ri";
+import { TbBrandCSharp } from "react-icons/tb";
 import gpt5 from "@/public/ai-images/gpt5.jpg";
 import claude from "@/public/ai-images/claude.jpg";
 import gemini from "@/public/ai-images/gemini.jpg";
@@ -228,6 +230,16 @@ export const skillsDataWithIcons = [
       ja: "Pythonプログラミング"
     } 
   },
+  {
+    id: "django",
+    name: "Django",
+    icon: React.createElement(SiDjango, { className: "text-xl" }),
+    desc: {
+      zh: "Django开发",
+      en: "Django Development",
+      ja: "Django開発"
+    }
+  },
   { 
     id: "web",
     name: "Web", 
@@ -258,26 +270,96 @@ export const skillsDataWithIcons = [
       ja: "コードホスティング"
     } 
   },
-  { 
-    id: "minecraft",
-    name: "Minecraft", 
-    icon: React.createElement(FaGamepad, { className: "text-xl" }), 
+  {
+    id: "gitlab",
+    name: "Gitlab",
+    icon: React.createElement(FaGitlab, { className: "text-xl" }),
     desc: {
-      zh: "游戏开发",
-      en: "Game Development",
-      ja: "ゲーム開発"
-    } 
+      zh: "代码托管",
+      en: "Code Hosting",
+      ja: "コードホスティング"
+    }
   },
-  { 
-    id: "scratch",
-    name: "Scratch", 
-    icon: React.createElement(SiScratch, { className: "text-xl" }), 
+  {
+    id: "nextjs",
+    name: "Next.js",
+    icon: React.createElement(RiNextjsFill, { className: "text-xl" }),
     desc: {
-      zh: "图形化编程",
-      en: "Visual Programming",
-      ja: "ビジュアルプログラミング"
-    } 
+      zh: "熟悉Next.js开发",
+      en: "Familiar with Next.js Development",
+      ja: "Next.js開発"
+    }
   },
+  {
+    id: "react",
+    name: "React",
+    icon: React.createElement(FaReact, { className: "text-xl" }),
+    desc: {
+      zh: "React开发",
+      en: "React Development",
+      ja: "React開発"
+    }
+  },
+  {
+    id: "typescript",
+    name: "TypeScript",
+    icon: React.createElement(SiTypescript, { className: "text-xl" }),
+    desc: {
+      zh: "熟悉TypeScript",
+      en: "TypeScript Development",
+      ja: "TypeScript開発"
+    }
+  },
+  {
+    id: "vercel",
+    name: "Vercel",
+    icon: React.createElement(SiVercel, { className: "text-xl" }),
+    desc: {
+      zh: "Vercel部署",
+      en: "Vercel Deployment",
+      ja: "Vercelデプロイ"
+    }
+  },
+  {
+    id: "nodejs",
+    name: "Node.js",
+    icon: React.createElement(FaNodeJs, { className: "text-xl" }),
+    desc: {
+      zh: "Node.js开发",
+      en: "Node.js Development",
+      ja: "Node.js開発"
+    }
+  },
+  {
+    id: "csharp",
+    name: "C sharp",
+    icon: React.createElement(TbBrandCSharp, { className: "text-xl" }),
+    desc: {
+      zh: "C#.net 开发",
+      en: "C#.net Development",
+      ja: "C#.net 開発"
+    }
+  },
+  {
+    id: "dbt",
+    name: "DBT",
+    icon: React.createElement(SiDbt, { className: "text-xl" }),
+    desc: {
+      zh: "数据仓库",
+      en: "Data Warehouse",
+      ja: "データウェアハウス"
+    }
+  },
+  {
+    id: "snowflake",
+    name: "Snowflake",
+    icon: React.createElement(SiSnowflake, { className: "text-xl" }),
+    desc: {
+      zh: "数据仓库",
+      en: "Data Warehouse",
+      ja: "データウェアハウス"
+    }
+  }
 ];
 
 export const skillsData = [
