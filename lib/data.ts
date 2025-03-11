@@ -33,10 +33,6 @@ export const links = [
         name: "Experiences",
         hash: "#experience",
     },
-    // {
-    //     name: "Contact",
-    //     hash: "#contact",
-    // },
 ] as const;
 
 export const experiencesData = [
@@ -60,9 +56,7 @@ export const experiencesData = [
         title: "M.S.I Corporation",
         location: "Software Engineer",
         description:
-            "Developed business management systems for factory operations and created a staff location management web application from scratch that was later commercialized. Worked on full-stack development using C#, JavaScript, .Net, Azure, Express, Node.js, and databases like SQL Server, SQLite, and PostgreSQL. Successfully covered for a colleague who left during a development phase, delivering the project on deadline.",
-        icon: React.createElement(FaCode),
-        date: "2020 Jul - 2022 Oct",
+            "Developed business management systems for factory operations and created a staff location management web application from scratch that was later commercialized. Worked on full-stack development using C#, JavaScript, .Net, Azure, Express, Node.js, and databases like SQL Server, SQLite, and PostgreSQL. ",
     },
     {
         title: "Graduate School, Yamagata University",
@@ -86,7 +80,7 @@ export const experiencesDataZn = [
     {
         "title": "株式会社Sunborn",
         "location": "软件工程师",
-        "description": "负责多个项目，包括为大型贸易公司开发合并会计系统。担任详细设计、开发、测试和生产运营职责。技术栈包括TypeScript、Python、SQL、React、Django、AWS、DBT、Power BI和Snowflake数据库。通过编写可读性强的SQL和彻底验证DBT执行效果，成功提高了代码的可维护性。",
+        "description": "负责多个项目，包括为大型贸易公司开发合并会计系统。担任详细设计、开发、测试和生产运营职责。技术栈包括TypeScript、Python、SQL、React、Django、AWS、DBT、Power BI和Snowflake数据库。通过编写可读性强的SQL和彻底的DBT执行效果验证，成功提高了代码的可维护性。",
         icon: React.createElement(FaCode),
         "date": "2023年1月 - 至今"
     },
@@ -100,14 +94,14 @@ export const experiencesDataZn = [
     {
         "title": "株式会社M.S.I",
         "location": "软件工程师",
-        "description": "为工厂运营开发业务管理系统，并从零开始创建了员工位置管理Web应用程序，该应用后来实现了商业化。进行全栈开发，使用C#、JavaScript、.Net、Azure、Express、Node.js和SQL Server、SQLite、PostgreSQL等数据库。在开发阶段，当同事因个人原因离职时，成功接手工作，按期交付项目。",
+        "description": "为工厂运营开发业务管理系统，并从零开始创建了员工位置管理Web应用程序，该应用后来实现了商业化。进行全栈开发，使用C#、JavaScript、.Net、Azure、Express、Node.js和SQL Server、SQLite、PostgreSQL等数据库。",
         "icon": React.createElement(FaCode),
         "date": "2020年7月 - 2022年10月"
     },
     {
         "title": "山形大学研究生院",
         "location": "文化系统专业硕士",
-        "description": "完成了人文社会科学研究科文化系统专业的研究生学习。在此期间，开始在M.S.I公司兼职工作，毕业后转为全职雇用。",
+        "description": "完成了人文社会科学研究科文化系统专业的研究生学习。在此期间，开始在M.S.I公司实习，毕业后正式入职。",
         "icon": React.createElement(LuGraduationCap),
         "date": "2019年4月 - 2021年3月"
     },
@@ -124,28 +118,28 @@ export const experiencesDataJa = [
     {
         "title": "株式会社Sunborn",
         "location": "ソフトウェアエンジニア",
-        "description": "大手商社向けの連結会計システム開発など複数のプロジェクトを担当。詳細設計、開発、テスト、本番運用の責任者として活躍。技術スタックはTypeScript、Python、SQL、React、Django、AWS、DBT、Power BI、Snowflakeデータベースなど。読みやすいSQLの作成とDBT実行効果の徹底検証により、コードの保守性向上に成功。",
+        "description": "大手商社向けの連結会計システム開発など複数のプロジェクトを担当。詳細設計、開発、テスト、本番運用の責任者として活躍。技術スタックはTypeScript、Python、SQL、React、Django、AWS、DBT、Power BI、Snowflakeデータベースなど。",
         "icon": React.createElement(FaCode),
         "date": "2023年1月 - 現在"
     },
     {
         "title": "株式会社オータス（副業）",
         "location": "Webデベロッパー",
-        "description": "本業と並行して副業に従事。ガス・電気契約者向けのポータルサイト開発や、基幹システム機能のWebアプリケーション化を担当。PHP/CakePHP、TypeScript/Next.js/Prismaなどの技術を活用。プロジェクト始動期のスプリントを一人で担当し、再利用性を重視したコンポーネント開発（Atomic design、Storybookなど）により、拡張性の高いプロジェクトのベースを構築。",
+        "description": "本業と並行して副業に従事。ガス・電気契約者向けのポータルサイト開発や、基幹システム機能のWebアプリケーション化を担当。PHP/CakePHP、TypeScript/Next.js/Prismaなどの技術を活用。プロジェクト始動期のスプリントを一人で担当し、Atomic design、Storybook、jestの活用により、拡張性の高いプロジェクトのベースを構築。現在はテックリーダーとして、チームのナレッジ共有やコードレビューを行っている。",
         "icon": React.createElement(FaReact),
         "date": "2022年10月 - 現在"
     },
     {
         "title": "株式会社エム・エス・アイ",
         "location": "ソフトウェアエンジニア",
-        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、JavaScript、.Net、Azure、Express、Node.jsなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。開発フェーズで同僚が離脱した際も一人で作業をカバーし、期限内にプロジェクトを納品。",
+        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、JavaScript、.Net、Azure、Express、Node.jsなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。",
         "icon": React.createElement(FaCode),
         "date": "2020年7月 - 2022年10月"
     },
     {
         "title": "山形大学大学院",
         "location": "人文社会科学研究科・文化システム専攻",
-        "description": "人文社会科学研究科・文化システム専攻の修士課程を修了。この期間中、株式会社エム・エス・アイでアルバイトを始め、卒業後に正社員として採用される。",
+        "description": "人文社会科学研究科・文化システム専攻の修士課程を修了。この期間中、株式会社エム・エス・アイでインターンを始め、卒業後に正式入社する。",
         "icon": React.createElement(LuGraduationCap),
         "date": "2019年4月 - 2021年3月"
     },
