@@ -9,6 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { FiCalendar } from "react-icons/fi";
+import { fontInter } from "@/config/fonts";
 
 const prismComponents = [
   "prism-markup-templating",
@@ -137,12 +138,12 @@ export const NotionPage = ({
   return (
     <div className="min-h-screen">
       {/* Background decoration */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      {/* <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-[40%] -right-[10%] w-[70%] h-[70%] rounded-full bg-gradient-to-br from-purple-100/20 to-blue-100/20 blur-3xl dark:from-purple-900/10 dark:to-blue-900/10"></div>
         <div className="absolute -bottom-[30%] -left-[10%] w-[60%] h-[60%] rounded-full bg-gradient-to-tr from-amber-100/20 to-rose-100/20 blur-3xl dark:from-amber-900/10 dark:to-rose-900/10"></div>
-      </div>
+      </div> */}
       
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-0">
         <div className="flex flex-col items-center mb-8">
           <Link className="self-center mb-6" href={`/${locale}/blog`} prefetch={true}>
           <motion.button 
@@ -182,14 +183,14 @@ export const NotionPage = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <div className="p-4 sm:p-8">
+              <div className={"p-4 sm:p-8"}>
                 <NotionRenderer
                   components={components}
                   darkMode={theme === "dark"}
                   fullPage={false}
                   recordMap={recordMap}
                   rootPageId={rootPageId}
-                  className="notion-container"
+                  className={`notion-container ${fontInter.className}`}
                 />
               </div>
             </motion.div>
