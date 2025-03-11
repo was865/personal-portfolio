@@ -22,13 +22,15 @@ interface BlogUIProps {
 }
 
 const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
-
+  const [hover, setHover] = useState(false);
   return (
     <div className="px-4 pb-10">
       <div className="flex flex-col items-center mb-8 gap-8">
         <Link href="/" prefetch={true}>
           <motion.button 
             className="flex items-center justify-center cursor-pointer w-10 h-10 rounded-full bg-[#ece7e7] transition-all border dark:bg-gray-950/30 dark:hover:bg-gray-950/85 dark:border-gray-700 dark:text-white"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
           >
             <RxCross2 className="w-4 h-4" />
           </motion.button>
@@ -37,7 +39,12 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
           <h1 className="text-2xl font-[500]">My Blog</h1>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <motion.div 
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition duration-700 ease-in-out transform ${hover ? "translate-y-5" : ""}`}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         {blogPosts.map(({ id, title, block, pageCover, createdAt }) => (
           <div key={id} className="relative h-[300px]">
             <Link href={`/${locale}/blog/${id}`} className="block h-[300px]">
@@ -63,7 +70,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
             </Link>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
