@@ -8,7 +8,6 @@ export default function NotFound() {
   const [hoverIntensity, setHoverIntensity] = useState(0.5)
   const [enableHover, setEnableHover] = useState(true)
   
-  // 自动改变效果强度的动画
   useEffect(() => {
     const interval = setInterval(() => {
       setHoverIntensity(prev => {

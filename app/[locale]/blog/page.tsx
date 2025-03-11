@@ -1,4 +1,4 @@
-import { customMapImageUrl, getAllBlogPosts } from "@/lib/notion";
+import { getAllBlogPosts } from "@/lib/notion";
 import { notionBlogConfig } from "@/config/site";
 import BlogUI from "@/components/blog/BlogUI";
 
@@ -9,6 +9,11 @@ type Props = {
 }
 
 const Page = async ({ params }: Props) => {
+
+  if (!notionBlogConfig.blogParentId) {
+    throw new Error("Blog Parent ID is missing.");
+  }
+
   const { locale } = await params;
   const blogPosts = await getAllBlogPosts(notionBlogConfig.blogParentId);
 
