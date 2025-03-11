@@ -28,7 +28,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
       <div className="flex flex-col items-center mb-8 gap-8">
         <Link href="/" prefetch={true}>
           <motion.button 
-            className="flex items-center justify-center cursor-pointer w-10 h-10 rounded-full bg-[#ece7e7] transition-all border dark:bg-gray-950/30 dark:hover:bg-gray-950/85 dark:border-gray-700 dark:text-white"
+            className="flex items-center justify-center cursor-pointer w-10 h-10 rounded-full bg-[#ece7e7]/70 transition-all border dark:bg-gray-950/30 dark:hover:bg-gray-950/85 dark:border-gray-700 dark:text-white"
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
           >

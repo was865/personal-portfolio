@@ -17,25 +17,30 @@ export async function getPageContent(pageId: string) {
 
 export async function getAllBlogPosts(pageId: string) {
   const recordMap = await notion.getPage(pageId);
+  console.log(recordMap);
   const blocks = recordMap.block;
 
   let blogPosts: Blog[] = [];
 
-  Object.entries(blocks).map(([key, value]) => {
-    if (key !== notionBlogConfig.blogParentId) {
-      if (value.value?.properties?.title) {
+  Object.entries(blocks).forEach(([key, value]) => {
+    // ブログの親ページIDと異なり、かつページタイプのブロックのみを処理
+    if (key !== notionBlogConfig.blogParentId && value.value?.type === 'page') {
+      const title = value.value.properties?.title?.[0]?.[0];
+      // タイトルが存在する場合のみブログ記事として追加
+      if (title) {
         blogPosts.push({
           id: key,
           block: value.value,
-          pageCover: value.value.format?.page_cover,
-          title: value.value.properties?.title[0][0],
+          pageCover: value.value.format?.page_cover || '',
+          title: title,
           createdAt: new Date(value.value.created_time),
         });
       }
     }
   });
 
-  return blogPosts;
+  // 作成日時で降順にソート
+  return blogPosts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 }
 
 export const customMapImageUrl = (url: string, block: Block): string => {
@@ -45,7 +50,7 @@ export const customMapImageUrl = (url: string, block: Block): string => {
 
   if (url.startsWith("data:")) {
     return url;
-  } // more recent versions of notion don't proxy unsplash images
+  } // more recent versions of notion don't proxy unsplash images
 
   if (url.startsWith("https://images.unsplash.com")) {
     return url;
@@ -92,4 +97,8 @@ export const customMapImageUrl = (url: string, block: Block): string => {
   url = notionImageUrlV2.toString();
 
   return url;
+};
+
+export const mapPageUrl = (pageId: string, locale: string = 'ja'): string => {
+  return `/${locale}/blog/${pageId}`;
 };

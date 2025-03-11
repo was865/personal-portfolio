@@ -10,6 +10,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { FiCalendar } from "react-icons/fi";
 import { fontInter } from "@/config/fonts";
+import { mapPageUrl } from '@/lib/notion';
 
 const prismComponents = [
   "prism-markup-templating",
@@ -147,7 +148,7 @@ export const NotionPage = ({
         <div className="flex flex-col items-center mb-8">
           <Link className="self-center mb-6" href={`/${locale}/blog`} prefetch={true}>
           <motion.button 
-            className="flex items-center justify-center cursor-pointer w-10 h-10 rounded-full bg-[#ece7e7] transition-all border dark:bg-gray-950/30 dark:hover:bg-gray-950/85 dark:border-gray-700 dark:text-white"
+            className="flex items-center justify-center cursor-pointer w-10 h-10 rounded-full bg-[#ece7e7]/70 transition-all border dark:bg-gray-950/30 dark:hover:bg-gray-950/85 dark:border-gray-700 dark:text-white"
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
           >
@@ -191,6 +192,7 @@ export const NotionPage = ({
                   recordMap={recordMap}
                   rootPageId={rootPageId}
                   className={`notion-container ${fontInter.className}`}
+                  mapPageUrl={(pageId) => mapPageUrl(pageId, locale)}
                 />
               </div>
             </motion.div>

@@ -10,6 +10,6 @@
 // };
 
 export const notionBlogConfig = {
-  blogParentId: "1b21be1a58a880379b0dee4d93cb58f5",
+  blogParentId: process.env.NEXT_PUBLIC_NOTION_BLOG_PARENT_ID,
 };
 
