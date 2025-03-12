@@ -29,6 +29,66 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+
+  /* 言語別フォント設定 */
+  :root:lang(ja) {
+    --font-family-sans: var(--font-noto-sans-jp), var(--font-inter), sans-serif;
+  }
+
+  :root:lang(zh) {
+    --font-family-sans: var(--font-noto-sans-sc), var(--font-inter), sans-serif;
+  }
+
+  /* 言語別のテキスト設定 */
+  :root:lang(ja) *, :root:lang(zh) * {
+    font-family: var(--font-family-sans);
+    letter-spacing: -0.01em;
+    line-height: 1.65;
+  }
+
+  /* Notionコンテンツの言語別フォント設定 */
+  :root:lang(ja) .notion, :root:lang(zh) .notion {
+    font-family: var(--font-family-sans) !important;
+  }
+  
+  /* Notionの特定要素に対するフォント設定 */
+  :root:lang(ja) .notion-page-title,
+  :root:lang(zh) .notion-page-title,
+  :root:lang(ja) .notion-text,
+  :root:lang(zh) .notion-text,
+  :root:lang(ja) .notion-h,
+  :root:lang(zh) .notion-h,
+  :root:lang(ja) .notion-list,
+  :root:lang(zh) .notion-list,
+  :root:lang(ja) .notion-callout,
+  :root:lang(zh) .notion-callout,
+  :root:lang(ja) .notion-quote,
+  :root:lang(zh) .notion-quote,
+  :root:lang(ja) .notion-collection-card-title,
+  :root:lang(zh) .notion-collection-card-title,
+  :root:lang(ja) .notion-property-text,
+  :root:lang(zh) .notion-property-text,
+  :root:lang(ja) .notion-link,
+  :root:lang(zh) .notion-link {
+    font-family: var(--font-family-sans) !important;
+  }
+  
+  /* ボタンやリンクのテキスト */
+  :root:lang(ja) button,
+  :root:lang(zh) button,
+  :root:lang(ja) a,
+  :root:lang(zh) a {
+    font-family: var(--font-family-sans);
+  }
+}
+
+/* Tailwind v4用のカスタムフォントクラス */
+.font-ja {
+  font-family: var(--font-noto-sans-jp), var(--font-inter), sans-serif;
+}
+
+.font-zh {
+  font-family: var(--font-noto-sans-sc), var(--font-inter), sans-serif;
 }
 
 .react-grid-item.react-grid-placeholder {

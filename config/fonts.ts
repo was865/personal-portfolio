@@ -1,4 +1,5 @@
 import { Ubuntu, Oleo_Script, Inter, Source_Code_Pro } from "next/font/google";
+import { Noto_Sans_JP, Noto_Sans_SC, Noto_Sans_TC } from "next/font/google";
 
 export const fontUbuntu = Ubuntu({
   weight: ["400", "500", "700"],
@@ -21,4 +22,28 @@ export const fontSourceCodePro = Source_Code_Pro({
   weight: ["400"],
   subsets: ["latin"],
   variable: "--font-source-code-pro",
+});
+
+// 日本語フォント
+export const fontNotoSansJP = Noto_Sans_JP({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto-sans-jp",
+  preload: false, // 必要に応じてロード
+});
+
+// 簡体字中国語フォント
+export const fontNotoSansSC = Noto_Sans_SC({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto-sans-sc",
+  preload: false, // 必要に応じてロード
+});
+
+// 繁体字中国語フォント
+export const fontNotoSansTC = Noto_Sans_TC({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto-sans-tc",
+  preload: false, // 必要に応じてロード
 });

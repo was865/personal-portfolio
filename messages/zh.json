@@ -34,5 +34,10 @@
     },
     "ProjectsSection": {
         "view_all": "查看所有项目"
+    },
+    "Blog": {
+        "title": "My Blog",
+        "description": "Notion API powered",
+        "back": "返回所有文章"
     }
 }

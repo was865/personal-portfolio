@@ -34,5 +34,10 @@
     },
     "ProjectsSection": {
         "view_all": "View All Projects"
+    },
+    "Blog": {
+        "title": "My Blog",
+        "description": "Notion API powered",
+        "back": "Back to all posts"
     }
 }

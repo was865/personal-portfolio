@@ -11,7 +11,7 @@ import { motion } from "motion/react";
 import { FiCalendar } from "react-icons/fi";
 import { fontInter } from "@/config/fonts";
 import { mapPageUrl } from '@/lib/notion';
-
+import { useTranslations } from "next-intl"
 const prismComponents = [
   "prism-markup-templating",
   "prism-markup",
@@ -101,7 +101,7 @@ export const NotionPage = ({
   const [isClient, setIsClient] = useState(false);
   const { theme } = useTheme();
   const [hover, setHover] = useState(false);
-
+  const t = useTranslations('Blog')
   const components: Partial<NotionComponents> = useMemo(
     () => ({
       Code,
@@ -112,6 +112,18 @@ export const NotionPage = ({
     }),
     []
   );
+
+  // ロケールに基づいたフォントクラスを取得
+  const getLocaleFontClass = () => {
+    switch (locale) {
+      case 'ja':
+        return 'font-ja';
+      case 'zh':
+        return 'font-zh';
+      default:
+        return '';
+    }
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -129,7 +141,7 @@ export const NotionPage = ({
     recordMap.block[rootPageId].value?.created_time
   );
   
-  const formattedDate = new Intl.DateTimeFormat('en-US', {
+  const formattedDate = new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : locale === 'zh' ? 'zh-CN' : 'ja-JP', {
     weekday: 'short',
     month: 'short',
     day: 'numeric',
@@ -137,7 +149,7 @@ export const NotionPage = ({
   }).format(createdDate);
 
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen ${getLocaleFontClass()}`}>
       {/* Background decoration */}
       {/* <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-[40%] -right-[10%] w-[70%] h-[70%] rounded-full bg-gradient-to-br from-purple-100/20 to-blue-100/20 blur-3xl dark:from-purple-900/10 dark:to-blue-900/10"></div>
@@ -191,7 +203,7 @@ export const NotionPage = ({
                   fullPage={false}
                   recordMap={recordMap}
                   rootPageId={rootPageId}
-                  className={`notion-container`}
+                  className={`notion-container ${getLocaleFontClass()}`}
                   mapPageUrl={(pageId) => mapPageUrl(pageId, locale)}
                 />
               </div>
@@ -205,7 +217,7 @@ export const NotionPage = ({
             >
               <Link href={`/${locale}/blog`} prefetch={true}>
                 <button className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
-                  ← Back to all posts
+                  ← {t('back')}
                 </button>
               </Link>
             </motion.div>

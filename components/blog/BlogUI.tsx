@@ -7,6 +7,7 @@ import { customMapImageUrl } from "@/lib/notion";
 import TiltedCard from '@/components/reactbits/TiltedCard';
 import { motion } from "motion/react";
 import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl"
 
 type BlogPost = {
   id: string;
@@ -23,10 +24,12 @@ interface BlogUIProps {
 
 const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
   const [hover, setHover] = useState(false);
+  const t = useTranslations('Blog')
+
   return (
     <div className="px-4 pb-10">
       <div className="flex flex-col items-center mb-8 gap-8">
-        <Link href="/" prefetch={true}>
+        <Link href={`/${locale}`} prefetch={true}>
           <motion.button 
             className="flex items-center justify-center cursor-pointer w-10 h-10 rounded-full bg-[#ece7e7]/70 transition-all border dark:bg-gray-950/30 dark:hover:bg-gray-950/85 dark:border-gray-700 dark:text-white"
             onMouseEnter={() => setHover(true)}
@@ -36,8 +39,8 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
           </motion.button>
         </Link>
         <div className="w-full text-center">
-          <h1 className="text-2xl font-[500]">My Blog</h1>
-          <p className="text-sm text-gray-500">Notion API powered</p>
+          <h1 className="text-2xl font-[500]">{t('title')}</h1>
+          <p className="text-sm text-gray-500">{t('description')}</p>
         </div>
       </div>
       <motion.div 

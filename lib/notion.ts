@@ -99,6 +99,6 @@ export const customMapImageUrl = (url: string, block: Block): string => {
   return url;
 };
 
-export const mapPageUrl = (pageId: string, locale: string = 'ja'): string => {
+export const mapPageUrl = (pageId: string, locale: string = 'en'): string => {
   return `/${locale}/blog/${pageId}`;
 };
