@@ -281,6 +281,7 @@ export default function ProductListClient() {
 - `perf`: パフォーマンス向上のための変更
 - `test`: テストの追加・修正
 - `chore`: ビルドプロセスやツールの変更
+- `revert`: 以前のコミットを取り消す
 
 ### Scope
 

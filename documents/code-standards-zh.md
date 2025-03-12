@@ -273,14 +273,15 @@ export default function ProductListClient() {
 
 ### 类型(Type)
 
-- `feat`: 新功能
-- `fix`: 修复bug
-- `docs`: 仅文档变更
-- `style`: 不影响代码含义的变更（空格、格式等）
-- `refactor`: 既不是修复bug也不是添加功能的代码变更
-- `perf`: 提高性能的变更
-- `test`: 添加或修正测试
-- `chore`: 构建过程或工具变更
+- `feat`: 新增/修改功能 (feature)
+- `fix`: 修复bug (bug fix)
+- `docs`: 仅文档变更 (documentation)
+- `style`: 格式 (不影响代码运行的变更 white-space, formatting, missing semi colons, etc)
+- `refactor`: 重构 (既不是修复bug也不是添加功能的代码变更)
+- `perf`: 提高性能的变更 (A code change that improves performance)
+- `test`: 添加或修正测试 (when adding missing tests)
+- `chore`: 构建过程或工具变更  (maintain)
+- `revert`: 撤销先前的 commit
 
 ### 作用域(Scope)
 

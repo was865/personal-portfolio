@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { ExtendedRecordMap } from "notion-types";
 import { useEffect, useMemo, useState } from "react";
-import { NotionRenderer } from "react-notion-x";
+import { NotionRenderer, NotionComponents } from "react-notion-x";
 import dynamic from "next/dynamic";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
@@ -102,13 +102,13 @@ export const NotionPage = ({
   const { theme } = useTheme();
   const [hover, setHover] = useState(false);
 
-  const components = useMemo(
+  const components: Partial<NotionComponents> = useMemo(
     () => ({
       Code,
       Collection,
       Equation,
       Pdf,
-      Modal,
+      Modal
     }),
     []
   );
@@ -191,7 +191,7 @@ export const NotionPage = ({
                   fullPage={false}
                   recordMap={recordMap}
                   rootPageId={rootPageId}
-                  className={`notion-container ${fontInter.className}`}
+                  className={`notion-container`}
                   mapPageUrl={(pageId) => mapPageUrl(pageId, locale)}
                 />
               </div>
