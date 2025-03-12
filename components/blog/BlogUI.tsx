@@ -37,6 +37,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
         </Link>
         <div className="w-full text-center">
           <h1 className="text-2xl font-[500]">My Blog</h1>
+          <p className="text-sm text-gray-500">Notion API powered</p>
         </div>
       </div>
       <motion.div 

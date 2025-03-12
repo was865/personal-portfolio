@@ -20,13 +20,13 @@
     "SectionName": {
         "home": "首页",
         "about": "关于我",
-        "projects": "我的项目",
+        "projects": "我的项目 (wait for update)",
         "skills": "我的技能",
         "experiences": "我的经历",
         "contact": "联系我"
     },
     "AboutSection": {
-        "desc": "大家好，我是一名拥有Web应用开发和业务系统经验的软件工程师。我的教育背景包括山形大学文化系统专业的硕士学位和成都医学院康复医学专业的学士学位。尽管学术背景多样化，但我在软件开发领域建立了扎实的职业生涯，专注于使用TypeScript、JavaScript、React、Python和各种数据库的全栈开发。",
+        "desc": "大家好，我是一名拥有Web应用开发和业务系统经验的软件工程师。我的教育背景包括山形大学文化系统专业的硕士学位和成都医学院临床医学康复医学专业的学士学位。尽管学术背景多样化，但我在软件开发领域建立了扎实的职业生涯，专注于使用TypeScript、JavaScript、React、Python和各种数据库的全栈开发。",
         "para1": "自2023年1月起，我在株式会社Sunborn工作，使用TypeScript、Python、React、Django和Snowflake等技术为大型贸易公司开发合并会计系统。此外，自2022年10月起，我在株式会社Otus兼职，开发门户网站和Web应用程序。",
         "para2": "此前，我在2020年7月至2022年10月期间在株式会社M.I.S.工作，开发业务管理系统并创建了一个员工位置管理Web应用程序，该应用后来实现了商业化。",
         "para3": "我不断学习新技术并提升自己的技能。我持有深度学习认证（JDLA Deep Learning for ENGINEER），这反映了我对AI和机器学习的兴趣。我热衷于创建高效、可维护的代码，并且喜欢解决问题。",
