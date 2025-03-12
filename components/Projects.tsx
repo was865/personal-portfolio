@@ -15,11 +15,11 @@ export default function Projects() {
   const projectsT = useTranslations("ProjectsSection")
 
   return (
-    <section ref={ref} id="projects" className="scroll-mt-28 mb-28">
+    <section ref={ref} id="projects" className="scroll-mt-28 mb-28 w-full flex flex-col items-center px-4">
       <SectionHeading>
         {sectionT("projects")}
       </SectionHeading>
-      <div>
+      <div className="w-full flex flex-col items-center">
         {projectsData.map((project, index) => (
           <React.Fragment key={index}>
             <Project {...project} />

@@ -37,7 +37,7 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
     activeLocale == "zh" ? experiencesDataZh : activeLocale == "ja" ? experiencesDataJa : experiencesData
 
   return (
-    <section className="sm:mb-40 relative mb-20">
+    <section className="sm:mb-40 relative mb-20 px-4">
       <ExperienceLabel />
       <SectionHeading>
         {t("experiences")}

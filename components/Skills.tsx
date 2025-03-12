@@ -32,7 +32,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className=" max-w-[53rem] scroll-mt-28 text-center mb-28"
+      className="max-w-[53rem] scroll-mt-28 text-center mb-28 px-4"
     >
       <SectionHeading>
         {sectionLan("skills")}
