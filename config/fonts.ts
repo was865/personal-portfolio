@@ -39,11 +39,3 @@ export const fontNotoSansSC = Noto_Sans_SC({
   variable: "--font-noto-sans-sc",
   preload: false, // 必要に応じてロード
 });
-
-// 繁体字中国語フォント
-export const fontNotoSansTC = Noto_Sans_TC({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-noto-sans-tc",
-  preload: false, // 必要に応じてロード
-});

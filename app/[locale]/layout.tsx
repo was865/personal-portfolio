@@ -14,7 +14,6 @@ import {
   fontUbuntu, 
   fontNotoSansJP, 
   fontNotoSansSC, 
-  fontNotoSansTC 
 } from "@/config/fonts";
 
 export default function LocaleLayout(

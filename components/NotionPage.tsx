@@ -216,7 +216,7 @@ export const NotionPage = ({
               transition={{ delay: 0.8 }}
             >
               <Link href={`/${locale}/blog`} prefetch={true}>
-                <button className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 transition-colors">
+                <button className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 transition-colors px-4 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
                   ← {t('back')}
                 </button>
               </Link>
