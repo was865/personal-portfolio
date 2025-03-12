@@ -37,7 +37,7 @@
     },
     "Blog": {
         "title": "My Blog",
-        "description": "Notion API powered",
+        "description": "powered by Notion API",
         "back": "返回所有文章"
     }
 }

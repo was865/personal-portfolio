@@ -36,8 +36,8 @@
         "view_all": "全てのプロジェクトを見る"
     },
     "Blog": {
-        "title": "ブログ",
-        "description": "Notion API powered",
+        "title": "My Blog",
+        "description": "powered by Notion API",
         "back": "全ての記事に戻る"
     }
 } 

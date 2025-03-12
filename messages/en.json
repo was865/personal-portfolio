@@ -37,7 +37,7 @@
     },
     "Blog": {
         "title": "My Blog",
-        "description": "Notion API powered",
+        "description": "powered by Notion API",
         "back": "Back to all posts"
     }
 }
