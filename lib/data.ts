@@ -57,6 +57,8 @@ export const experiencesData = [
         location: "Software Engineer",
         description:
             "Developed business management systems for factory operations and created a staff location management web application from scratch that was later commercialized. Worked on full-stack development using C#, JavaScript, .Net, Azure, Express, Node.js, and databases like SQL Server, SQLite, and PostgreSQL. ",
+        icon: React.createElement(FaCode),
+        date: "2020 Jul - 2022 Oct",
     },
     {
         title: "Graduate School, Yamagata University",
