@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import SectionHeading from "./SectionHeading"
+import SectionHeading from "@/components/SectionHeading"
 import { useSectionInView } from "@/lib/hooks"
 import { useTranslations } from "next-intl"
 export default function About() {

@@ -1,5 +1,5 @@
 import { Ubuntu, Oleo_Script, Inter, Source_Code_Pro } from "next/font/google";
-import { Noto_Sans_JP, Noto_Sans_SC, Noto_Sans_TC } from "next/font/google";
+import { Noto_Sans_JP, Noto_Sans_SC } from "next/font/google";
 
 export const fontUbuntu = Ubuntu({
   weight: ["400", "500", "700"],

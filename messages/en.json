@@ -20,7 +20,7 @@
     "SectionName": {
         "home": "Home",
         "about": "About me",
-        "projects": "Featured Projects (wait for update)",
+        "projects": "Featured Projects (updating...)",
         "skills": "Skills",
         "experiences": "My Experiences",
         "contact": "Contact"
@@ -30,7 +30,10 @@
         "para1": "I have been working at Sunborn Corporation since January 2023, developing consolidated accounting systems for major trading companies using technologies like TypeScript, Python, React, Django, and Snowflake. Additionally, I have been working part-time at Otus Corporation since October 2022, developing portal sites and web applications.",
         "para2": "Previously, I worked at M.S.I Corporation from July 2020 to October 2022, where I developed business management systems and created a staff location management web application that was later commercialized.",
         "para3": "I'm constantly learning new technologies and improving my skills. I hold a Deep Learning certification (JDLA Deep Learning for ENGINEER), which reflects my interest in AI and machine learning. I'm passionate about creating efficient, maintainable code and enjoy problem-solving.",
-        "para4": "I'm always looking for new challenges and opportunities to grow as a developer. Feel free to contact me if you're interested in collaborating or have any questions about my work!"
+        "para4": "I'm always looking for new challenges and opportunities to grow as a developer. Feel free to contact me if you're interested in collaborating or have any questions about my work!",
+        "intro_start": "Hey! I'm",
+        "intro_name": "Ansen",
+        "intro_end": ", a software engineer. Currently, I'm building cool web applications. My world revolves around web development and AI innovation."
     },
     "ProjectsSection": {
         "view_all": "View All Projects"
