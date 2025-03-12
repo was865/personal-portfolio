@@ -1,0 +1,18 @@
+{
+  "name": "ポートフォリオ - Ansen Wang",
+  "short_name": "Ansen Portfolio",
+  "description": "安森のポートフォリオサイト",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/profile.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+} 

@@ -1,3 +1,13 @@
 /node_modules
 /.next
 .env.local
+
+# Service Worker files
+/public/sw.js
+/public/workbox-*.js
+/public/sw.js.map
+/public/workbox-*.js.map
+/public/worker-*.js
+/public/worker-*.js.map
+/public/fallback-*.js
+/public/fallback-*.js.map

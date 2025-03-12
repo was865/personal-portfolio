@@ -16,6 +16,23 @@ import {
   fontNotoSansSC, 
 } from "@/config/fonts";
 
+export const metadata = {
+  title: 'Ansen Wang - Portfolio',
+  description: 'Ansen Wangのポートフォリオサイト',
+  manifest: '/manifest.json',
+  applicationName: 'Ansen Portfolio',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Ansen Portfolio',
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  themeColor: '#000000',
+  viewport: 'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
+};
+
 export default function LocaleLayout(
   props: {
     children: React.ReactNode
@@ -50,6 +67,16 @@ export default function LocaleLayout(
   // const isProjectDetail = pathname.includes("projects")
   return (
     <html lang={locale} className="scroll-smooth! relative">
+      <head>
+        <meta name="application-name" content="Ansen Portfolio" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Ansen Portfolio" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body
         className={`${fontUbuntu.className} ${fontOleoScript.variable} ${fontInter.variable} ${getLocaleFont()} bg-[#f6f2f2] text-gray-950 relative dark:bg-[#0b0f11] dark:text-gray-50 dark:text-opacity-90`}
       >
