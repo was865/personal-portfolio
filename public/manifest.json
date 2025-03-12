@@ -4,7 +4,6 @@
   "description": "安森のポートフォリオサイト",
   "start_url": "/",
   "display": "standalone",
-  "display_override": ["fullscreen", "standalone"],
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "orientation": "portrait-primary",
