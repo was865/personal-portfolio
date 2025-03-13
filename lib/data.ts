@@ -56,7 +56,7 @@ export const experiencesData = [
         title: "M.S.I Corporation",
         location: "Software Engineer",
         description:
-            "Developed business management systems for factory operations and created a staff location management web application from scratch that was later commercialized. Worked on full-stack development using C#, JavaScript, .Net, Azure, Express, Node.js, and databases like SQL Server, SQLite, and PostgreSQL. ",
+            "Developed business management systems for factory operations and created a staff location management web application from scratch that was later commercialized. Worked on full-stack development using C#, JavaScript, .Net, Azure, Express, Node.js, and databases like SQL Server, SQLite, and PostgreSQL. During this period, passed the JDLA Deep Learning for ENGINEER certification.",
         icon: React.createElement(FaCode),
         date: "2020 Jul - 2022 Oct",
     },
@@ -96,7 +96,7 @@ export const experiencesDataZn = [
     {
         "title": "株式会社M.S.I",
         "location": "软件工程师",
-        "description": "为工厂运营开发业务管理系统，并从零开始创建了员工位置管理Web应用程序，该应用后来实现了商业化。进行全栈开发，使用C#、JavaScript、.Net、Azure、Express、Node.js和SQL Server、SQLite、PostgreSQL等数据库。",
+        "description": "为工厂运营开发业务管理系统，并从零开始创建了员工位置管理Web应用程序，该应用后来实现了商业化。进行全栈开发，使用C#、JavaScript、.Net、Azure、Express、Node.js和SQL Server、SQLite、PostgreSQL等数据库。在职期间通过了JDLA Deep Learning for ENGINEER认证。",
         "icon": React.createElement(FaCode),
         "date": "2020年7月 - 2022年10月"
     },
@@ -134,7 +134,7 @@ export const experiencesDataJa = [
     {
         "title": "株式会社エム・エス・アイ",
         "location": "ソフトウェアエンジニア",
-        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、JavaScript、.Net、Azure、Express、Node.jsなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。",
+        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、JavaScript、.Net、Azure、Express、Node.jsなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。期間中にJDLA Deep Learning for ENGINEER認定を取得。",
         "icon": React.createElement(FaCode),
         "date": "2020年7月 - 2022年10月"
     },
