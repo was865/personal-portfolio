@@ -1,7 +1,7 @@
 export const icons = [
   "typescript",
   "javascript",
-  "java",
+  "openjdk",
   "react",
   "html5",
   "css3",
@@ -20,7 +20,7 @@ export const icons = [
   "jira",
   "github",
   "gitlab",
-  "visualstudiocode",
+  "vercel",
   "figma",
   "openai",
   "python",
