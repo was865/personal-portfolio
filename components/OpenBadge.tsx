@@ -30,6 +30,7 @@ export const OpenBadge = ({ badgeUrl }: OpenBadgeProps) => {
               src="/images/openbadge.png"
               alt="OpenBadge"
               fill
+              sizes="(max-width: 768px) 100vw, 128px"
               className="object-contain"
               priority
               quality={100}
