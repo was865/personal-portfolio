@@ -36,9 +36,8 @@ const Paper = ({ paperUrl }: PaperProps) => {
         prefetch={true}
         onMouseDown={(e) => e.stopPropagation()}
       >
-        <motion.button 
-          className="bg-white dark:bg-[#0f1217] transition-all w-auto min-w-10 h-10 md:min-w-[2.75rem] md:h-[2.75rem] duration-300 ease-in-out p-2 rounded-full hover:bg-default-100 border-2 border-transparent dark:border-gray-700 flex justify-center items-center cursor-pointer"
-          whileTap={{ scale: 0.95 }}
+        <button 
+          className="bg-white dark:bg-[#0f1217] transition-all w-auto min-w-10 h-10 md:min-w-[2.75rem] md:h-[2.75rem] duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-full border-2 border-transparent dark:border-gray-700 flex justify-center items-center cursor-pointer"
         >
           <div className="flex justify-center items-center text-black dark:text-white">
             <motion.span 
@@ -51,7 +50,7 @@ const Paper = ({ paperUrl }: PaperProps) => {
             </motion.span>
             <GoArrowUpRight />
           </div>
-        </motion.button>
+        </button>
       </Link>
     </div>
   );
