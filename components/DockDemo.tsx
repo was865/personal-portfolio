@@ -1,7 +1,7 @@
 import React from "react";
 import { IoDocumentText, IoLogoGithub, IoLogoLinkedin, IoMail } from "react-icons/io5";
 
-import { Dock, DockIcon } from "@/components/dock";
+import { Dock, DockIcon } from "@/components/Dock";
 import { siteConfig } from "@/config/site";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;

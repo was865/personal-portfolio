@@ -80,9 +80,8 @@ const AvatarTransition: React.FC<AvatarTransitionProps> = ({
       </div>
       <motion.button
         className="flex items-center justify-center gap-2 rounded-full bg-transparent border border-gray-200 px-4 py-2 transition-all hover:bg-gray-50 dark:text-white dark:border-[#1e293b] dark:hover:bg-[#1e293b]/10 w-[120px] h-[40px] select-none"
+        onMouseDown={(e) => e.stopPropagation()}
         onClick={() => setToggle((prev) => !prev)}
-        onDragStart={(e) => e.preventDefault()}
-        draggable="false"
         whileTap={{ scale: 0.95 }}
       >
         <MdOutlineSync size={16} className="mr-1" />

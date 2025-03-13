@@ -100,7 +100,6 @@ module.exports = {
   - Molecules: 搜索栏等复合元素
   - Organisms: 表单、导航栏等
   - Templates: 页面布局
-  - Pages: 完整页面组件
 
 ### 服务器组件 vs. 客户端组件
 

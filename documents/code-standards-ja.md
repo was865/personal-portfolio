@@ -100,7 +100,6 @@ module.exports = {
   - Molecules: 検索バーなどの複合要素
   - Organisms: フォーム、ナビゲーションバーなど
   - Templates: ページレイアウト
-  - Pages: 完全なページコンポーネント
 
 ### Server vs. Client Components
 
