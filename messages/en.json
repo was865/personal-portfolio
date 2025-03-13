@@ -42,5 +42,14 @@
         "title": "My Blog",
         "description": "powered by Notion API",
         "back": "Back to all posts"
+    },
+    "OpenBadge": {
+        "title": "OpenBadge",
+        "description": "Certified Credential",
+        "clickToView": "Click to view details",
+        "viewBadge": "View Certificate",
+        "badgeTitle": "JDLA Deep Learning for ENGINEER",
+        "issuer": "Japan Deep Learning Association",
+        "issueDate": "Obtained on March 14, 2022"
     }
 }

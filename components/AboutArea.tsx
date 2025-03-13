@@ -2,27 +2,27 @@
 
 import { Responsive } from "react-grid-layout";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 // import { AnimationSwitch } from "./animation-swith";
 // import MiniPic from "./mini-pic";
 
 import { cn } from "@/lib/utils";
-import AvatarTransition from "@/components/avatar";
-import { DockDemo } from "@/components/dock-demo";
+import AvatarTransition from "@/components/Avatar";
+import { DockDemo } from "@/components/DockDemo";
 // import { ThemeSwitch } from "@/components/theme-switch";
-import CardStack from "@/components/card-stack";
+import CardStack from "@/components/CardStack";
 // import AnimatedEmoji from "@/components/animated-emoji";
-import IconCloud from "@/components/icon-cloud";
+import IconCloud from "@/components/IconCloud";
 // import MapComponent from "@/components/map";
-import WebAgent from "@/components/webagent";
+// import WebAgent from "@/components/WebAgent";
 // import Chatbot from "@/components/chatbot";
 // import { MiniModel } from "@/components/mini";
 // import Actions from "@/components/actions";
+import { OpenBadge } from "@/components/OpenBadge";
 import { layouts, selectedCard } from "@/config/layout";
 import { icons } from "@/config/icons";
 import useWindowWidth from "@/hooks/useWindowWidth";
-import Paper from "@/components/paper";
+import Paper from "@/components/Paper";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
@@ -37,6 +37,7 @@ interface HomeProps {
   webagentUrl: string;
   chatbotUrl: string;
   paperUrl: string;
+  openBadgeUrl: string;
 }
 
 const AboutArea = ({
@@ -48,6 +49,7 @@ const AboutArea = ({
   webagentUrl,
   chatbotUrl,
   paperUrl,
+  openBadgeUrl
 }: HomeProps) => {
   const width = useWindowWidth();
   const [tabSelected, setTabSelected] = useState("all");
@@ -133,6 +135,15 @@ const AboutArea = ({
             >
               <Paper paperUrl={paperUrl} />
             </div>
+            <div
+              key="openBadge"
+              className={cn(
+                "bg-white dark:bg-[#0f1217] dark:border-2 dark:border-gray-700 cursor-grab active:cursor-grabbing rounded-[2rem] flex justify-center items-center z-[1] overflow-hidden",
+                selectedCard[tabSelected]["openBadge"] ? "opacity-100" : "opacity-50"
+              )}
+            >
+              <OpenBadge badgeUrl={openBadgeUrl} />
+            </div>
             {/* <div
               key="animatedEmoji"
               className={cn(
@@ -166,7 +177,7 @@ const AboutArea = ({
             >
               <IconCloud iconSlugs={icons} />
             </div>
-            <div
+            {/* <div
               key="webAgent"
               className={cn(
                 "bg-white dark:bg-[#0f1217] dark:border-2 dark:border-gray-700 cursor-grab active:cursor-grabbing rounded-[2rem] flex justify-center items-center overflow-hidden z-[1]",
@@ -174,7 +185,7 @@ const AboutArea = ({
               )}
             >
               <WebAgent webAgentUrl={webagentUrl} />
-            </div>
+            </div> */}
             {/* <div
               key="chatBot"
               className={cn(

@@ -14,6 +14,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "chatBot", x: 0, y: 2, w: 2, h: 2 },
       { i: "miniModel", x: 0, y: 1, w: 1, h: 2 },
       { i: "actions", x: 3, y: 2, w: 2, h: 2 },
+      { i: "openBadge", x: 2, y: 1, w: 1, h: 2 },
     ],
     md: [
       { i: "avatar", x: 0, y: 0, w: 2, h: 2 },
@@ -27,6 +28,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "chatBot", x: 0, y: 2, w: 2, h: 2 },
       { i: "miniModel", x: 0, y: 1, w: 1, h: 2 },
       { i: "actions", x: 3, y: 2, w: 2, h: 2 },
+      { i: "openBadge", x: 2, y: 1, w: 1, h: 2 },
     ],
     sm: [
       { i: "avatar", x: 0, y: 0, w: 2, h: 2 },
@@ -40,6 +42,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "paper", x: 0, y: 7, w: 1, h: 1 },
       { i: "mapComponent", x: 0, y: 6, w: 2, h: 1 },
       { i: "actions", x: 0, y: 8, w: 2, h: 1 },
+      { i: "openBadge", x: 1, y: 7, w: 1, h: 1 },
     ],
     xs: [
       { i: "avatar", x: 0, y: 0, w: 2, h: 2 },
@@ -53,6 +56,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "paper", x: 0, y: 7, w: 1, h: 1 },
       { i: "mapComponent", x: 0, y: 6, w: 2, h: 1 },
       { i: "actions", x: 0, y: 8, w: 2, h: 1 },
+      { i: "openBadge", x: 1, y: 7, w: 1, h: 1 },
     ],
     xxs: [
       { i: "avatar", x: 0, y: 0, w: 2, h: 2 },
@@ -66,6 +70,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "paper", x: 0, y: 7, w: 1, h: 1 },
       { i: "mapComponent", x: 0, y: 6, w: 2, h: 1 },
       { i: "actions", x: 0, y: 8, w: 2, h: 1 },
+      { i: "openBadge", x: 1, y: 7, w: 1, h: 1 },
     ],
   },
 
@@ -82,6 +87,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "chatBot", x: 0, y: 2, w: 2, h: 2 },
       { i: "actions", x: 3, y: 2, w: 2, h: 2 },
       { i: "paper", x: 0, y: 3, w: 1, h: 4 },
+      { i: "openBadge", x: 1, y: 3, w: 1, h: 2 },
     ],
     md: [
       { i: "avatar", x: 0, y: 0, w: 2, h: 2 },
@@ -95,6 +101,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "chatBot", x: 0, y: 2, w: 2, h: 2 },
       { i: "actions", x: 3, y: 2, w: 2, h: 2 },
       { i: "paper", x: 0, y: 3, w: 1, h: 4 },
+      { i: "openBadge", x: 1, y: 3, w: 1, h: 2 },
     ],
     sm: [
       { i: "avatar", x: 0, y: 0, w: 2, h: 2 },
@@ -108,6 +115,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "webAgent", x: 1, y: 5, w: 1, h: 2 },
       { i: "paper", x: 0, y: 6, w: 1, h: 1 },
       { i: "actions", x: 0, y: 8, w: 2, h: 1 },
+      { i: "openBadge", x: 0, y: 5, w: 1, h: 1 },
     ],
     xs: [
       { i: "avatar", x: 0, y: 0, w: 2, h: 2 },
@@ -121,6 +129,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "webAgent", x: 1, y: 5, w: 1, h: 2 },
       { i: "paper", x: 0, y: 6, w: 1, h: 1 },
       { i: "actions", x: 0, y: 8, w: 2, h: 1 },
+      { i: "openBadge", x: 0, y: 5, w: 1, h: 1 },
     ],
     xxs: [
       { i: "avatar", x: 0, y: 0, w: 2, h: 2 },
@@ -134,6 +143,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "webAgent", x: 1, y: 5, w: 1, h: 2 },
       { i: "paper", x: 0, y: 6, w: 1, h: 1 },
       { i: "actions", x: 0, y: 8, w: 2, h: 1 },
+      { i: "openBadge", x: 0, y: 5, w: 1, h: 1 },
     ],
   },
 
@@ -150,6 +160,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "miniModel", x: 0, y: 3, w: 1, h: 2 },
       { i: "themeSwitch", x: 1, y: 3, w: 1, h: 2 },
       { i: "mapComponent", x: 2, y: 3, w: 1, h: 2 },
+      { i: "openBadge", x: 0, y: 5, w: 1, h: 2 },
     ],
     md: [
       { i: "chatBot", x: 1, y: 0, w: 2, h: 2 },
@@ -163,6 +174,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "miniModel", x: 0, y: 3, w: 1, h: 2 },
       { i: "themeSwitch", x: 1, y: 3, w: 1, h: 2 },
       { i: "mapComponent", x: 2, y: 3, w: 1, h: 2 },
+      { i: "openBadge", x: 0, y: 5, w: 1, h: 2 },
     ],
     sm: [
       { i: "avatar", x: 0, y: 5, w: 2, h: 2 },
@@ -176,6 +188,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "iconCloud", x: 0, y: 8, w: 1, h: 1 },
       { i: "webAgent", x: 0, y: 3, w: 1, h: 2 },
       { i: "mapComponent", x: 0, y: 7, w: 2, h: 1 },
+      { i: "openBadge", x: 0, y: 9, w: 1, h: 1 },
     ],
     xs: [
       { i: "avatar", x: 0, y: 5, w: 2, h: 2 },
@@ -189,6 +202,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "iconCloud", x: 0, y: 8, w: 1, h: 1 },
       { i: "webAgent", x: 0, y: 3, w: 1, h: 2 },
       { i: "mapComponent", x: 0, y: 7, w: 2, h: 1 },
+      { i: "openBadge", x: 0, y: 9, w: 1, h: 1 },
     ],
     xxs: [
       { i: "avatar", x: 0, y: 5, w: 2, h: 2 },
@@ -202,6 +216,7 @@ export const layouts: Record<string, Layouts> = {
       { i: "iconCloud", x: 0, y: 8, w: 1, h: 1 },
       { i: "webAgent", x: 0, y: 3, w: 1, h: 2 },
       { i: "mapComponent", x: 0, y: 7, w: 2, h: 1 },
+      { i: "openBadge", x: 0, y: 9, w: 1, h: 1 },
     ],
   },
 };
@@ -219,6 +234,7 @@ export const selectedCard: Record<string, Record<string, boolean>> = {
     miniModel: true,
     actions: true,
     paper: true,
+    openBadge: true,
   },
   about: {
     avatar: true,
@@ -232,18 +248,20 @@ export const selectedCard: Record<string, Record<string, boolean>> = {
     miniModel: true,
     actions: false,
     paper: false,
+    openBadge: true,
   },
   projects: {
-    avatar: false,
-    themeSwitch: false,
-    cardStack: false,
+    avatar: true,
+    themeSwitch: true,
+    cardStack: true,
     animatedEmoji: true,
-    mapComponent: false,
-    iconCloud: false,
+    mapComponent: true,
+    iconCloud: true,
     webAgent: true,
     chatBot: true,
-    miniModel: false,
+    miniModel: true,
     actions: true,
     paper: true,
+    openBadge: false,
   },
 };

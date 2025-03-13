@@ -42,5 +42,14 @@
         "title": "My Blog",
         "description": "powered by Notion API",
         "back": "返回所有文章"
+    },
+    "OpenBadge": {
+        "title": "OpenBadge",
+        "description": "认证资格证书",
+        "clickToView": "点击查看详情",
+        "viewBadge": "View Certificate",
+        "badgeTitle": "JDLA Deep Learning for ENGINEER",
+        "issuer": "Japan Deep Learning Association",
+        "issueDate": "Obtained on March 14, 2022"
     }
 }

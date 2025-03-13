@@ -42,5 +42,14 @@
         "title": "My Blog",
         "description": "powered by Notion API",
         "back": "全ての記事に戻る"
+    },
+    "OpenBadge": {
+        "title": "OpenBadge",
+        "description": "認証された資格証明",
+        "clickToView": "クリックして詳細を見る",
+        "viewBadge": "View Certificate",
+        "badgeTitle": "JDLA Deep Learning for ENGINEER",
+        "issuer": "一般社団法人 日本ディープラーニング協会",
+        "issueDate": "2022年3月14日取得"
     }
 } 

@@ -24,10 +24,11 @@ export default async function Home() {
     avatarUrl: "/images/avatar.jpg",
     dogUrl: "/images/dog.jpg",
     actionImageUrl: "/images/action.jpg",
-    resumeUrl: "/resume.pdf",
+    resumeUrl: "#",
     webagentUrl: "/images/webagent.jpg",
     chatbotUrl: "/images/chatbot.jpg",
     paperUrl: "/images/paper.jpg",
+    openBadgeUrl: "https://www.openbadge-global.com/api/v1.0/openBadge/v2/Wallet/Public/GetAssertionShare/SU02RC9nakE3Y3dNeWVOMTMxUEhnZz09",
   }
 
   return (
