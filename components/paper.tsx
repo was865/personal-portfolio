@@ -2,15 +2,23 @@ import Link from "next/link";
 import { GoArrowUpRight } from "react-icons/go";
 import Image from "next/image";
 import { useLocale } from "next-intl";
+import { motion } from "motion/react";
+import { useState } from "react";
+
 interface PaperProps {
   paperUrl: string;
 }
 
 const Paper = ({ paperUrl }: PaperProps) => {
-  const activeLocale = useLocale()
+  const activeLocale = useLocale();
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="relative bg-[#63ccae] w-full h-full group dark:text-white dark:bg-[#0f1217]">
+    <div 
+      className="relative bg-[#63ccae] w-full h-full group dark:text-white dark:bg-[#0f1217]"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="absolute -top-40 left-40 bg-[#ffdf9a] w-[135%] h-full rounded-full dark:hidden" />
       <div className="absolute top-16 md:top-1/2 -translate-y-1/2 left-12 md:left-16 rounded-2xl -rotate-[30deg] w-full">
         <Image
@@ -22,21 +30,29 @@ const Paper = ({ paperUrl }: PaperProps) => {
           width={1577}
         />
       </div>
-      <button className="absolute bg-white dark:bg-[#0f1217] bottom-2 left-2 transition-all w-10 h-10 md:w-[2.75rem] md:h-[2.75rem] duration-500 ease-in-out group-hover:w-40 p-2 rounded-full hover:bg-default-100 border-2 border-transparent dark:border-[#1e293b]">
-        <div className="flex justify-center items-center">
-          <Link
-            color="foreground"
-            href={`/${activeLocale}/blog`}
-            className="text-black dark:text-white flex items-center"
-            prefetch={true}
-          >
-            <span className="text-sm md:text-medium text-nowrap hidden group-hover:block invisible group-hover:visible mr-1 animate-fade">
-              MY-BLOG
-            </span>
+      <Link
+        href={`/${activeLocale}/blog`}
+        className="absolute bottom-2 left-2"
+        prefetch={true}
+        onMouseDown={(e) => e.stopPropagation()}
+      >
+        <motion.button 
+          className="bg-white dark:bg-[#0f1217] transition-all w-auto min-w-10 h-10 md:min-w-[2.75rem] md:h-[2.75rem] duration-300 ease-in-out p-2 rounded-full hover:bg-default-100 border-2 border-transparent dark:border-gray-700 flex justify-center items-center cursor-pointer"
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="flex justify-center items-center text-black dark:text-white">
+            <motion.span 
+              className="text-sm text-nowrap mr-1 overflow-hidden whitespace-nowrap"
+              initial={{ width: 0, opacity: 0 }}
+              animate={isHovered ? { width: "auto", opacity: 1 } : { width: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              View Blog
+            </motion.span>
             <GoArrowUpRight />
-          </Link>
-        </div>
-      </button>
+          </div>
+        </motion.button>
+      </Link>
     </div>
   );
 };
