@@ -196,7 +196,7 @@ export const NotionPage = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <div className={"p-4 sm:p-8"}>
+              <div className={"py-4 px-1 md:px-4 sm:p-8"}>
                 <NotionRenderer
                   components={components}
                   darkMode={theme === "dark"}
