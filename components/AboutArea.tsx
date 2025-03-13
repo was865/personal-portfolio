@@ -21,7 +21,7 @@ import IconCloud from "@/components/IconCloud";
 import { OpenBadge } from "@/components/OpenBadge";
 import { layouts, selectedCard } from "@/config/layout";
 import { icons } from "@/config/icons";
-import useWindowWidth from "@/hooks/useWindowWidth";
+import useWindowWidth from "@/hooks/use-window-width";
 import Paper from "@/components/Paper";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslations } from "next-intl";
