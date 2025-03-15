@@ -5,6 +5,7 @@ Built using Next.js 15 and tailwind v4. The website features a blog powered by t
 
 <img width="804" alt="image" src="./public/readme.png">
 <img width="804" alt="image" src="./public/readme-2.png">
+<img width="804" alt="image" src="./public/readme-3.png">
 
 ## What I Did
 
