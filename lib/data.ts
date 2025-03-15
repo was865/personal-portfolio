@@ -127,14 +127,14 @@ export const experiencesDataJa = [
     {
         "title": "株式会社オータス（副業）",
         "location": "Webデベロッパー",
-        "description": "本業と並行して副業に従事。ガス・電気契約者向けのポータルサイト開発や、基幹システム機能のWebアプリケーション化を担当。PHP/CakePHP、TypeScript/Next.js/Prismaなどの技術を活用。プロジェクト始動期のスプリントを一人で担当し、Atomic design、Storybook、jestの活用により、拡張性の高いプロジェクトのベースを構築。現在はテックリーダーとして、チームのナレッジ共有やコードレビューを行っている。",
+        "description": "本業と並行して副業に従事。ガス・電気契約者向けのポータルサイト開発や、基幹システム機能のWebアプリケーション化を担当。PHP/CakePHP、TypeScript/Next.js/Prismaなどの技術を活用。プロジェクト始動期のスプリントを一人で担当し、Atomic design、Storybook、jestの活用により、拡張性、メンテナンス性の高いプロジェクトのベースを構築。現在はテックリーダーとして、新規機能の設計開発、チームのナレッジ共有やコードレビューを行っている。",
         "icon": React.createElement(FaReact),
         "date": "2022年10月 - 現在"
     },
     {
         "title": "株式会社エム・エス・アイ",
         "location": "ソフトウェアエンジニア",
-        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、JavaScript、.Net、Azure、Express、Node.jsなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。期間中にJDLA Deep Learning for ENGINEER認定を取得。",
+        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、.Net、JavaScript、Express、Node.js、Azureなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。期間中にAIの勉強を並行して学習し、JDLA Deep Learning for ENGINEER認定を取得。",
         "icon": React.createElement(FaCode),
         "date": "2020年7月 - 2022年10月"
     },
