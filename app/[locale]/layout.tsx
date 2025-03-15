@@ -18,7 +18,7 @@ import {
 
 export const metadata = {
   title: 'Ansen Wang - Portfolio',
-  description: 'Ansen Wangのポートフォリオサイト',
+  description: "Ansen Wang's portfolio site",
   manifest: '/manifest.json',
   applicationName: 'Ansen Portfolio',
   appleWebApp: {

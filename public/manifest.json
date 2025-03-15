@@ -1,7 +1,7 @@
 {
-  "name": "ポートフォリオ - Ansen Wang",
+  "name": "Ansen Wang - Portfolio",
   "short_name": "Ansen Portfolio",
-  "description": "安森のポートフォリオサイト",
+  "description": "Ansen Wang's portfolio site",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

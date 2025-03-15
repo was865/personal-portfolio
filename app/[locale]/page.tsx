@@ -6,12 +6,6 @@ import Experience from "@/components/Experience"
 import { isMobileDevice, getRandomPhotos } from "@/lib/utils-server"
 import Header from "@/components/Header"
 import AboutArea from "@/components/AboutArea"
-// import Contact from "@/components/Contact"
-
-export const metadata = {
-  title: "Ansen | Personal Portfolio",
-  description: "Ansen is a developer who enjoys exploring full stack development and AI innovation.",
-}
 
 export default async function Home() {
   const isMobile = await isMobileDevice()
