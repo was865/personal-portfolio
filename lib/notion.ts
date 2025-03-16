@@ -38,6 +38,7 @@ export async function getAllBlogPosts(pageId: string) {
       }
     }
   });
+  console.log('blogPosts', blogPosts);
 
   // 作成日時で降順にソート
   return blogPosts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());

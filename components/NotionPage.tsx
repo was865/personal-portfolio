@@ -91,11 +91,13 @@ export const NotionPage = ({
   recordMap,
   rootPageId,
   title,
+  tags = [],
   locale,
 }: {
   recordMap: ExtendedRecordMap;
   rootPageId: string;
   title?: string;
+  tags?: string[];
   locale: string;
 }) => {
   const [isClient, setIsClient] = useState(false);
@@ -179,7 +181,7 @@ export const NotionPage = ({
             </motion.h1>
             
             <motion.div 
-              className="flex justify-center mb-8"
+              className="flex justify-center mb-8 items-center gap-4 flex-wrap"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -189,7 +191,7 @@ export const NotionPage = ({
                 {formattedDate}
               </div>
             </motion.div>
-          
+            
             <motion.div 
               className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800"
               initial={{ opacity: 0, y: 40 }}
@@ -206,6 +208,20 @@ export const NotionPage = ({
                   className={`notion-container ${getLocaleFontClass()}`}
                   mapPageUrl={(pageId) => mapPageUrl(pageId, locale)}
                 />
+                
+                {tags && tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-8 border-t pt-6 border-gray-200 dark:border-gray-700">
+                    <span className="text-xs text-gray-500 dark:text-gray-400 mr-2 self-center">タグ:</span>
+                    {tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full dark:bg-gray-800 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </motion.div>
             
