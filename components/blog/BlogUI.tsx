@@ -9,6 +9,7 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl"
 import { extractTags, getTitleWithoutTags } from '@/lib/utils';
+import Folder from '@/components/reactbits/Folder';
 
 type BlogPost = {
   id: string;
@@ -95,6 +96,9 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
           );
         })}
       </motion.div>
+      {/* <div style={{ height: '600px', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Folder size={2} color="#00d8ff" className="custom-folder" />
+      </div> */}
     </div>
   );
 };

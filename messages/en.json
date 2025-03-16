@@ -41,6 +41,7 @@
     "Blog": {
         "title": "My Blog",
         "description": "powered by Notion API",
+        "tags": "Tags",
         "back": "Back to all posts"
     },
     "OpenBadge": {

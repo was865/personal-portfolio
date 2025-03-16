@@ -1,7 +1,7 @@
 "use client";
 
 import { Responsive } from "react-grid-layout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // import { AnimationSwitch } from "./animation-swith";
 // import MiniPic from "./mini-pic";
@@ -27,6 +27,7 @@ import SectionHeading from "@/components/SectionHeading";
 import { useTranslations } from "next-intl";
 import { motion } from "motion/react";
 import { useSectionInView } from "@/lib/hooks";
+import DecryptedText from "@/components/reactbits/DecryptedText";
 
 interface HomeProps {
   photos: string[];
@@ -99,9 +100,20 @@ const AboutArea = ({
               )}
             >
               <AvatarTransition avatarUrl={avatarUrl} dogUrl={dogUrl} />
-              <p className="text-sm md:text-medium dark:text-white">
-                {aboutLan("intro_start")} <span className="text-2xl">{aboutLan("intro_name")}</span>{aboutLan("intro_end")}
-              </p>
+                <p>
+                  <span>
+                    {aboutLan("intro_start")}
+                  </span>
+                  <DecryptedText
+                    text={aboutLan("intro_name")}
+                    parentClassName="text-2xl inline"
+                    useOriginalCharsOnly={true}
+                    speed={80}
+                  />
+                  <span>
+                    {aboutLan("intro_end")}
+                  </span>
+                </p>
               <DockDemo resumeUrl={resumeUrl} />
             </div>
             {/* <div

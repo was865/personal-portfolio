@@ -41,6 +41,7 @@
     "Blog": {
         "title": "My Blog",
         "description": "powered by Notion API",
+        "tags": "タグ",
         "back": "全ての記事に戻る"
     },
     "OpenBadge": {

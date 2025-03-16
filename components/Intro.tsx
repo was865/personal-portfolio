@@ -11,6 +11,7 @@ import { TypeAnimation } from "react-type-animation"
 import useSound from "use-sound"
 import ClickSpark from "@/components/reactbits/ClickSpark"
 import { fontSourceCodePro } from "@/config/fonts"
+import DecryptedText from "@/components/reactbits/DecryptedText"
 
 export default function Intro() {
   const { ref } = useSectionInView("Home")
@@ -83,9 +84,12 @@ export default function Intro() {
           transition={{ duration: 0.5 }}
           className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
         >
-          <h1 className="text-center text-4xl font-bold tracking-tight  sm:text-5xl">
-            {t("name")}
-          </h1>
+          <DecryptedText
+            text={t("name")}
+            parentClassName="text-center text-4xl font-bold tracking-tight sm:text-5xl block"
+            useOriginalCharsOnly={true}
+            speed={80}
+          />
 
           <div className="text-center">
             <span
@@ -95,7 +99,7 @@ export default function Intro() {
             </span>
             <h2
               id="name"
-              className=" text-center  text-2xl  sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold"
+              className=" text-center text-2xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold"
             >
               <TypeAnimation
                 sequence={[
@@ -114,10 +118,17 @@ export default function Intro() {
           </div>
         </motion.div>
         <p>{t("short_intro")}</p>
-        <p>
-          {t("focus_is")}{" "}
-          <span className="italic font-bold">{t("innovation_ai")}</span>.
-        </p>
+        <div className="flex items-center justify-center gap-1">
+          <p>
+            {t("focus_is")}
+          </p>
+          <DecryptedText
+            text={t("innovation_ai")}
+            className="italic font-bold"
+            revealDirection="center"
+            // useOriginalCharsOnly={true}
+          />
+        </div>
       </motion.h1>
 
       <motion.div

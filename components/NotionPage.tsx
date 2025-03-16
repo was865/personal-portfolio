@@ -211,7 +211,7 @@ export const NotionPage = ({
                 
                 {tags && tags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-8 border-t pt-6 border-gray-200 dark:border-gray-700">
-                    <span className="text-xs text-gray-500 dark:text-gray-400 mr-2 self-center">タグ:</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 mr-2 self-center">{t("tags")}:</span>
                     {tags.map((tag, index) => (
                       <span
                         key={index}
