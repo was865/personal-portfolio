@@ -84,12 +84,14 @@ export default function Intro() {
           transition={{ duration: 0.5 }}
           className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
         >
-          <DecryptedText
-            text={t("name")}
-            parentClassName="text-center text-4xl font-bold tracking-tight sm:text-5xl block"
-            useOriginalCharsOnly={true}
-            speed={80}
-          />
+          <div className="text-center">
+            <DecryptedText
+              text={t("name")}
+              parentClassName="text-center text-4xl font-bold tracking-tight sm:text-5xl"
+              useOriginalCharsOnly={true}
+              speed={80}
+            />
+          </div>
 
           <div className="text-center">
             <span
