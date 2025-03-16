@@ -8,6 +8,7 @@ import TiltedCard from '@/components/reactbits/TiltedCard';
 import { motion } from "motion/react";
 import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl"
+import { extractTags, getTitleWithoutTags } from '@/lib/utils';
 
 type BlogPost = {
   id: string;
@@ -25,19 +26,6 @@ interface BlogUIProps {
 const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
   const [hover, setHover] = useState(false);
   const t = useTranslations('Blog')
-
-  // タイトルからタグを抽出する関数
-  const extractTags = (title: string) => {
-    const tagMatch = title.match(/\[(.*?)\]$/);
-    if (!tagMatch) return [];
-    
-    return tagMatch[1].split(',').map(tag => tag.trim());
-  }
-
-  // タグなしのタイトルを取得する関数
-  const getTitleWithoutTags = (title: string) => {
-    return title.replace(/\[.*?\]$/, '').trim();
-  }
 
   return (
     <div className="px-4 pb-10">
@@ -90,7 +78,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
                       {tags.length > 0 && (
                         <div className="flex flex-wrap gap-2 m-[2em] mt-auto">
                           {tags.map((tag, index) => (
-                            <span 
+                          <span 
                               key={index} 
                               className="text-xs bg-black/70 text-white px-2 py-1 rounded-md"
                             >

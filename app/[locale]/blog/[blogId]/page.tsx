@@ -1,21 +1,9 @@
-import { NotionPage } from "@/components/NotionPage";
-import { getPageContent } from "@/lib/notion";
+import { getPageContent } from '@/lib/notion';
+import { NotionPage } from '@/components/NotionPage';
+import { extractTags, getTitleWithoutTags } from '@/lib/utils';
 
 type Props = {
   params: Promise<{ locale: string, blogId: string }>
-}
-
-// タイトルからタグを抽出する関数
-const extractTags = (title: string) => {
-  const tagMatch = title.match(/\[(.*?)\]$/);
-  if (!tagMatch) return [];
-  
-  return tagMatch[1].split(',').map(tag => tag.trim());
-}
-
-// タグなしのタイトルを取得する関数
-const getTitleWithoutTags = (title: string) => {
-  return title.replace(/\[.*?\]$/, '').trim();
 }
 
 export default async function Page({ params }: Props) {
@@ -23,8 +11,8 @@ export default async function Page({ params }: Props) {
   const { recordMap, title } = await getPageContent(blogId);
 
   // タイトルからタグを抽出
-  const tags = title ? extractTags(title) : [];
-  const cleanTitle = title ? getTitleWithoutTags(title) : '';
+  const tags = extractTags(title);
+  const cleanTitle = getTitleWithoutTags(title);
 
   return (
     <NotionPage
