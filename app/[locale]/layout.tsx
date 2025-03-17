@@ -21,13 +21,17 @@ export const metadata = {
   description: "Ansen Wang's portfolio site",
   manifest: '/manifest.json',
   applicationName: 'Ansen Portfolio',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/profile-512x512.png',
+  },
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'default',
+    statusBarStyle: 'black-translucent',
     title: 'Ansen Portfolio',
   },
-  formatDetection: {
-    telephone: false,
+  other: {
+    'mobile-web-app-capable': 'yes',
   },
 };
 
@@ -73,16 +77,6 @@ export default function LocaleLayout(
   // const isProjectDetail = pathname.includes("projects")
   return (
     <html lang={locale} className="scroll-smooth! relative">
-      <head>
-        <meta name="application-name" content="Ansen Portfolio" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Ansen Portfolio" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#000000" />
-        <link rel="manifest" href="/manifest.json" />
-      </head>
       <body
         className={`${fontUbuntu.className} ${fontOleoScript.variable} ${fontInter.variable} ${getLocaleFont()} bg-[#f6f2f2] text-gray-950 relative dark:bg-[#0b0f11] dark:text-gray-50 dark:text-opacity-90`}
       >
@@ -92,7 +86,9 @@ export default function LocaleLayout(
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeContextProvider>
             <ActionSectionContextProvider>
-              {children}
+              <div className="safe-top">
+                {children}
+              </div>
               <Footer />
               <WidgetWrapper>
                 <ThemeSwitch />
