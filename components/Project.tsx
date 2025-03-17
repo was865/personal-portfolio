@@ -82,7 +82,7 @@ export default function Project({
         <Image
           src={imageUrl}
           alt="Project I worked on"
-          quality={100}
+          quality={70}
           className="absolute hidden sm:block top-8 -right-24 w-[28.25rem] rounded-t-lg shadow-2xl
           transition 
           group-hover:scale-[1.04]
