@@ -81,7 +81,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
                           {tags.map((tag, index) => (
                           <span 
                               key={index} 
-                              className="text-xs bg-black/70 text-white px-2 py-1 rounded-md"
+                              className="text-xs bg-[#0006] text-white px-2 py-1 rounded-md"
                             >
                               {tag}
                             </span>
