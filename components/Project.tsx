@@ -1,11 +1,13 @@
 "use client"
 
-import { useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { projectsData } from "@/lib/data"
 import Image from "next/image"
 import { motion, useScroll, useTransform } from "motion/react"
 import Link from "next/link"
 import { FiExternalLink } from "react-icons/fi"
+import { FiX } from "react-icons/fi"
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 import { useLocale } from "next-intl"
 
 type ProjectProps = (typeof projectsData)[number]
@@ -18,7 +20,7 @@ export default function Project({
   title_ja,
   desc_ja,
   tags,
-  imageUrl,
+  imageUrls,
   //projectUrl,
   demoUrl,
 }: ProjectProps) {
@@ -30,6 +32,34 @@ export default function Project({
   const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1])
   const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1])
   const activeLocale = useLocale()
+
+  // ギャラリー関連の状態
+  const [isOpen, setIsOpen] = useState(false)
+  const [current, setCurrent] = useState(0)
+
+  const gallery = useMemo(() => {
+    return imageUrls && imageUrls.length > 0 ? imageUrls : []
+  }, [imageUrls])
+
+  const goNext = () => setCurrent((prev) => (prev + 1) % gallery.length)
+  const goPrev = () => setCurrent((prev) => (prev - 1 + gallery.length) % gallery.length)
+
+  useEffect(() => {
+    if (!isOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false)
+      if (e.key === "ArrowRight") goNext()
+      if (e.key === "ArrowLeft") goPrev()
+    }
+    document.addEventListener("keydown", onKey)
+    // スクロールロック
+    const original = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.removeEventListener("keydown", onKey)
+      document.body.style.overflow = original
+    }
+  }, [isOpen, gallery.length])
 
   return (
     <motion.div
@@ -57,7 +87,7 @@ export default function Project({
                   target="_blank"
                   className=" w-full flex items-center gap-1 hover:underline underline-offset-2"
                 >
-                  <span className="break-keep min-w-[4.5rem]">Related Link</span>
+                  <span className="break-keep min-w-[4.5rem]">Demo Link</span>
                   <FiExternalLink className="w-5 h-5 " />
                 </Link>
               )}
@@ -79,23 +109,98 @@ export default function Project({
           </ul>
         </div>
 
-        <Image
-          src={imageUrl}
-          alt="Project I worked on"
-          quality={70}
-          className="absolute hidden sm:block top-8 -right-24 w-[28.25rem] rounded-t-lg shadow-2xl
-          transition 
-          group-hover:scale-[1.04]
-          group-hover:-translate-x-3
-          group-hover:translate-y-3
-          group-hover:-rotate-2
+        {gallery.length > 0 && (
+          <Image
+            src={gallery[0]}
+            alt="Project I worked on"
+            quality={70}
+            onClick={() => setIsOpen(true)}
+            className="absolute hidden sm:block top-8 -right-24 w-[28.25rem] rounded-t-lg shadow-2xl
+            transition cursor-zoom-in
+            group-hover:scale-[1.04]
+            group-hover:-translate-x-3
+            group-hover:translate-y-3
+            group-hover:-rotate-2
 
-          group-hover:group-even:translate-x-3
-          group-hover:group-even:translate-y-3
-          group-hover:group-even:rotate-2
+            group-hover:group-even:translate-x-3
+            group-hover:group-even:translate-y-3
+            group-hover:group-even:rotate-2
 
-          group-even:right-[initial] group-even:-left-32"
-        />
+            group-even:right-[initial] group-even:-left-32"
+          />
+        )}
+
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+            onClick={() => setIsOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl bg-white dark:bg-zinc-900 rounded-xl shadow-2xl overflow-hidden"
+            >
+              <button
+                aria-label="close"
+                onClick={() => setIsOpen(false)}
+                className="absolute right-3 top-3 z-10 rounded-full bg-black/60 text-white p-2 hover:bg-black/80"
+              >
+                <FiX className="h-5 w-5" />
+              </button>
+
+              {/* メイン画像 */}
+              <div className="relative aspect-video w-full bg-black">
+                <Image
+                  src={gallery[current]}
+                  alt="gallery"
+                  fill
+                  priority
+                  className="object-contain"
+                />
+                {gallery.length > 1 && (
+                  <>
+                    <button
+                      onClick={goPrev}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 text-white p-3 hover:bg-black/80"
+                      aria-label="previous image"
+                    >
+                      <HiChevronLeft className="h-6 w-6" />
+                    </button>
+                    <button
+                      onClick={goNext}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 text-white p-3 hover:bg-black/80"
+                      aria-label="next image"
+                    >
+                      <HiChevronRight className="h-6 w-6" />
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* サムネイル */}
+              {gallery.length > 1 && (
+                <div className="flex gap-2 p-3 overflow-x-auto bg-zinc-100 dark:bg-zinc-800">
+                  {gallery.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrent(idx)}
+                      className={`relative h-16 w-28 flex-shrink-0 rounded-md overflow-hidden ring-2 transition ${
+                        current === idx ? "ring-[#e9882a]" : "ring-transparent hover:ring-white/40"
+                      }`}
+                    >
+                      <Image src={img} alt={`thumb-${idx}`} fill className="object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
       </section>
     </motion.div>
   )

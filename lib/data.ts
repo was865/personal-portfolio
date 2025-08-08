@@ -6,8 +6,15 @@ import { FaCode } from "react-icons/fa6";
 import { SiTypescript, SiDjango, SiDbt, SiSnowflake, SiVercel } from "react-icons/si";
 import { RiNextjsFill } from "react-icons/ri";
 import { TbBrandCSharp } from "react-icons/tb";
-import contract_analyzer from "@/public/images/projects/contract-analyzer.png";
-import claude from "@/public/ai-images/claude.jpg";
+import contract_analyzer_content from "@/public/images/projects/contract-analyzer-content.png";
+import contract_analyzer_upload from "@/public/images/projects/contract-analyzer-upload.png";
+import contract_analyzer_output from "@/public/images/projects/contract-analyzer-output.png";
+import employee_manager_home from "@/public/images/projects/employee-manager-home.png";
+import employee_manager_card from "@/public/images/projects/employee-manager-card.png";
+import employee_manager_dashboard from "@/public/images/projects/employee-manager-dashboard.png";
+import employee_manager_leave from "@/public/images/projects/employee-manager-leave.png";
+import employee_manager_responsive from "@/public/images/projects/employee-manager-responsive.png";
+import employee_manager_schedule from "@/public/images/projects/employee-manager-schedule.png";
 import gemini from "@/public/ai-images/gemini.jpg";
 import midjourney from "@/public/ai-images/midjourney.jpg";
 import dalle from "@/public/ai-images/dalle.jpg";
@@ -159,60 +166,38 @@ export type ProjectTags = typeof projectsData[number]["tags"];
 export const projectsData = [
     {
         "title": "Contract Analyzer: Analyze contracts with AI",
-        "title_zh": "合同分析器：使用AI分析合同风险",
-        "title_ja": "契約分析器：AIによる契約リスク分析",
+        "title_zh": "AI合同分析：使用AI分析合同风险并提出修改建议",
+        "title_ja": "AI契約書分析：AIによる契約リスク分析と提案",
         "description":
             "This is a project that analyzes contracts with AI. It is a web application that allows users to upload a contract and analyze it with AI.",
         "desc_zh": "使用AI分析合同风险的Web应用程序。它允许用户上传合同并使用AI分析合同风险并提出修改建议。",
         "desc_ja": "AIによる契約リスク分析のWebアプリケーションです。ユーザーは契約書をアップロードし、AIによって契約リスクを分析し、分析結果・提案をUIで表示。",
-        "tags": ["OpenAI", "GPT-5", "AI", "LLM", "Web", "Next.js", "React", "TypeScript", "Tailwind", "Shadcn", "Vercel"],
-        "imageUrl": contract_analyzer,
-        "demoUrl": "https://contract-analyzer.vercel.app/"
+        "tags": ["OpenAI", "GPT-5", "AI", "LLM",  "Prompt Engineering", "Web", "Python", "TypeScript", "Vercel"],
+        "imageUrls": [
+          contract_analyzer_content, 
+          contract_analyzer_upload,
+          contract_analyzer_output,
+        ],
+        "demoUrl": "#"
     },
     {
-        "title": "Claude 3.5 Sonnet: Anthropic's Latest AI Assistant",
-        "title_zh": "Claude 3.5 Sonnet：Anthropic的最新AI助手",
-        "title_ja": "Claude 3.5 Sonnet：Anthropicの最新AIアシスタント",
-        "description": "Anthropic's Claude 3.5 Sonnet shows wide-ranging improvements on industry benchmarks, with particularly strong gains in agentic coding and tool use tasks. It outperforms all publicly available models on coding tasks, scoring higher than specialized systems designed for agentic coding.",
-        "desc_zh": "Anthropic的Claude 3.5 Sonnet在行业基准测试中表现出广泛的改进，特别是在代理编码和工具使用任务方面取得了显著进步。在编码任务上，它的表现优于所有公开可用的模型，得分高于专为代理编码设计的专业系统。",
-        "desc_ja": "AnthropicのClaude 3.5 Sonnetは業界のベンチマークで幅広い改善を示し、特にエージェンティックコーディングとツール使用タスクで大きな進歩を遂げています。コーディングタスクではすべての公開モデルを上回り、エージェンティックコーディング向けに設計された専門システムよりも高いスコアを記録しています。",
-        "tags": ["Anthropic", "Claude", "AI", "Coding", "Tool Use"],
-        "imageUrl": claude,
-        "demoUrl": "https://www.anthropic.com/claude"
+        "title": "Employee Management System: Manage employees with Goolge Calendar API",
+        "title_zh": "员工管理系统：使用Google Calendar API实时查看管理员工的日程与目前状态",
+        "title_ja": "従業員管理システム：Google Calendar APIによる従業員の日程と状態をリアルタイムで確認",
+        "description": "This is a project that manages employees with Google Calendar API. It is a web application that allows users to manage employees with Google Calendar API and check the schedule and status of employees in real time.",
+        "desc_zh": "使用Google Calendar API管理员工的Web应用程序。它允许用户管理员工并使用Google Calendar API实时查看管理员工的日程与目前状态。",
+        "desc_ja": "Google Calendar APIを使用した従業員管理システムです。従業員の日程と状態をリアルタイムで確認できます。",
+        "tags": ["Google", "Calendar", "API", "WebSockets", "Clerk", "Next.js", "React", "TypeScript", "Tailwind", "Shadcn", "Vercel"],
+        "imageUrls": [
+          employee_manager_home,
+          employee_manager_schedule,
+          employee_manager_card,
+          employee_manager_leave,
+          employee_manager_dashboard,
+          employee_manager_responsive,
+        ],
+        "demoUrl": "#"
     },
-    {
-        "title": "Google Gemini 1.5 Pro: Breakthrough in Long-Context Understanding",
-        "title_zh": "Google Gemini 1.5 Pro：长上下文理解的突破",
-        "title_ja": "Google Gemini 1.5 Pro：長文脈理解の革新",
-        "description": "Google's Gemini 1.5 Pro delivers dramatically enhanced performance with a breakthrough in long-context understanding across modalities. It can process large amounts of data at once, including 2 hours of video, 19 hours of audio, codebases with 60,000 lines of code, or 2,000 pages of text.",
-        "desc_zh": "Google的Gemini 1.5 Pro在多模态长上下文理解方面取得了突破性进展，性能得到显著提升。它可以一次处理大量数据，包括2小时的视频、19小时的音频、60,000行代码的代码库或2,000页的文本。",
-        "desc_ja": "GoogleのGemini 1.5 Proはモダリティ全体で長文脈理解の革新により劇的に性能が向上しています。2時間の動画、19時間の音声、6万行のコードベース、または2,000ページのテキストなど、大量のデータを一度に処理できます。",
-        "tags": ["Google", "Gemini", "AI", "Multimodal", "Long Context"],
-        "imageUrl": gemini,
-        "demoUrl": "https://ai.google.dev/"
-    },
-    {
-        "title": "Midjourney V6: The Evolution of AI Image Generation",
-        "title_zh": "Midjourney V6：AI图像生成的进化",
-        "title_ja": "Midjourney V6：AI画像生成の進化",
-        "description": "Midjourney V6 offers more control over the style and details of generated images. It encourages longer and more detailed prompts for better results and introduces new features like upscaling and remixing. The latest version produces higher resolution images up to 2048×2048 pixels with improved text handling.",
-        "desc_zh": "Midjourney V6提供了对生成图像的风格和细节的更多控制。它鼓励使用更长、更详细的提示以获得更好的结果，并引入了升级和重混等新功能。最新版本可以生成高达2048×2048像素的高分辨率图像，并改进了文本处理能力。",
-        "desc_ja": "Midjourney V6は生成画像のスタイルと詳細な制御を強化しています。より良い結果を得るために長く詳細なプロンプトを推奨し、アップスケーリングやリミックスなどの新機能を導入しています。最新バージョンでは最大2048×2048ピクセルの高解像度画像を生成し、テキスト処理も改善されています。",
-        "tags": ["Midjourney", "AI", "Image Generation", "Art", "Design"],
-        "imageUrl": midjourney,
-        "demoUrl": "https://www.midjourney.com/"
-    },
-    {
-        "title": "DALL-E 3: OpenAI's Advanced Image Generator",
-        "title_zh": "DALL-E 3：OpenAI的高级图像生成器",
-        "title_ja": "DALL-E 3：OpenAIの高度画像生成器",
-        "description": "DALL-E 3 follows complex prompts with more accuracy and detail than its predecessors, and is able to generate more coherent and accurate text within images. It's now integrated into ChatGPT Plus, allowing users to generate images directly from conversations.",
-        "desc_zh": "DALL-E 3比其前代产品能够更准确、更详细地遵循复杂的提示，并能在图像中生成更连贯、更准确的文本。它现已集成到ChatGPT Plus中，允许用户直接从对话中生成图像。",
-        "desc_ja": "DALL-E 3は前身モデルよりも複雑なプロンプトをより正確かつ詳細に処理し、画像内により一貫性のある正確なテキストを生成できます。現在はChatGPT Plusに統合され、会話から直接画像を生成することが可能になりました。",
-        "tags": ["OpenAI", "DALL-E", "AI", "Image Generation", "Text-to-Image"],
-        "imageUrl": dalle,
-        "demoUrl": "https://openai.com/dall-e-3"
-    }
 ]
 
 export const skillsDataWithIcons = [
