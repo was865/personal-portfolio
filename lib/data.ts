@@ -6,7 +6,7 @@ import { FaCode } from "react-icons/fa6";
 import { SiTypescript, SiDjango, SiDbt, SiSnowflake, SiVercel } from "react-icons/si";
 import { RiNextjsFill } from "react-icons/ri";
 import { TbBrandCSharp } from "react-icons/tb";
-import contract_analyzer from "@/public/ai-images/contract-analyzer.png";
+import contract_analyzer from "@/public/images/projects/contract-analyzer.png";
 import claude from "@/public/ai-images/claude.jpg";
 import gemini from "@/public/ai-images/gemini.jpg";
 import midjourney from "@/public/ai-images/midjourney.jpg";
