@@ -6,7 +6,7 @@ import { FaCode } from "react-icons/fa6";
 import { SiTypescript, SiDjango, SiDbt, SiSnowflake, SiVercel } from "react-icons/si";
 import { RiNextjsFill } from "react-icons/ri";
 import { TbBrandCSharp } from "react-icons/tb";
-import gpt5 from "@/public/ai-images/gpt5.jpg";
+import contract_analyzer from "@/public/ai-images/contract-analyzer.png";
 import claude from "@/public/ai-images/claude.jpg";
 import gemini from "@/public/ai-images/gemini.jpg";
 import midjourney from "@/public/ai-images/midjourney.jpg";
@@ -158,16 +158,16 @@ export type ProjectTags = typeof projectsData[number]["tags"];
 
 export const projectsData = [
     {
-        "title": "GPT-5: OpenAI's Next Generation AI Model",
-        "title_zh": "GPT-5：OpenAI的下一代AI模型",
-        "title_ja": "GPT-5：OpenAIの次世代AIモデル",
+        "title": "Contract Analyzer: Analyze contracts with AI",
+        "title_zh": "合同分析器：使用AI分析合同风险",
+        "title_ja": "契約分析器：AIによる契約リスク分析",
         "description":
-            "OpenAI plans to release GPT-5 in mid-2024, likely during summer. This new model promises to unify reasoning capabilities with powerful language processing, potentially eliminating the need for separate AI models in business applications.",
-        "desc_zh": "OpenAI计划在2024年中期（可能在夏季）发布GPT-5。这个新模型承诺将推理能力与强大的语言处理能力统一起来，有可能消除企业应用中对单独AI模型的需求。据报道，一些企业客户最近已经收到了最新模型的演示。",
-        "desc_ja": "OpenAIは2024年中頃（おそらく夏頃）にGPT-5をリリースする予定です。この新しいモデルは推論能力と強力な言語処理能力を統合し、ビジネスアプリケーションにおける別個のAIモデルの必要性を排除する可能性があります。",
-        "tags": ["OpenAI", "GPT-5", "AI", "LLM", "NLP"],
-        "imageUrl": gpt5,
-        "demoUrl": "https://openai.com/"
+            "This is a project that analyzes contracts with AI. It is a web application that allows users to upload a contract and analyze it with AI.",
+        "desc_zh": "使用AI分析合同风险的Web应用程序。它允许用户上传合同并使用AI分析合同风险并提出修改建议。",
+        "desc_ja": "AIによる契約リスク分析のWebアプリケーションです。ユーザーは契約書をアップロードし、AIによって契約リスクを分析し、分析結果・提案をUIで表示。",
+        "tags": ["OpenAI", "GPT-5", "AI", "LLM", "Web", "Next.js", "React", "TypeScript", "Tailwind", "Shadcn", "Vercel"],
+        "imageUrl": contract_analyzer,
+        "demoUrl": "https://contract-analyzer.vercel.app/"
     },
     {
         "title": "Claude 3.5 Sonnet: Anthropic's Latest AI Assistant",
