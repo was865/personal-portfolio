@@ -141,7 +141,7 @@ export const experiencesDataJa = [
     {
         "title": "株式会社エム・エス・アイ",
         "location": "ソフトウェアエンジニア",
-        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、.Net、JavaScript、Express、Node.js、Azureなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。期間中にAIの勉強を並行して学習し、JDLA Deep Learning for ENGINEER認定を取得。",
+        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、.Net、JavaScript、Express、Node.js、Azureなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。また、業務と並行してAI分野の学習にも取り組み、JDLA Deep Learning for ENGINEER認定を取得しました。",
         "icon": React.createElement(FaCode),
         "date": "2020年7月 - 2022年10月"
     },
