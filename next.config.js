@@ -10,6 +10,7 @@ const withPWA = require("next-pwa")({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    qualities: [70, 75, 80, 95, 100],
     remotePatterns: [
       {
         protocol: "https",
