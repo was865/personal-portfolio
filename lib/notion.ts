@@ -6,8 +6,32 @@ import { Blog } from "@/types/blog";
 
 const notion = new NotionAPI();
 
+// notion-client 7.1.6 は block を { value: { role, value: Block } } と二重ラップで返すため、
+// react-notion-x が期待する { role, value: Block } 形式に平坦化する。
+type RawEntry = { role?: string; value?: { role?: string; value?: unknown } & Record<string, unknown> };
+
+function normalizeRecordMap<T>(recordMap: T): T {
+  const rm = recordMap as unknown as Record<string, Record<string, RawEntry>>;
+  const maps = ['block', 'collection', 'collection_view', 'notion_user'] as const;
+  for (const key of maps) {
+    const map = rm?.[key];
+    if (!map) continue;
+    for (const id of Object.keys(map)) {
+      const entry = map[id];
+      const inner = entry?.value;
+      if (inner && inner.value && typeof inner.value === 'object' && 'id' in (inner.value as Record<string, unknown>)) {
+        map[id] = {
+          role: inner.role ?? entry.role,
+          value: inner.value as RawEntry['value'],
+        };
+      }
+    }
+  }
+  return recordMap;
+}
+
 export async function getPageContent(pageId: string) {
-  const recordMap = await notion.getPage(pageId);
+  const recordMap = normalizeRecordMap(await notion.getPage(pageId));
   const title = getPageTitle(recordMap);
   const blocks = recordMap.block;
 

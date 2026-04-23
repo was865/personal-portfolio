@@ -139,16 +139,19 @@ export const NotionPage = ({
     return null;
   }
 
-  const createdDate = new Date(
-    recordMap.block[rootPageId].value?.created_time
-  );
-  
-  const formattedDate = new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : locale === 'zh' ? 'zh-CN' : 'ja-JP', {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  }).format(createdDate);
+  const rootEntry: any = recordMap.block[rootPageId];
+  const rootBlock: any = rootEntry?.value?.value ?? rootEntry?.value;
+  const createdTime = rootBlock?.created_time;
+  const createdDate = createdTime ? new Date(createdTime) : null;
+
+  const formattedDate = createdDate && !isNaN(createdDate.getTime())
+    ? new Intl.DateTimeFormat(locale === 'en' ? 'en-US' : locale === 'zh' ? 'zh-CN' : 'ja-JP', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      }).format(createdDate)
+    : '';
 
   return (
     <div className={`min-h-screen ${getLocaleFontClass()}`}>
