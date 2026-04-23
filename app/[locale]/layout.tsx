@@ -76,7 +76,7 @@ export default function LocaleLayout(
   // const pathname = usePathname()
   // const isProjectDetail = pathname.includes("projects")
   return (
-    <html lang={locale} className="scroll-smooth! relative">
+    <html lang={locale} className="scroll-smooth! relative" suppressHydrationWarning>
       <body
         className={`${fontUbuntu.className} ${fontOleoScript.variable} ${fontInter.variable} ${getLocaleFont()} bg-[#f6f2f2] text-gray-950 relative dark:bg-[#0b0f11] dark:text-gray-50 dark:text-opacity-90`}
       >
