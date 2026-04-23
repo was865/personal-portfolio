@@ -2,14 +2,14 @@
 
 import { useTheme } from "next-themes";
 import { ExtendedRecordMap } from "notion-types";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { useIsClient } from "@/hooks/use-is-client";
 import { NotionRenderer, NotionComponents } from "react-notion-x";
 import dynamic from "next/dynamic";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { FiCalendar } from "react-icons/fi";
-import { fontInter } from "@/config/fonts";
 import { mapPageUrl } from '@/lib/notion';
 import { useTranslations } from "next-intl"
 const prismComponents = [
@@ -100,7 +100,7 @@ export const NotionPage = ({
   tags?: string[];
   locale: string;
 }) => {
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useIsClient();
   const { theme } = useTheme();
   const [hover, setHover] = useState(false);
   const t = useTranslations('Blog')
@@ -127,10 +127,6 @@ export const NotionPage = ({
     }
   };
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   if (!isClient) {
     return null;
   }
@@ -139,8 +135,8 @@ export const NotionPage = ({
     return null;
   }
 
-  const rootEntry: any = recordMap.block[rootPageId];
-  const rootBlock: any = rootEntry?.value?.value ?? rootEntry?.value;
+  const rootEntry = recordMap.block[rootPageId];
+  const rootBlock = rootEntry?.value;
   const createdTime = rootBlock?.created_time;
   const createdDate = createdTime ? new Date(createdTime) : null;
 

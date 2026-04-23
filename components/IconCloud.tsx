@@ -9,6 +9,7 @@ import {
   renderSimpleIcon,
   SimpleIcon,
 } from "react-icon-cloud";
+import { useIsClient } from "@/hooks/use-is-client";
 
 export const cloudProps: Omit<ICloud, "children"> = {
   containerProps: {
@@ -62,13 +63,9 @@ export type DynamicCloudProps = {
 type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
 
 const IconCloud = ({ iconSlugs }: DynamicCloudProps) => {
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useIsClient();
   const [data, setData] = useState<IconData | null>(null);
   const { theme } = useTheme();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   useEffect(() => {
     if (isClient) {
