@@ -3,7 +3,6 @@ import { Block } from "notion-types";
 import { getPageTitle } from "notion-utils";
 
 import { Blog } from "@/types/blog";
-import { notionBlogConfig } from "@/config/site";
 
 const notion = new NotionAPI();
 
@@ -17,28 +16,36 @@ export async function getPageContent(pageId: string) {
 
 export async function getAllBlogPosts(pageId: string) {
   const recordMap = await notion.getPage(pageId);
-  console.log(recordMap);
   const blocks = recordMap.block;
 
-  let blogPosts: Blog[] = [];
+  // 環境変数の親ID（ハイフンなし32文字）を、ブロックキーで使われるハイフン付きUUIDに正規化する。
+  const parentHyphenated =
+    pageId.length === 32
+      ? `${pageId.slice(0, 8)}-${pageId.slice(8, 12)}-${pageId.slice(12, 16)}-${pageId.slice(16, 20)}-${pageId.slice(20)}`
+      : pageId;
 
-  Object.entries(blocks).forEach(([key, value]) => {
-    // ブログの親ページIDと異なり、かつページタイプのブロックのみを処理
-    if (key !== notionBlogConfig.blogParentId && value.value?.type === 'page') {
-      const title = value.value.properties?.title?.[0]?.[0];
-      // タイトルが存在する場合のみブログ記事として追加
-      if (title) {
-        blogPosts.push({
-          id: key,
-          block: value.value,
-          pageCover: value.value.format?.page_cover || '',
-          title: title,
-          createdAt: new Date(value.value.created_time),
-        });
-      }
-    }
+  const blogPosts: Blog[] = [];
+
+  Object.entries(blocks).forEach(([key, entry]) => {
+    // notion-clientはブロックを { value: { value: Block } } でラップする。古い形式の { value: Block } にもフォールバック対応。
+    const block: any = (entry as any)?.value?.value ?? (entry as any)?.value;
+    if (!block || block.type !== 'page') return;
+    if (key === parentHyphenated) return;
+    if (block.parent_id && block.parent_id !== parentHyphenated) return;
+
+    const title = block.properties?.title?.[0]?.[0];
+    if (!title) return;
+
+    blogPosts.push({
+      id: key,
+      block,
+      pageCover: block.format?.page_cover || '',
+      title,
+      createdAt: new Date(block.created_time),
+    });
   });
-  console.log('blogPosts', blogPosts);
+
+  console.log(blogPosts)
 
   // 作成日時で降順にソート
   return blogPosts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
@@ -51,7 +58,7 @@ export const customMapImageUrl = (url: string, block: Block): string => {
 
   if (url.startsWith("data:")) {
     return url;
-  } // more recent versions of notion don't proxy unsplash images
+  } // 最近のNotionではunsplashの画像をプロキシしなくなった
 
   if (url.startsWith("https://images.unsplash.com")) {
     return url;
@@ -69,12 +76,12 @@ export const customMapImageUrl = (url: string, block: Block): string => {
         u.searchParams.has("X-Amz-Signature") &&
         u.searchParams.has("X-Amz-Algorithm")
       ) {
-        // if the URL is already signed, then use it as-is
+        // URLがすでに署名済みの場合は、そのまま使用する
         url = u.origin + u.pathname;
       }
     }
   } catch {
-    // ignore invalid urls
+    // 不正なURLは無視する
   }
 
   if (url.startsWith("/images")) {
