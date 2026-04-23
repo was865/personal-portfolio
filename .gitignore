@@ -2,6 +2,9 @@
 /.next
 .env.local
 
+# TypeScript incremental build cache
+*.tsbuildinfo
+
 # Service Worker files
 /public/sw.js
 /public/workbox-*.js
