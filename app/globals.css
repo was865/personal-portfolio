@@ -145,6 +145,31 @@ iframe.notion-asset-object-fit {
   background-color: transparent;
 }
 
+.notion-simple-table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.notion-simple-table tbody {
+  display: table;
+  width: 100%;
+}
+
+.notion-simple-table-cell {
+  display: table-cell;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+
+.notion-simple-table-row > td:first-child {
+  width: 1% !important;
+  white-space: nowrap;
+}
+
 @supports (padding-top: env(safe-area-inset-top)) {
   .safe-top {
     padding-top: env(safe-area-inset-top);
