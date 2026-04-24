@@ -59,7 +59,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
             <div key={id} className="relative h-[300px]">
               <Link href={`/${locale}/blog/${id}`} className="block h-[300px]">
                 <TiltedCard
-                  imageSrc={customMapImageUrl(pageCover, block)}
+                  imageSrc={pageCover ? customMapImageUrl(pageCover, block) : '/images/avatar.jpg'}
                   altText={cleanTitle}
                   captionText={cleanTitle}
                   containerHeight="300px"
