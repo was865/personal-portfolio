@@ -1,6 +1,6 @@
 import { NotionAPI } from "notion-client";
 import { Block } from "notion-types";
-import { getPageTitle } from "notion-utils";
+import { getPageContentBlockIds, getPageTitle } from "notion-utils";
 
 import { Blog } from "@/types/blog";
 
@@ -8,7 +8,7 @@ const notion = new NotionAPI();
 
 // notion-client 7.1.6 は block を { value: { role, value: Block } } と二重ラップで返すため、
 // react-notion-x が期待する { role, value: Block } 形式に平坦化する。
-type RawEntry = { role?: string; value?: { role?: string; value?: unknown } & Record<string, unknown> };
+type RawEntry = { role?: string; value?: unknown };
 
 function normalizeRecordMap<T>(recordMap: T): T {
   const rm = recordMap as unknown as Record<string, Record<string, RawEntry>>;
@@ -18,11 +18,11 @@ function normalizeRecordMap<T>(recordMap: T): T {
     if (!map) continue;
     for (const id of Object.keys(map)) {
       const entry = map[id];
-      const inner = entry?.value;
+      const inner = entry?.value as { role?: string; value?: unknown } | undefined;
       if (inner && inner.value && typeof inner.value === 'object' && 'id' in (inner.value as Record<string, unknown>)) {
         map[id] = {
           role: inner.role ?? entry.role,
-          value: inner.value as RawEntry['value'],
+          value: inner.value,
         };
       }
     }
@@ -30,8 +30,51 @@ function normalizeRecordMap<T>(recordMap: T): T {
   return recordMap;
 }
 
+async function fetchMissingBlocks<T>(recordMap: T): Promise<T> {
+  const rm = recordMap as unknown as { block?: Record<string, unknown> };
+  if (!rm.block) return recordMap;
+
+  while (true) {
+    const pendingBlockIds = getPageContentBlockIds(
+      recordMap as Parameters<typeof getPageContentBlockIds>[0]
+    ).filter((id) => !rm.block?.[id]);
+
+    if (pendingBlockIds.length === 0) {
+      break;
+    }
+
+    const blockChunks = await Promise.all(
+      pendingBlockIds
+        .reduce<string[][]>((chunks, id, index) => {
+          if (index % 100 === 0) chunks.push([]);
+          chunks[chunks.length - 1].push(id);
+          return chunks;
+        }, [])
+        .map(async (ids) => {
+          const chunk = await notion.getBlocks(ids);
+          return normalizeRecordMap(chunk.recordMap).block ?? {};
+        })
+    );
+
+    Object.assign(rm.block, ...blockChunks);
+  }
+
+  return recordMap;
+}
+
 export async function getPageContent(pageId: string) {
-  const recordMap = normalizeRecordMap(await notion.getPage(pageId));
+  const recordMap = await fetchMissingBlocks(
+    normalizeRecordMap(
+      await notion.getPage(pageId, {
+        fetchMissingBlocks: false,
+        fetchCollections: false,
+        signFileUrls: false,
+      })
+    )
+  );
+  await notion.addSignedUrls({
+    recordMap: recordMap as Parameters<typeof notion.addSignedUrls>[0]['recordMap'],
+  });
   const title = getPageTitle(recordMap);
   const blocks = recordMap.block;
 
@@ -52,7 +95,13 @@ export async function getAllBlogPosts(pageId: string) {
 
   Object.entries(blocks).forEach(([key, entry]) => {
     // notion-clientはブロックを { value: { value: Block } } でラップする。古い形式の { value: Block } にもフォールバック対応。
-    const block: any = (entry as any)?.value?.value ?? (entry as any)?.value;
+    const rawEntry = entry as unknown as RawEntry;
+    const rawValue = rawEntry.value as { value?: unknown } | undefined;
+    const block = (
+      rawValue && typeof rawValue === 'object' && 'value' in rawValue
+        ? rawValue.value
+        : rawEntry.value
+    ) as Block | undefined;
     if (!block || block.type !== 'page') return;
     if (key === parentHyphenated) return;
     if (block.parent_id && block.parent_id !== parentHyphenated) return;
