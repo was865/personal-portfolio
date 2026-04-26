@@ -1,126 +1,149 @@
 import { NotionAPI } from "notion-client";
-import { Block } from "notion-types";
+import { Block, ExtendedRecordMap } from "notion-types";
 import { getPageContentBlockIds, getPageTitle } from "notion-utils";
 
 import { Blog } from "@/types/blog";
 
 const notion = new NotionAPI();
+const NOTION_BLOCK_CHUNK_SIZE = 100;
+const RECORD_MAP_KEYS = ["block", "collection", "collection_view", "notion_user"] as const;
 
-// notion-client 7.1.6 は block を { value: { role, value: Block } } と二重ラップで返すため、
-// react-notion-x が期待する { role, value: Block } 形式に平坦化する。
-type RawEntry = { role?: string; value?: unknown };
+type RecordMapKey = (typeof RECORD_MAP_KEYS)[number];
+type RecordMapEntry = { role?: string; value?: unknown };
+
+function isObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function unwrapRecordValue(entry: RecordMapEntry): RecordMapEntry {
+  const value = entry.value;
+
+  if (!isObject(value) || !("value" in value)) {
+    return entry;
+  }
+
+  const innerValue = value.value;
+  if (!isObject(innerValue) || !("id" in innerValue)) {
+    return entry;
+  }
+
+  return {
+    role: typeof value.role === "string" ? value.role : entry.role,
+    value: innerValue,
+  };
+}
 
 function normalizeRecordMap<T>(recordMap: T): T {
-  const rm = recordMap as unknown as Record<string, Record<string, RawEntry>>;
-  const maps = ['block', 'collection', 'collection_view', 'notion_user'] as const;
-  for (const key of maps) {
-    const map = rm?.[key];
+  const maps = recordMap as Record<RecordMapKey, Record<string, RecordMapEntry> | undefined>;
+
+  for (const key of RECORD_MAP_KEYS) {
+    const map = maps[key];
     if (!map) continue;
+
     for (const id of Object.keys(map)) {
-      const entry = map[id];
-      const inner = entry?.value as { role?: string; value?: unknown } | undefined;
-      if (inner && inner.value && typeof inner.value === 'object' && 'id' in (inner.value as Record<string, unknown>)) {
-        map[id] = {
-          role: inner.role ?? entry.role,
-          value: inner.value,
-        };
-      }
+      map[id] = unwrapRecordValue(map[id]);
     }
   }
+
   return recordMap;
 }
 
-async function fetchMissingBlocks<T>(recordMap: T): Promise<T> {
-  const rm = recordMap as unknown as { block?: Record<string, unknown> };
-  if (!rm.block) return recordMap;
+function getBlockFromEntry(entry: unknown): Block | undefined {
+  const block = unwrapRecordValue(entry as RecordMapEntry).value;
 
+  if (!isObject(block) || !("type" in block)) {
+    return undefined;
+  }
+
+  return block as unknown as Block;
+}
+
+function toHyphenatedId(id: string): string {
+  if (id.length !== 32) return id;
+
+  return `${id.slice(0, 8)}-${id.slice(8, 12)}-${id.slice(12, 16)}-${id.slice(16, 20)}-${id.slice(20)}`;
+}
+
+function chunkIds(ids: string[]): string[][] {
+  return ids.reduce<string[][]>((chunks, id, index) => {
+    if (index % NOTION_BLOCK_CHUNK_SIZE === 0) {
+      chunks.push([]);
+    }
+
+    chunks[chunks.length - 1].push(id);
+    return chunks;
+  }, []);
+}
+
+async function fetchMissingBlocks(recordMap: ExtendedRecordMap): Promise<void> {
   while (true) {
-    const pendingBlockIds = getPageContentBlockIds(
-      recordMap as Parameters<typeof getPageContentBlockIds>[0]
-    ).filter((id) => !rm.block?.[id]);
+    const pendingBlockIds = getPageContentBlockIds(recordMap).filter(
+      (id) => !recordMap.block[id]
+    );
 
     if (pendingBlockIds.length === 0) {
-      break;
+      return;
     }
 
     const blockChunks = await Promise.all(
-      pendingBlockIds
-        .reduce<string[][]>((chunks, id, index) => {
-          if (index % 100 === 0) chunks.push([]);
-          chunks[chunks.length - 1].push(id);
-          return chunks;
-        }, [])
-        .map(async (ids) => {
-          const chunk = await notion.getBlocks(ids);
-          return normalizeRecordMap(chunk.recordMap).block ?? {};
-        })
+      chunkIds(pendingBlockIds).map(async (ids) => {
+        const chunk = await notion.getBlocks(ids);
+        return normalizeRecordMap(chunk.recordMap).block ?? {};
+      })
     );
 
-    Object.assign(rm.block, ...blockChunks);
+    Object.assign(recordMap.block, ...blockChunks);
   }
+}
+
+async function getCompletePageRecordMap(pageId: string): Promise<ExtendedRecordMap> {
+  const recordMap = normalizeRecordMap(
+    await notion.getPage(pageId, {
+      fetchMissingBlocks: false,
+      fetchCollections: false,
+      signFileUrls: false,
+    })
+  );
+
+  await fetchMissingBlocks(recordMap);
+  await notion.addSignedUrls({ recordMap });
 
   return recordMap;
 }
 
 export async function getPageContent(pageId: string) {
-  const recordMap = await fetchMissingBlocks(
-    normalizeRecordMap(
-      await notion.getPage(pageId, {
-        fetchMissingBlocks: false,
-        fetchCollections: false,
-        signFileUrls: false,
-      })
-    )
-  );
-  await notion.addSignedUrls({
-    recordMap: recordMap as Parameters<typeof notion.addSignedUrls>[0]['recordMap'],
-  });
-  const title = getPageTitle(recordMap);
-  const blocks = recordMap.block;
+  const recordMap = await getCompletePageRecordMap(pageId);
 
-  return { title, blocks, recordMap };
+  return {
+    title: getPageTitle(recordMap),
+    blocks: recordMap.block,
+    recordMap,
+  };
 }
 
 export async function getAllBlogPosts(pageId: string) {
-  const recordMap = await notion.getPage(pageId);
-  const blocks = recordMap.block;
+  const recordMap = normalizeRecordMap(await notion.getPage(pageId));
+  const parentHyphenated = toHyphenatedId(pageId);
 
-  // 環境変数の親ID（ハイフンなし32文字）を、ブロックキーで使われるハイフン付きUUIDに正規化する。
-  const parentHyphenated =
-    pageId.length === 32
-      ? `${pageId.slice(0, 8)}-${pageId.slice(8, 12)}-${pageId.slice(12, 16)}-${pageId.slice(16, 20)}-${pageId.slice(20)}`
-      : pageId;
+  const blogPosts = Object.entries(recordMap.block).flatMap<Blog>(([key, entry]) => {
+    const block = getBlockFromEntry(entry);
+    const title = block?.properties?.title?.[0]?.[0];
 
-  const blogPosts: Blog[] = [];
+    if (!block || block.type !== "page" || !title) return [];
+    if (key === parentHyphenated) return [];
+    if (block.parent_id && block.parent_id !== parentHyphenated) return [];
 
-  Object.entries(blocks).forEach(([key, entry]) => {
-    // notion-clientはブロックを { value: { value: Block } } でラップする。古い形式の { value: Block } にもフォールバック対応。
-    const rawEntry = entry as unknown as RawEntry;
-    const rawValue = rawEntry.value as { value?: unknown } | undefined;
-    const block = (
-      rawValue && typeof rawValue === 'object' && 'value' in rawValue
-        ? rawValue.value
-        : rawEntry.value
-    ) as Block | undefined;
-    if (!block || block.type !== 'page') return;
-    if (key === parentHyphenated) return;
-    if (block.parent_id && block.parent_id !== parentHyphenated) return;
-
-    const title = block.properties?.title?.[0]?.[0];
-    if (!title) return;
-
-    blogPosts.push({
-      id: key,
-      block,
-      pageCover: block.format?.page_cover || '',
-      title,
-      createdAt: new Date(block.created_time),
-    });
+    return [
+      {
+        id: key,
+        block,
+        pageCover: block.format?.page_cover || "",
+        title,
+        createdAt: new Date(block.created_time),
+      },
+    ];
   });
 
-  console.log(blogPosts)
-
-  // 作成日時で降順にソート
   return blogPosts.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 }
 
@@ -129,57 +152,47 @@ export const customMapImageUrl = (url: string, block: Block): string => {
     throw new Error("URL can't be empty");
   }
 
-  if (url.startsWith("data:")) {
-    return url;
-  } // 最近のNotionではunsplashの画像をプロキシしなくなった
-
-  if (url.startsWith("https://images.unsplash.com")) {
+  if (url.startsWith("data:") || url.startsWith("https://images.unsplash.com")) {
     return url;
   }
 
   try {
     const u = new URL(url);
-
-    if (
+    const isSignedNotionS3Url =
       u.pathname.startsWith("/secure.notion-static.com") &&
-      u.hostname.endsWith(".amazonaws.com")
-    ) {
-      if (
-        u.searchParams.has("X-Amz-Credential") &&
-        u.searchParams.has("X-Amz-Signature") &&
-        u.searchParams.has("X-Amz-Algorithm")
-      ) {
-        // URLがすでに署名済みの場合は、そのまま使用する
-        url = u.origin + u.pathname;
-      }
+      u.hostname.endsWith(".amazonaws.com") &&
+      u.searchParams.has("X-Amz-Credential") &&
+      u.searchParams.has("X-Amz-Signature") &&
+      u.searchParams.has("X-Amz-Algorithm");
+
+    if (isSignedNotionS3Url) {
+      url = u.origin + u.pathname;
     }
   } catch {
-    // 不正なURLは無視する
+    // Invalid URLs are handled by the Notion image proxy below.
   }
 
-  if (url.startsWith("/images")) {
-    url = `https://www.notion.so${url}`;
-  }
+  const imagePath = url.startsWith("/images")
+    ? `https://www.notion.so${url}`
+    : url;
+  const notionImageUrl = new URL(
+    `https://www.notion.so${
+      imagePath.startsWith("/image") ? imagePath : `/image/${encodeURIComponent(imagePath)}`
+    }`
+  );
 
-  url = `https://www.notion.so${
-    url.startsWith("/image") ? url : `/image/${encodeURIComponent(url)}`
-  }`;
-
-  const notionImageUrlV2 = new URL(url);
   let table = block.parent_table === "space" ? "block" : block.parent_table;
-
   if (table === "collection" || table === "team") {
     table = "block";
   }
-  notionImageUrlV2.searchParams.set("table", table);
-  notionImageUrlV2.searchParams.set("id", block.id);
-  notionImageUrlV2.searchParams.set("cache", "v2");
 
-  url = notionImageUrlV2.toString();
+  notionImageUrl.searchParams.set("table", table);
+  notionImageUrl.searchParams.set("id", block.id);
+  notionImageUrl.searchParams.set("cache", "v2");
 
-  return url;
+  return notionImageUrl.toString();
 };
 
-export const mapPageUrl = (pageId: string, locale: string = 'en'): string => {
+export const mapPageUrl = (pageId: string, locale: string = "en"): string => {
   return `/${locale}/blog/${pageId}`;
 };
