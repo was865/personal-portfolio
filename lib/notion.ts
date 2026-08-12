@@ -4,7 +4,14 @@ import { getPageContentBlockIds, getPageTitle } from "notion-utils";
 
 import { Blog } from "@/types/blog";
 
-const notion = new NotionAPI();
+// Notion rejects requests sent with Node's default `User-Agent: node` (403).
+// notion-client goes through ky -> global fetch, so the UA has to be set here.
+const NOTION_USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
+
+const notion = new NotionAPI({
+  kyOptions: { headers: { "user-agent": NOTION_USER_AGENT } },
+});
 const NOTION_BLOCK_CHUNK_SIZE = 100;
 const RECORD_MAP_KEYS = ["block", "collection", "collection_view", "notion_user"] as const;
 
