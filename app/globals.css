@@ -182,3 +182,21 @@ iframe.notion-asset-object-fit {
   }
 }
 
+
+/* OSで「視差効果を減らす」を選んでいる人には、演出を止めて中身だけ届ける。
+   motion/react 側は useReducedMotion で個別に対応しているので、ここは
+   CSS/GSAP 由来のアニメーションと、スクロール追従の抑制を担当する。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html.scroll-smooth\! {
+    scroll-behavior: auto !important;
+  }
+}

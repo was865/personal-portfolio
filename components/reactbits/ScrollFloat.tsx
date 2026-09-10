@@ -49,7 +49,13 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
 
     const charElements = el.querySelectorAll(".inline-block");
 
-    gsap.fromTo(
+    // 「視差効果を減らす」設定のときは、演出を飛ばして最終状態のまま見せる。
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(charElements, { opacity: 1, yPercent: 0, scaleY: 1, scaleX: 1 });
+      return;
+    }
+
+    const tween = gsap.fromTo(
       charElements,
       {
         willChange: "opacity, transform",
@@ -76,6 +82,12 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
         },
       }
     );
+
+    // ページ遷移で消えるときに ScrollTrigger を必ず片付ける。
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+    };
   }, [
     scrollContainerRef,
     animationDuration,
