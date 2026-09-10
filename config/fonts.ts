@@ -4,6 +4,7 @@ import { Noto_Sans_JP, Noto_Sans_SC } from "next/font/google";
 export const fontUbuntu = Ubuntu({
   weight: ["400", "500", "700"],
   subsets: ["latin"],
+  variable: "--font-ubuntu",
 });
 
 export const fontOleoScript = Oleo_Script({

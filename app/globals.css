@@ -30,20 +30,42 @@
     border-color: var(--color-gray-200, currentColor);
   }
 
-  /* 言語別フォント設定 */
+  /* 既定の書体。next/font の className を body に付けるとレイヤー外の規則になり、
+     @layer base 側の言語別指定が特異度に関わらず負ける。変数方式に統一する。 */
+  body {
+    font-family: var(--font-ubuntu), sans-serif;
+  }
+
+  /* 言語別フォント設定。
+     欧文は Inter、CJK は Noto に振り分ける（Noto の欧文より字面が揃う）。 */
   :root:lang(ja) {
-    --font-family-sans: var(--font-noto-sans-jp), var(--font-inter), sans-serif;
+    --font-family-sans: var(--font-inter), var(--font-noto-sans-jp), sans-serif;
   }
 
   :root:lang(zh) {
-    --font-family-sans: var(--font-noto-sans-sc), var(--font-inter), sans-serif;
+    --font-family-sans: var(--font-inter), var(--font-noto-sans-sc), sans-serif;
   }
 
-  /* 言語別のテキスト設定 */
-  :root:lang(ja) *, :root:lang(zh) * {
+  /* 言語別のテキスト設定。
+     `*` で全要素に指定すると、入れ子の lang が効かなくなる（html 自体が
+     lang を持つため）。body にだけ指定して、あとは継承に任せる。 */
+  :root:lang(ja) body,
+  :root:lang(zh) body {
     font-family: var(--font-family-sans);
     letter-spacing: -0.01em;
     line-height: 1.65;
+  }
+
+  /* 中身の言語が UI の言語と違う箇所（日本語UIに並ぶ中文記事など）は、
+     その要素自身の lang で字形を決める。子孫へは継承で伝わるので、
+     いちばん近い lang が勝つ。 */
+  [lang="ja"]:not(:root) {
+    font-family: var(--font-inter), var(--font-noto-sans-jp), sans-serif;
+  }
+
+  [lang="zh"]:not(:root),
+  [lang="zh-CN"]:not(:root) {
+    font-family: var(--font-inter), var(--font-noto-sans-sc), sans-serif;
   }
 
   /* Notionコンテンツの言語別フォント設定 */
@@ -79,6 +101,22 @@
   :root:lang(ja) a,
   :root:lang(zh) a {
     font-family: var(--font-family-sans);
+  }
+
+  /* 上の Notion 向け !important は UI の言語で字形を固定してしまう。
+     記事自身に lang が付いている場合は、そちらを優先させる。 */
+  [lang="ja"]:not(:root) .notion,
+  [lang="ja"]:not(:root) [class*="notion-"],
+  [lang="ja"]:not(:root) button,
+  [lang="ja"]:not(:root) a {
+    font-family: var(--font-inter), var(--font-noto-sans-jp), sans-serif !important;
+  }
+
+  [lang="zh"]:not(:root) .notion,
+  [lang="zh"]:not(:root) [class*="notion-"],
+  [lang="zh"]:not(:root) button,
+  [lang="zh"]:not(:root) a {
+    font-family: var(--font-inter), var(--font-noto-sans-sc), sans-serif !important;
   }
 }
 
