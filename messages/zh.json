@@ -56,7 +56,9 @@
     "filter_ja": "日本語",
     "filter_zh": "中文",
     "filter_en": "English",
-    "empty": "暂无该语言的文章。"
+    "empty": "暂无该语言的文章。",
+    "toc": "目录",
+    "reading_time": "约 {minutes} 分钟"
   },
   "OpenBadge": {
     "title": "OpenBadge",

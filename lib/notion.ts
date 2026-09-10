@@ -221,3 +221,75 @@ export const customMapImageUrl = (url: string, block: Block): string => {
 export const mapPageUrl = (pageId: string, locale: string = "en"): string => {
   return `/${locale}/blog/${pageId}`;
 };
+
+export type TocEntry = {
+  /** react-notion-x が見出しに振る id と同じ形（ハイフン無しのブロックID）。 */
+  id: string;
+  text: string;
+  /** 1 = header, 2 = sub_header, 3 = sub_sub_header */
+  level: 1 | 2 | 3;
+};
+
+const HEADING_LEVELS: Record<string, 1 | 2 | 3> = {
+  header: 1,
+  sub_header: 2,
+  sub_sub_header: 3,
+};
+
+/** ブロックの title プロパティを平文にする。装飾は捨てる。 */
+function plainText(block: Block | undefined): string {
+  const title = block?.properties?.title;
+  if (!Array.isArray(title)) return "";
+  return title.map((chunk) => (Array.isArray(chunk) ? chunk[0] : "")).join("").trim();
+}
+
+/** 記事本文の見出しを拾って目次にする。
+ *  recordMap.block の列挙順は本文順とは限らないので、content を辿る。 */
+export function buildToc(recordMap: ExtendedRecordMap, rootPageId: string): TocEntry[] {
+  const toc: TocEntry[] = [];
+  const seen = new Set<string>();
+
+  const walk = (blockId: string) => {
+    if (seen.has(blockId)) return;
+    seen.add(blockId);
+
+    const block = getBlockFromEntry(recordMap.block[blockId]);
+    if (!block) return;
+
+    const level = HEADING_LEVELS[block.type];
+    if (level) {
+      const text = plainText(block);
+      if (text) toc.push({ id: blockId.replace(/-/g, ""), text, level });
+    }
+
+    for (const childId of block.content ?? []) {
+      walk(childId);
+    }
+  };
+
+  walk(toHyphenatedId(rootPageId));
+  if (toc.length === 0) walk(rootPageId);
+
+  return toc;
+}
+
+/** 本文の文字数からおおよその読了時間（分）を出す。
+ *  CJK は 500字/分、欧文は 220語/分をめやすにする。 */
+export function estimateReadingMinutes(recordMap: ExtendedRecordMap): number {
+  let cjk = 0;
+  let latinWords = 0;
+
+  for (const entry of Object.values(recordMap.block)) {
+    const block = getBlockFromEntry(entry);
+    if (!block || block.type === "page") continue;
+
+    const text = plainText(block);
+    if (!text) continue;
+
+    cjk += (text.match(/[㐀-䶿一-鿿぀-ヿ]/g) ?? []).length;
+    latinWords += (text.match(/[A-Za-z][A-Za-z'-]*/g) ?? []).length;
+  }
+
+  const minutes = cjk / 500 + latinWords / 220;
+  return Math.max(1, Math.round(minutes));
+}

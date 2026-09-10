@@ -243,3 +243,21 @@ iframe.notion-asset-object-fit {
     scroll-behavior: auto !important;
   }
 }
+
+/* 記事本文の行長。日本語は 1 行 40 文字前後が読みやすい。
+   表・コード・画像だけは幅いっぱいまで使わせる。 */
+.notion-article .notion-text,
+.notion-article .notion-h,
+.notion-article .notion-list,
+.notion-article .notion-quote,
+.notion-article .notion-callout,
+.notion-article .notion-toggle {
+  max-width: 42rem;
+}
+
+.notion-article .notion-table,
+.notion-article .notion-simple-table,
+.notion-article .notion-code,
+.notion-article .notion-asset-wrapper {
+  max-width: none;
+}

@@ -56,7 +56,9 @@
     "filter_ja": "日本語",
     "filter_zh": "中文",
     "filter_en": "English",
-    "empty": "No articles in this language yet."
+    "empty": "No articles in this language yet.",
+    "toc": "Contents",
+    "reading_time": "{minutes} min read"
   },
   "OpenBadge": {
     "title": "OpenBadge",
