@@ -85,6 +85,8 @@ const AboutArea = ({
             cols={{ lg: 4, md: 4, sm: 2, xs: 2, xxs: 2 }}
             isDraggable={width > 480}
             isResizable={false}
+            // タイル内に独自の操作を持つ要素（写真スタック等）ではグリッドを動かさない。
+            draggableCancel=".rgl-no-drag"
             layouts={layouts[tabSelected]}
             margin={[15, 15]}
             width={maxWidth}
