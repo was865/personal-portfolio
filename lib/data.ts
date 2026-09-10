@@ -1,4 +1,5 @@
 import React from "react";
+import type { StaticImageData } from "next/image";
 import { FaReact, FaGithub, FaPython, FaGitlab, FaNodeJs } from "react-icons/fa";
 import { LuGraduationCap, LuMusic } from "react-icons/lu";
 import { BiLogoGit } from "react-icons/bi";
@@ -6,15 +7,26 @@ import { FaCode } from "react-icons/fa6";
 import { SiTypescript, SiDjango, SiDbt, SiSnowflake, SiVercel } from "react-icons/si";
 import { RiNextjsFill } from "react-icons/ri";
 import { TbBrandCSharp } from "react-icons/tb";
-import contract_analyzer_content from "@/public/images/projects/contract-analyzer-content.png";
-import contract_analyzer_upload from "@/public/images/projects/contract-analyzer-upload.png";
-import contract_analyzer_output from "@/public/images/projects/contract-analyzer-output.png";
-import employee_manager_home from "@/public/images/projects/employee-manager-home.png";
-import employee_manager_card from "@/public/images/projects/employee-manager-card.png";
-import employee_manager_dashboard from "@/public/images/projects/employee-manager-dashboard.png";
-import employee_manager_leave from "@/public/images/projects/employee-manager-leave.png";
-import employee_manager_responsive from "@/public/images/projects/employee-manager-responsive.png";
-import employee_manager_schedule from "@/public/images/projects/employee-manager-schedule.png";
+import arag_answer_multihop from "@/public/images/projects/arag-answer-multihop.webp";
+import arag_agent_steps from "@/public/images/projects/arag-agent-steps.webp";
+import arag_image_understanding from "@/public/images/projects/arag-image-understanding.webp";
+import arag_scanned_form from "@/public/images/projects/arag-scanned-form.webp";
+import arag_table_extraction from "@/public/images/projects/arag-table-extraction.webp";
+import arag_sources_panel from "@/public/images/projects/arag-sources-panel.webp";
+import arag_agents_home from "@/public/images/projects/arag-agents-home.webp";
+import arag_agent_delivery_trace from "@/public/images/projects/arag-agent-delivery-trace.webp";
+import arag_agent_delivery_writeback from "@/public/images/projects/arag-agent-delivery-writeback.webp";
+import arag_agent_scheduling from "@/public/images/projects/arag-agent-scheduling.webp";
+import arag_document_library from "@/public/images/projects/arag-document-library.webp";
+import contract_analyzer_content from "@/public/images/projects/contract-analyzer-content.webp";
+import contract_analyzer_upload from "@/public/images/projects/contract-analyzer-upload.webp";
+import contract_analyzer_output from "@/public/images/projects/contract-analyzer-output.webp";
+import employee_manager_home from "@/public/images/projects/employee-manager-home.webp";
+import employee_manager_card from "@/public/images/projects/employee-manager-card.webp";
+import employee_manager_dashboard from "@/public/images/projects/employee-manager-dashboard.webp";
+import employee_manager_leave from "@/public/images/projects/employee-manager-leave.webp";
+import employee_manager_responsive from "@/public/images/projects/employee-manager-responsive.webp";
+import employee_manager_schedule from "@/public/images/projects/employee-manager-schedule.webp";
 import gemini from "@/public/ai-images/gemini.jpg";
 import midjourney from "@/public/ai-images/midjourney.jpg";
 import dalle from "@/public/ai-images/dalle.jpg";
@@ -44,20 +56,28 @@ export const links = [
 
 export const experiencesData = [
     {
+        title: "Tata Consultancy Services Japan",
+        location: "Technical Lead / Fullstack Engineer",
+        description:
+            "IT services and consulting company, a joint venture between the Tata Group and Mitsubishi Corporation. As a technical lead, I drive the modernization of core business systems for large B2B enterprises — requirement analysis, technical validation, architecture definition, design and development — working alongside client business teams under a spec-driven development (SDD) process. Tech stack: React, Next.js, Node.js and AWS (EC2, S3, Lambda).",
+        icon: React.createElement(FaCode),
+        date: "2026 Aug - Present",
+    },
+    {
         title: "Sunborn Corporation",
         location: "Software Engineer",
         description:
             "Working on various projects including development of consolidated accounting systems for major trading companies. Responsible for detailed design, development, testing, and production operations. Technical stack includes TypeScript, Python, SQL, React, Django, AWS, DBT, Power BI, and Snowflake databases. Successfully improved code maintainability through readable SQL and thorough DBT execution verification.",
         icon: React.createElement(FaCode),
-        date: "2023 Jan - Present",
+        date: "2023 Jan - 2026 Jul",
     },
     {
         title: "Otus Corporation (Part-time)",
         location: "Web Developer",
         description:
-            "Side job while working full-time. Developing portal sites for gas and electricity contractors and converting core system functions to web applications. Using technologies like PHP/CakePHP, TypeScript/Next.js/Prisma. Successfully led initial sprints of a project alone, building a highly extensible project base with component development focused on reusability (Atomic design, Storybook).",
+            "Side job while working full-time. Developing portal sites for gas and electricity contractors and converting core system functions to web applications. Using technologies like PHP/CakePHP, TypeScript/Next.js/Prisma. Successfully led initial sprints of a project alone, building a highly extensible project base with component development focused on reusability (Atomic design, Storybook). Later served as tech lead for the India offshore team — designing and developing new features, handing over specifications, reviewing code, and sharing knowledge across the team.",
         icon: React.createElement(FaReact),
-        date: "2022 Oct - Present",
+        date: "2022 Oct - 2026 Mar",
     },
     {
         title: "M.S.I Corporation",
@@ -87,18 +107,25 @@ export const experiencesData = [
 
 export const experiencesDataZn = [
     {
+        "title": "日本塔塔咨询服务有限公司（TCS Japan）",
+        "location": "技术负责人 / 全栈工程师",
+        "description": "塔塔集团与三菱商事合资的IT服务与咨询公司。作为技术负责人（Technical Lead），负责大型toB企业基干系统的现代化改造（Modernization）。与客户业务团队协作，以规范驱动开发（SDD）推进业务需求分析、技术验证、架构制定与设计开发。技术栈为React、Next.js、Node.js与AWS（EC2、S3、Lambda）。",
+        icon: React.createElement(FaCode),
+        "date": "2026年8月 - 至今"
+    },
+    {
         "title": "株式会社Sunborn",
         "location": "软件工程师",
         "description": "负责多个项目，包括为大型贸易公司开发合并会计系统。担任详细设计、开发、测试和生产运营职责。技术栈包括TypeScript、Python、SQL、React、Django、AWS、DBT、Power BI和Snowflake数据库。通过编写可读性强的SQL和彻底的DBT执行效果验证，成功提高了代码的可维护性。",
         icon: React.createElement(FaCode),
-        "date": "2023年1月 - 至今"
+        "date": "2023年1月 - 2026年7月"
     },
     {
         "title": "株式会社Otus（兼职）",
         "location": "Web开发工程师",
-        "description": "全职工作的同时进行兼职。为燃气和电力承包商开发门户网站，并将核心系统功能转换为Web应用程序。使用PHP/CakePHP、TypeScript/Next.js/Prisma等技术。成功独自领导项目的初始冲刺阶段，构建了高度可扩展的项目基础，组件开发注重重用性（原子设计、Storybook）。",
+        "description": "全职工作的同时进行兼职。为燃气和电力承包商开发门户网站，并将核心系统功能转换为Web应用程序。使用PHP/CakePHP、TypeScript/Next.js/Prisma等技术。成功独自领导项目的初始冲刺阶段，构建了高度可扩展的项目基础，组件开发注重重用性（原子设计、Storybook）。后期作为印度离岸（offshore）团队的技术负责人（Tech Lead），负责新功能的设计开发、规格交接与代码评审，以及团队知识共享。",
         "icon": React.createElement(FaReact),
-        "date": "2022年10月 - 至今"
+        "date": "2022年10月 - 2026年3月"
     },
     {
         "title": "株式会社M.S.I",
@@ -125,23 +152,30 @@ export const experiencesDataZn = [
 
 export const experiencesDataJa = [
     {
+        "title": "日本タタ・コンサルタンシー・サービシズ株式会社",
+        "location": "テクニカルリード / フルスタックエンジニア",
+        "description": "タタ・グループと三菱商事の合弁によるITサービス・コンサルティング企業。テクニカルリードとして、大手toB企業の基幹システムのモダナイゼーションを担当。顧客のビジネスチームと協働しながら、ビジネス要件分析・技術検証・アーキテクチャ策定から設計・開発までをスペック駆動開発（SDD）で推進している。技術スタックは React / Next.js / Node.js / AWS（EC2、S3、Lambda）。",
+        "icon": React.createElement(FaCode),
+        "date": "2026年8月 - 現在"
+    },
+    {
         "title": "株式会社Sunborn",
         "location": "ソフトウェアエンジニア",
         "description": "大手商社向けの連結会計システム開発など複数のプロジェクトを担当。詳細設計、開発、テスト、本番運用の責任者として活躍。技術スタックはTypeScript、Python、SQL、React、Django、AWS、DBT、Power BI、Snowflakeデータベースなど。",
         "icon": React.createElement(FaCode),
-        "date": "2023年1月 - 現在"
+        "date": "2023年1月 - 2026年7月"
     },
     {
         "title": "株式会社オータス（副業）",
         "location": "Webデベロッパー",
-        "description": "本業と並行して副業に従事。ガス・電気契約者向けのポータルサイト開発や、基幹システム機能のWebアプリケーション化を担当。PHP/CakePHP、TypeScript/Next.js/Prismaなどの技術を活用。プロジェクト始動期のスプリントを一人で担当し、Atomic design、Storybook、jestの活用により、拡張性、メンテナンス性の高いプロジェクトのベースを構築。現在はテックリーダーとして、新規機能の設計開発、チームのナレッジ共有やコードレビューを行っている。",
+        "description": "本業と並行して副業に従事。ガス・電気契約者向けのポータルサイト開発や、基幹システム機能のWebアプリケーション化を担当。PHP/CakePHP、TypeScript/Next.js/Prismaなどの技術を活用。プロジェクト始動期のスプリントを一人で担当し、Atomic design、Storybook、jestの活用により、拡張性、メンテナンス性の高いプロジェクトのベースを構築。後半はインドのオフショアチームのテックリードとして、新規機能の設計開発、仕様共有・コードレビュー、チームのナレッジ共有を担当した。",
         "icon": React.createElement(FaReact),
-        "date": "2022年10月 - 現在"
+        "date": "2022年10月 - 2026年3月"
     },
     {
         "title": "株式会社エム・エス・アイ",
         "location": "ソフトウェアエンジニア",
-        "description": "工場向け業務管理システムの開発や、社員の在席状態管理Webアプリケーションをゼロから作成し、後に商品化。C#、.Net、JavaScript、Express、Node.js、Azureなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。また、業務と並行してAI分野の学習にも取り組み、JDLA Deep Learning for ENGINEER認定を取得しました。",
+        "description": "工場向け業務管理システムの開発を担当。また、社員の在席状態管理Webアプリケーションをゼロから開発し、後に自社製品として商品化された。C#、.Net、JavaScript、Express、Node.js、Azureなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。業務と並行してAI分野の学習にも取り組み、JDLA Deep Learning for ENGINEER認定を取得した。",
         "icon": React.createElement(FaCode),
         "date": "2020年7月 - 2022年10月"
     },
@@ -161,10 +195,134 @@ export const experiencesDataJa = [
     },
 ]
 
+/** 1枚のスクリーンショットと、それが何を示しているかの一行説明。
+ *  caption はギャラリーのフィルムストリップと alt の両方に使う（ロケール別）。 */
+export type ProjectShot = {
+    src: StaticImageData;
+    caption: { en: string; ja: string; zh: string };
+};
+
 export type ProjectTags = typeof projectsData[number]["tags"];
 
 export const projectsData = [
     {
+        "slug": "arag",
+        "title": "ARag: Agentic RAG for enterprise knowledge",
+        "title_zh": "ARag：企业知识库的智能体RAG助手",
+        "title_ja": "ARag：社内ナレッジ横断のエージェント型RAG",
+        "description":
+            "An agentic RAG assistant that reaches across stamped scans, handwritten notes, flowchart photos and multi-page PDFs, and answers with inline citations. On top of MinerU layout parsing, BGE-M3 embeddings and Qdrant hybrid search (RRF → rerank → neighbour expansion), the agent loop (rewrite → retrieve → grade → answer → verify) re-queries whenever the evidence falls short, so multi-hop questions resolve across several documents at once.",
+        "desc_zh": "可跨盖章扫描件、手写批注、流程图照片与多页PDF检索，并生成带引用回答的智能体RAG助手。在 MinerU 版面解析、BGE-M3 向量与 Qdrant 混合检索（RRF → rerank → 邻近扩展）之上，Agent 循环（改写 → 检索 → 相关性判定 → 回答 → 校验）会在证据不足时自动重新检索，因此多跳问题可以一次性跨多份文档得出结论。",
+        "desc_ja": "押印スキャン帳票・手書き注記・フロー図の写真・複数ページPDFまで横断検索し、引用付きで回答するエージェント型RAGアシスタント。MinerUのレイアウト解析、BGE-M3の埋め込み、Qdrantのハイブリッド検索（RRF → rerank → 近傍拡張）の上で、エージェントループ（書き換え → 検索 → 関連性判定 → 回答 → 検証）が根拠不足を検知して再検索するため、多ホップの問いも複数文書をまたいで解ける。",
+        "tags": ["Agentic RAG", "LangGraph", "AI SDK", "OpenAI", "Claude", "Qdrant", "BGE-M3", "MinerU", "FastAPI", "Next.js"],
+        "shots": [
+            {
+                src: arag_answer_multihop,
+                caption: {
+                    en: "Multi-hop root-cause analysis across five documents",
+                    ja: "多ホップ根因分析：5文書をまたぐ時系列",
+                    zh: "多跳根因分析：跨五份文档的时间线",
+                },
+            },
+            {
+                src: arag_agent_steps,
+                caption: {
+                    en: "Agent trace: two retrieval rounds, hybrid search and rerank",
+                    ja: "エージェント実行トレース：2ラウンドの再検索とrerank",
+                    zh: "智能体执行轨迹：两轮检索、混合检索与重排序",
+                },
+            },
+            {
+                src: arag_image_understanding,
+                caption: {
+                    en: "A photographed flowchart read back as a graph",
+                    ja: "フロー図の写真をグラフとして読み直す",
+                    zh: "将流程图照片还原为图结构",
+                },
+            },
+            {
+                src: arag_scanned_form,
+                caption: {
+                    en: "Field extraction from a stamped, handwritten scan",
+                    ja: "押印・手書きのスキャン帳票から項目を抽出",
+                    zh: "从盖章手写扫描单据中抽取字段",
+                },
+            },
+            {
+                src: arag_table_extraction,
+                caption: {
+                    en: "Cross-page PDF financial tables, restructured",
+                    ja: "ページをまたぐPDFの財務表を構造化",
+                    zh: "跨页 PDF 财务表结构化",
+                },
+            },
+            {
+                src: arag_sources_panel,
+                caption: {
+                    en: "Citation panel with the original document alongside",
+                    ja: "出典パネルと原本プレビューの並列表示",
+                    zh: "出典面板与原文预览并排显示",
+                },
+            },
+            {
+                src: arag_document_library,
+                caption: {
+                    en: "Document library with per-file parse status",
+                    ja: "文書ライブラリとファイル別の解析状況",
+                    zh: "文档库与逐个文件的解析状态",
+                },
+            },
+        ] satisfies ProjectShot[],
+        "demoUrl": "#"
+    },
+    {
+        "slug": "arag-agents",
+        "title": "ARag Agents: an agent that operates the ERP",
+        "title_zh": "ARag Agents：可操作 ERP 的业务智能体",
+        "title_ja": "ARag Agents：ERPを操作する業務エージェント",
+        "description":
+            "Plug-in capability packages that turn the assistant into an agent operating the company's ERP (Kingdee). It pulls open orders and live stock, derives a negotiated delivery date from the production cycle table and the working calendar, shows the derivation field by field so a planner can check every number, and writes the agreed date back to the sales order.",
+        "desc_zh": "将助手扩展为可操作业务系统的插件式能力包。从金蝶 ERP 取得未出库订单与即时库存，按交付周期表与工作日历推算协商交期；逐字段展示测算依据，业务人员可以核对每一个数字，确认后一键写回销售订单。",
+        "desc_ja": "アシスタントを業務システム操作エージェントに変えるプラグイン型の能力パッケージ。金蝶ERPから受注残と即時在庫を取得し、納期テーブルと稼働カレンダーで協議納期を算出する。根拠をフィールド単位で示すので担当者が数字を検証でき、確定した納期は受注伝票へ書き戻せる。",
+        "tags": ["Business Agent", "Tool Use", "MCP", "Kingdee ERP", "Capability SDK", "AI SDK", "DeepSeek", "TypeScript", "Postgres", "Docker"],
+        "shots": [
+            {
+                src: arag_agents_home,
+                caption: {
+                    en: "Two business agents and the steps each one runs",
+                    ja: "業務エージェント2種と、それぞれの処理ステップ",
+                    zh: "两个业务智能体及各自的处理步骤",
+                },
+            },
+            {
+                src: arag_agent_delivery_trace,
+                caption: {
+                    en: "Delivery date derived field by field from ERP records",
+                    ja: "ERPのフィールド単位で示す納期の算出根拠",
+                    zh: "按 ERP 字段逐项展示交期测算依据",
+                },
+            },
+            {
+                src: arag_agent_delivery_writeback,
+                caption: {
+                    en: "Order-level summary, ready to write back to the ERP",
+                    ja: "受注単位の集計とERPへの書き戻し",
+                    zh: "订单级汇总，可直接写回 ERP",
+                },
+            },
+            {
+                src: arag_agent_scheduling,
+                caption: {
+                    en: "The working calendar pushes T+2 past the weekend",
+                    ja: "稼働カレンダーがT+2を週明けへ繰り延べる",
+                    zh: "工作日历将 T+2 顺延至周一",
+                },
+            },
+        ] satisfies ProjectShot[],
+        "demoUrl": "#"
+    },
+    {
+        "slug": "contract-analyzer",
         "title": "Contract Analyzer: Analyze contracts with AI",
         "title_zh": "AI合同分析：使用AI分析合同风险并提出修改建议",
         "title_ja": "AI契約書分析：AIによる契約リスク分析と提案",
@@ -173,14 +331,36 @@ export const projectsData = [
         "desc_zh": "使用AI分析合同风险的Web应用程序。它允许用户上传合同并使用AI分析合同风险并提出修改建议。",
         "desc_ja": "AIによる契約リスク分析のWebアプリケーションです。ユーザーは契約書をアップロードし、AIによって契約リスクを分析し、分析結果・提案をUIで表示。",
         "tags": ["OpenAI", "GPT-5", "AI", "LLM",  "Prompt Engineering", "Web", "Python", "TypeScript", "Vercel"],
-        "imageUrls": [
-          contract_analyzer_content, 
-          contract_analyzer_upload,
-          contract_analyzer_output,
-        ],
+        "shots": [
+            {
+                src: contract_analyzer_content,
+                caption: {
+                    en: "Clause-by-clause analysis of the uploaded contract",
+                    ja: "アップロードした契約書の条項別分析",
+                    zh: "对上传合同的逐条分析",
+                },
+            },
+            {
+                src: contract_analyzer_upload,
+                caption: {
+                    en: "Uploading a contract for review",
+                    ja: "契約書のアップロード画面",
+                    zh: "合同上传界面",
+                },
+            },
+            {
+                src: contract_analyzer_output,
+                caption: {
+                    en: "Identified risks and suggested revisions",
+                    ja: "抽出されたリスクと修正提案",
+                    zh: "识别出的风险与修改建议",
+                },
+            },
+        ] satisfies ProjectShot[],
         "demoUrl": "#"
     },
     {
+        "slug": "employee-management",
         "title": "Employee Management System: Manage employees with Goolge Calendar API",
         "title_zh": "员工管理系统：使用Google Calendar API实时查看管理员工的日程与目前状态",
         "title_ja": "従業員管理システム：Google Calendar APIによる従業員の日程と状態をリアルタイムで確認",
@@ -188,14 +368,56 @@ export const projectsData = [
         "desc_zh": "使用Google Calendar API管理员工的Web应用程序。它允许用户管理员工并使用Google Calendar API实时查看管理员工的日程与目前状态。",
         "desc_ja": "Google Calendar APIを使用した従業員管理システムです。従業員の日程と状態をリアルタイムで確認できます。",
         "tags": ["Google", "Calendar", "API", "WebSockets", "Clerk", "Next.js", "React", "TypeScript", "Tailwind", "Shadcn", "Vercel"],
-        "imageUrls": [
-          employee_manager_home,
-          employee_manager_schedule,
-          employee_manager_card,
-          employee_manager_leave,
-          employee_manager_dashboard,
-          employee_manager_responsive,
-        ],
+        "shots": [
+            {
+                src: employee_manager_home,
+                caption: {
+                    en: "Home view of the team's current status",
+                    ja: "チームの現在の状態を映すホーム画面",
+                    zh: "展示团队当前状态的首页",
+                },
+            },
+            {
+                src: employee_manager_schedule,
+                caption: {
+                    en: "Schedules synced from Google Calendar",
+                    ja: "Googleカレンダーと同期した予定表",
+                    zh: "与 Google Calendar 同步的日程表",
+                },
+            },
+            {
+                src: employee_manager_card,
+                caption: {
+                    en: "Member card with presence and contact details",
+                    ja: "在席状況と連絡先を載せたメンバーカード",
+                    zh: "含在席状态与联系方式的成员卡片",
+                },
+            },
+            {
+                src: employee_manager_leave,
+                caption: {
+                    en: "Leave requests and approval state",
+                    ja: "休暇申請と承認状況",
+                    zh: "休假申请与审批状态",
+                },
+            },
+            {
+                src: employee_manager_dashboard,
+                caption: {
+                    en: "Dashboard of attendance across the team",
+                    ja: "チーム全体の勤怠ダッシュボード",
+                    zh: "团队整体的考勤看板",
+                },
+            },
+            {
+                src: employee_manager_responsive,
+                caption: {
+                    en: "The same views on a phone",
+                    ja: "同じ画面のモバイル表示",
+                    zh: "同一界面的移动端显示",
+                },
+            },
+        ] satisfies ProjectShot[],
         "demoUrl": "#"
     },
 ]

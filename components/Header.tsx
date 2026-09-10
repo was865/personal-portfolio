@@ -5,13 +5,19 @@ import { links } from "@/lib/data"
 import Link from "next/link"
 import clsx from "clsx"
 import { useActiveSectionContext } from "@/context/action-section-context"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
+import { usePathname } from "next/navigation"
 
 function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext()
   const t = useTranslations("Header")
-  
+  const locale = useLocale()
+  const pathname = usePathname()
+  // トップ以外（プロジェクト詳細やブログ）では、ハッシュだけではセクションに飛べない。
+  const isHome = pathname === `/${locale}` || pathname === "/"
+  const hrefFor = (hash: string) => (isHome ? hash : `/${locale}${hash}`)
+
   return (
     <header className="z-999 relative">
       <motion.div
@@ -29,7 +35,7 @@ function Header() {
               animate={{ opacity: 1, y: 0 }}
             >
               <Link
-                href={link.hash}
+                href={hrefFor(link.hash)}
                 className={clsx(
                   "flex w-full items-center justify-center px-3 py-3 whitespace-nowrap hover:text-gray-950 dark:hover:text-gray-300 transition",
                   {

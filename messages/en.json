@@ -1,56 +1,64 @@
 {
-    "IntroSection": {
-        "hello_im": "Hi, my name is",
-        "name": "Silas Wang",
-        "short_intro": "I enjoy exploring new things...",
-        "download_cv": "Download CV",
-        "blog": "Blog",
-        "focus_is": "My focus is",
-        "innovation_ai": "Innovation (AI)",
-        "im_a": "I'm a "
-    },
-    "Header": {
-        "home": "Home",
-        "about": "About",
-        "projects": "Projects",
-        "skills": "Skills",
-        "experiences": "Experiences",
-        "contact": "Contact"
-    },
-    "SectionName": {
-        "home": "Home",
-        "about": "About me",
-        "projects": "Featured Projects",
-        "skills": "Skills",
-        "experiences": "My Experiences",
-        "contact": "Contact"
-    },
-    "AboutSection": {
-        "desc": "Hello everyone, I am a software engineer with experience in web application development and business systems. My educational background includes a Master's degree in Cultural Systems from Yamagata University and a Bachelor's degree in Rehabilitation Medicine from Chengdu Medical College University. Despite my diverse academic background, I have built a strong career in software development, specializing in full-stack development with technologies like TypeScript, JavaScript, React, Python, and various databases.",
-        "para1": "I have been working at Sunborn Corporation since January 2023, developing consolidated accounting systems for major trading companies using technologies like TypeScript, Python, React, Django, and Snowflake. Additionally, I have been working part-time at Otus Corporation since October 2022, developing portal sites and web applications.",
-        "para2": "Previously, I worked at M.S.I Corporation from July 2020 to October 2022, where I developed business management systems and created a staff location management web application that was later commercialized.",
-        "para3": "I'm constantly learning new technologies and improving my skills. I hold a Deep Learning certification (JDLA Deep Learning for ENGINEER), which reflects my interest in AI and machine learning. I'm passionate about creating efficient, maintainable code and enjoy problem-solving.",
-        "para4": "I'm always looking for new challenges and opportunities to grow as a developer. Feel free to contact me if you're interested in collaborating or have any questions about my work!",
-        "intro_start": "Hey! I'm",
-        "intro_name": "Ansen",
-        "intro_end": ", a software engineer. Currently, I'm building cool web applications. My world revolves around web development and AI innovation."
-    },
-    "ProjectsSection": {
-        "view_all": "View All Projects"
-    },
-    "Blog": {
-        "title": "My Blog",
-        "description": "powered by Notion API",
-        "tags": "Tags",
-        "back": "Back to all posts"
-    },
-    "OpenBadge": {
-        "title": "OpenBadge",
-        "description": "Certified Credential",
-        "clickToView": "Click to view details",
-        "viewBadge": "View Certificate",
-        "badgeTitle": "JDLA Deep Learning for ENGINEER",
-        "issuer": "Japan Deep Learning Association",
-        "issueDate": "Obtained on March 14, 2022"
-    }
+  "IntroSection": {
+    "hello_im": "Hi, my name is",
+    "name": "Silas Wang",
+    "short_intro": "I enjoy exploring new things...",
+    "download_cv": "Download CV",
+    "blog": "Blog",
+    "focus_is": "My focus is",
+    "innovation_ai": "Innovation (AI)",
+    "im_a": "I'm a "
+  },
+  "Header": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experiences": "Experiences",
+    "contact": "Contact"
+  },
+  "SectionName": {
+    "home": "Home",
+    "about": "About me",
+    "projects": "Featured Projects",
+    "skills": "Skills",
+    "experiences": "My Experiences",
+    "contact": "Contact"
+  },
+  "AboutSection": {
+    "desc": "Hello everyone, I am a software engineer with experience in web application development and business systems. My educational background includes a Master's degree in Cultural Systems from Yamagata University and a Bachelor's degree in Rehabilitation Medicine from Chengdu Medical College University. Despite my diverse academic background, I have built a strong career in software development, specializing in full-stack development with technologies like TypeScript, JavaScript, React, Python, and various databases.",
+    "para1": "I have been working at Sunborn Corporation since January 2023, developing consolidated accounting systems for major trading companies using technologies like TypeScript, Python, React, Django, and Snowflake. Additionally, I have been working part-time at Otus Corporation since October 2022, developing portal sites and web applications.",
+    "para2": "Previously, I worked at M.S.I Corporation from July 2020 to October 2022, where I developed business management systems and created a staff location management web application that was later commercialized.",
+    "para3": "I'm constantly learning new technologies and improving my skills. I hold a Deep Learning certification (JDLA Deep Learning for ENGINEER), which reflects my interest in AI and machine learning. I'm passionate about creating efficient, maintainable code and enjoy problem-solving.",
+    "para4": "I'm always looking for new challenges and opportunities to grow as a developer. Feel free to contact me if you're interested in collaborating or have any questions about my work!",
+    "intro_start": "Hey! I'm",
+    "intro_name": "Ansen",
+    "intro_end": ", a software engineer. Currently, I'm building cool web applications. My world revolves around web development and AI innovation.",
+    "photos_title": "Photos I took",
+    "photo_caption": "Photo {n}",
+    "photo_open": "Open photo {n}",
+    "photo_hint": "{count} photos · drag to flip · click to zoom"
+  },
+  "ProjectsSection": {
+    "view_all": "View All Projects",
+    "view_case": "View {count} screens",
+    "back": "All projects",
+    "gallery": "Screens",
+    "open_viewer": "Open viewer"
+  },
+  "Blog": {
+    "title": "My Blog",
+    "description": "powered by Notion API",
+    "tags": "Tags",
+    "back": "Back to all posts"
+  },
+  "OpenBadge": {
+    "title": "OpenBadge",
+    "description": "Certified Credential",
+    "clickToView": "Click to view details",
+    "viewBadge": "View Certificate",
+    "badgeTitle": "JDLA Deep Learning for ENGINEER",
+    "issuer": "Japan Deep Learning Association",
+    "issueDate": "Obtained on March 14, 2022"
+  }
 }

@@ -1,56 +1,64 @@
 {
-    "IntroSection": {
-        "hello_im": "こんにちは、私は",
-        "name": "オウ アンシン",
-        "short_intro": "新しいものを探索するのが好きです！",
-        "download_cv": "履歴書をダウンロード",
-        "blog": "ブログ",
-        "focus_is": "私の焦点は",
-        "innovation_ai": "イノベーション(AI)",
-        "im_a": "I'm a "
-    },
-    "Header": {
-        "home": "ホーム",
-        "about": "自己紹介",
-        "projects": "プロジェクト",
-        "skills": "スキル",
-        "experiences": "経歴",
-        "contact": "連絡先"
-    },
-    "SectionName": {
-        "home": "ホーム",
-        "about": "私について",
-        "projects": "主なプロジェクト",
-        "skills": "スキル",
-        "experiences": "経歴",
-        "contact": "連絡先"
-    },
-    "AboutSection": {
-        "desc": "皆さん、こんにちは。私はWebアプリケーション開発とビジネスシステムの経験を持つソフトウェアエンジニアです。山形大学文化システム専攻の修士号と成都医学院大学臨床医学院リハビリテーション学科の学士号を取得しています。多様な学術的背景にもかかわらず、TypeScript、JavaScript、React、Pythonなどの技術を活用したフルスタック開発に特化したソフトウェア開発のキャリアを築いてきました。",
-        "para1": "2023年1月から株式会社Sunbornで勤務し、TypeScript、Python、React、Django、Snowflakeなどの技術を用いて大手商社向けの連結会計システムを開発しています。さらに、2022年10月からは株式会社オータスで副業として、ポータルサイトやWebアプリケーションの開発を担当しています。",
-        "para2": "以前は2020年7月から2022年10月まで株式会社エム・アイ・エスで働き、業務管理システムの開発や、後に商品化された社員在席管理Webアプリケーションを一から作成しました。",
-        "para3": "常に新しい技術を学び、スキルを向上させています。深層学習の認定資格 (JDLA Deep Learning for ENGINEER) を持っており、AIを実装するスキルを身につけています。効率的で保守性の高いコードの作成に情熱を持ち、問題解決を楽しんでいます。",
-        "para4": "開発者としてさらに成長するための新しい挑戦と機会を常に探しています。協力に興味がある方や、私の仕事について質問がある方は、お気軽にご連絡ください！",
-        "intro_start": "こんにちは！私は",
-        "intro_name": "アンシン",
-        "intro_end": "です。ソフトウェアエンジニアとして、Web開発とAI開発応用に注力しています。趣味はゲームと撮影です。"
-    },
-    "ProjectsSection": {
-        "view_all": "全てのプロジェクトを見る"
-    },
-    "Blog": {
-        "title": "My Blog",
-        "description": "powered by Notion API",
-        "tags": "タグ",
-        "back": "全ての記事に戻る"
-    },
-    "OpenBadge": {
-        "title": "OpenBadge",
-        "description": "認証された資格証明",
-        "clickToView": "クリックして詳細を見る",
-        "viewBadge": "View Certificate",
-        "badgeTitle": "JDLA Deep Learning for ENGINEER",
-        "issuer": "一般社団法人 日本ディープラーニング協会",
-        "issueDate": "2022年3月14日取得"
-    }
-} 
+  "IntroSection": {
+    "hello_im": "こんにちは、私は",
+    "name": "オウ アンシン",
+    "short_intro": "新しいものを探索するのが好きです！",
+    "download_cv": "履歴書をダウンロード",
+    "blog": "ブログ",
+    "focus_is": "私の焦点は",
+    "innovation_ai": "イノベーション(AI)",
+    "im_a": "I'm a "
+  },
+  "Header": {
+    "home": "ホーム",
+    "about": "自己紹介",
+    "projects": "プロジェクト",
+    "skills": "スキル",
+    "experiences": "経歴",
+    "contact": "連絡先"
+  },
+  "SectionName": {
+    "home": "ホーム",
+    "about": "私について",
+    "projects": "主なプロジェクト",
+    "skills": "スキル",
+    "experiences": "経歴",
+    "contact": "連絡先"
+  },
+  "AboutSection": {
+    "desc": "皆さん、こんにちは。私はWebアプリケーション開発とビジネスシステムの経験を持つソフトウェアエンジニアです。山形大学文化システム専攻の修士号と成都医学院大学臨床医学院リハビリテーション学科の学士号を取得しています。多様な学術的背景にもかかわらず、TypeScript、JavaScript、React、Pythonなどの技術を活用したフルスタック開発に特化したソフトウェア開発のキャリアを築いてきました。",
+    "para1": "2023年1月から株式会社Sunbornで勤務し、TypeScript、Python、React、Django、Snowflakeなどの技術を用いて大手商社向けの連結会計システムを開発しています。さらに、2022年10月からは株式会社オータスで副業として、ポータルサイトやWebアプリケーションの開発を担当しています。",
+    "para2": "以前は2020年7月から2022年10月まで株式会社エム・アイ・エスで働き、業務管理システムの開発や、後に商品化された社員在席管理Webアプリケーションを一から作成しました。",
+    "para3": "常に新しい技術を学び、スキルを向上させています。深層学習の認定資格 (JDLA Deep Learning for ENGINEER) を持っており、AIを実装するスキルを身につけています。効率的で保守性の高いコードの作成に情熱を持ち、問題解決を楽しんでいます。",
+    "para4": "開発者としてさらに成長するための新しい挑戦と機会を常に探しています。協力に興味がある方や、私の仕事について質問がある方は、お気軽にご連絡ください！",
+    "intro_start": "こんにちは！私は",
+    "intro_name": "アンシン",
+    "intro_end": "です。ソフトウェアエンジニアとして、Web開発とAI開発応用に注力しています。趣味はゲームと撮影です。",
+    "photos_title": "撮影した写真",
+    "photo_caption": "写真 {n}",
+    "photo_open": "写真 {n} を開く",
+    "photo_hint": "{count}枚 · ドラッグでめくる · クリックで拡大"
+  },
+  "ProjectsSection": {
+    "view_all": "全てのプロジェクトを見る",
+    "view_case": "{count}枚の画面を見る",
+    "back": "プロジェクト一覧",
+    "gallery": "画面",
+    "open_viewer": "ビューアで開く"
+  },
+  "Blog": {
+    "title": "My Blog",
+    "description": "powered by Notion API",
+    "tags": "タグ",
+    "back": "全ての記事に戻る"
+  },
+  "OpenBadge": {
+    "title": "OpenBadge",
+    "description": "認証された資格証明",
+    "clickToView": "クリックして詳細を見る",
+    "viewBadge": "View Certificate",
+    "badgeTitle": "JDLA Deep Learning for ENGINEER",
+    "issuer": "一般社団法人 日本ディープラーニング協会",
+    "issueDate": "2022年3月14日取得"
+  }
+}
