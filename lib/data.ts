@@ -3,8 +3,21 @@ import type { StaticImageData } from "next/image";
 import { FaReact, FaGithub, FaPython, FaGitlab, FaNodeJs } from "react-icons/fa";
 import { LuGraduationCap, LuMusic } from "react-icons/lu";
 import { BiLogoGit } from "react-icons/bi";
-import { FaCode } from "react-icons/fa6";
-import { SiTypescript, SiDjango, SiDbt, SiSnowflake, SiVercel } from "react-icons/si";
+import { FaCode, FaAws, FaDatabase, FaRobot } from "react-icons/fa6";
+import {
+  SiTypescript,
+  SiDjango,
+  SiDbt,
+  SiSnowflake,
+  SiVercel,
+  SiFastapi,
+  SiDocker,
+  SiPostgresql,
+  SiLangchain,
+  SiOpenai,
+  SiAnthropic,
+  SiTailwindcss,
+} from "react-icons/si";
 import { RiNextjsFill } from "react-icons/ri";
 import { TbBrandCSharp } from "react-icons/tb";
 import arag_answer_multihop from "@/public/images/projects/arag-answer-multihop.webp";
@@ -422,16 +435,78 @@ export const projectsData = [
     },
 ]
 
+/** スキルのピル。AI/エージェント → バックエンド → フロントエンド →
+ *  データ → インフラ → ツール の順で並べ、今の主戦場から先に読めるようにしている。 */
 export const skillsDataWithIcons = [
-  { 
+  {
+    id: "agentic-rag",
+    name: "Agentic RAG",
+    icon: React.createElement(FaRobot, { className: "text-xl" }),
+    desc: {
+      zh: "智能体RAG的设计与实现",
+      en: "Agentic RAG design and delivery",
+      ja: "エージェント型RAGの設計・実装"
+    }
+  },
+  {
+    id: "langgraph",
+    name: "LangGraph",
+    icon: React.createElement(SiLangchain, { className: "text-xl" }),
+    desc: {
+      zh: "多智能体编排",
+      en: "Multi-agent orchestration",
+      ja: "マルチエージェントのオーケストレーション"
+    }
+  },
+  {
+    id: "openai",
+    name: "OpenAI",
+    icon: React.createElement(SiOpenai, { className: "text-xl" }),
+    desc: {
+      zh: "OpenAI API",
+      en: "OpenAI API",
+      ja: "OpenAI API"
+    }
+  },
+  {
+    id: "claude",
+    name: "Claude",
+    icon: React.createElement(SiAnthropic, { className: "text-xl" }),
+    desc: {
+      zh: "Anthropic Claude API",
+      en: "Anthropic Claude API",
+      ja: "Anthropic Claude API"
+    }
+  },
+  {
+    id: "vector-search",
+    name: "Vector Search",
+    icon: React.createElement(FaDatabase, { className: "text-xl" }),
+    desc: {
+      zh: "基于 Qdrant 与 BGE-M3 的混合检索",
+      en: "Hybrid retrieval with Qdrant and BGE-M3",
+      ja: "Qdrant・BGE-M3によるハイブリッド検索"
+    }
+  },
+  {
     id: "python",
-    name: "Python", 
-    icon: React.createElement(FaPython, { className: "text-xl" }), 
+    name: "Python",
+    icon: React.createElement(FaPython, { className: "text-xl" }),
     desc: {
       zh: "熟悉Python编程",
       en: "Python Programming",
       ja: "Pythonプログラミング"
-    } 
+    }
+  },
+  {
+    id: "fastapi",
+    name: "FastAPI",
+    icon: React.createElement(SiFastapi, { className: "text-xl" }),
+    desc: {
+      zh: "FastAPI 服务开发",
+      en: "FastAPI services",
+      ja: "FastAPIでのAPI開発"
+    }
   },
   {
     id: "django",
@@ -441,86 +516,6 @@ export const skillsDataWithIcons = [
       zh: "Django开发",
       en: "Django Development",
       ja: "Django開発"
-    }
-  },
-  { 
-    id: "web",
-    name: "Web", 
-    icon: React.createElement(FaCode, { className: "text-xl" }), 
-    desc: {
-      zh: "Web开发",
-      en: "Web Development",
-      ja: "Web開発"
-    } 
-  },
-  { 
-    id: "git",
-    name: "Git", 
-    icon: React.createElement(BiLogoGit, { className: "text-xl" }), 
-    desc: {
-      zh: "版本控制",
-      en: "Version Control",
-      ja: "バージョン管理"
-    } 
-  },
-  { 
-    id: "github",
-    name: "Github", 
-    icon: React.createElement(FaGithub, { className: "text-xl" }), 
-    desc: {
-      zh: "代码托管",
-      en: "Code Hosting",
-      ja: "コードホスティング"
-    } 
-  },
-  {
-    id: "gitlab",
-    name: "Gitlab",
-    icon: React.createElement(FaGitlab, { className: "text-xl" }),
-    desc: {
-      zh: "代码托管",
-      en: "Code Hosting",
-      ja: "コードホスティング"
-    }
-  },
-  {
-    id: "nextjs",
-    name: "Next.js",
-    icon: React.createElement(RiNextjsFill, { className: "text-xl" }),
-    desc: {
-      zh: "熟悉Next.js开发",
-      en: "Familiar with Next.js Development",
-      ja: "Next.js開発"
-    }
-  },
-  {
-    id: "react",
-    name: "React",
-    icon: React.createElement(FaReact, { className: "text-xl" }),
-    desc: {
-      zh: "React开发",
-      en: "React Development",
-      ja: "React開発"
-    }
-  },
-  {
-    id: "typescript",
-    name: "TypeScript",
-    icon: React.createElement(SiTypescript, { className: "text-xl" }),
-    desc: {
-      zh: "熟悉TypeScript",
-      en: "TypeScript Development",
-      ja: "TypeScript開発"
-    }
-  },
-  {
-    id: "vercel",
-    name: "Vercel",
-    icon: React.createElement(SiVercel, { className: "text-xl" }),
-    desc: {
-      zh: "Vercel部署",
-      en: "Vercel Deployment",
-      ja: "Vercelデプロイ"
     }
   },
   {
@@ -544,6 +539,66 @@ export const skillsDataWithIcons = [
     }
   },
   {
+    id: "typescript",
+    name: "TypeScript",
+    icon: React.createElement(SiTypescript, { className: "text-xl" }),
+    desc: {
+      zh: "熟悉TypeScript",
+      en: "TypeScript Development",
+      ja: "TypeScript開発"
+    }
+  },
+  {
+    id: "react",
+    name: "React",
+    icon: React.createElement(FaReact, { className: "text-xl" }),
+    desc: {
+      zh: "React开发",
+      en: "React Development",
+      ja: "React開発"
+    }
+  },
+  {
+    id: "nextjs",
+    name: "Next.js",
+    icon: React.createElement(RiNextjsFill, { className: "text-xl" }),
+    desc: {
+      zh: "熟悉Next.js开发",
+      en: "Familiar with Next.js Development",
+      ja: "Next.js開発"
+    }
+  },
+  {
+    id: "tailwind",
+    name: "Tailwind CSS",
+    icon: React.createElement(SiTailwindcss, { className: "text-xl" }),
+    desc: {
+      zh: "Tailwind CSS",
+      en: "Tailwind CSS",
+      ja: "Tailwind CSS"
+    }
+  },
+  {
+    id: "web",
+    name: "Web",
+    icon: React.createElement(FaCode, { className: "text-xl" }),
+    desc: {
+      zh: "Web开发",
+      en: "Web Development",
+      ja: "Web開発"
+    }
+  },
+  {
+    id: "postgres",
+    name: "PostgreSQL",
+    icon: React.createElement(SiPostgresql, { className: "text-xl" }),
+    desc: {
+      zh: "PostgreSQL",
+      en: "PostgreSQL",
+      ja: "PostgreSQL"
+    }
+  },
+  {
     id: "dbt",
     name: "DBT",
     icon: React.createElement(SiDbt, { className: "text-xl" }),
@@ -561,6 +616,66 @@ export const skillsDataWithIcons = [
       zh: "数据仓库",
       en: "Data Warehouse",
       ja: "データウェアハウス"
+    }
+  },
+  {
+    id: "aws",
+    name: "AWS",
+    icon: React.createElement(FaAws, { className: "text-xl" }),
+    desc: {
+      zh: "AWS（EC2、S3、Lambda）",
+      en: "AWS (EC2, S3, Lambda)",
+      ja: "AWS（EC2・S3・Lambda）"
+    }
+  },
+  {
+    id: "docker",
+    name: "Docker",
+    icon: React.createElement(SiDocker, { className: "text-xl" }),
+    desc: {
+      zh: "Docker 与 Compose",
+      en: "Docker and Compose",
+      ja: "Docker・Compose"
+    }
+  },
+  {
+    id: "vercel",
+    name: "Vercel",
+    icon: React.createElement(SiVercel, { className: "text-xl" }),
+    desc: {
+      zh: "Vercel部署",
+      en: "Vercel Deployment",
+      ja: "Vercelデプロイ"
+    }
+  },
+  {
+    id: "git",
+    name: "Git",
+    icon: React.createElement(BiLogoGit, { className: "text-xl" }),
+    desc: {
+      zh: "版本控制",
+      en: "Version Control",
+      ja: "バージョン管理"
+    }
+  },
+  {
+    id: "github",
+    name: "Github",
+    icon: React.createElement(FaGithub, { className: "text-xl" }),
+    desc: {
+      zh: "代码托管",
+      en: "Code Hosting",
+      ja: "コードホスティング"
+    }
+  },
+  {
+    id: "gitlab",
+    name: "Gitlab",
+    icon: React.createElement(FaGitlab, { className: "text-xl" }),
+    desc: {
+      zh: "代码托管",
+      en: "Code Hosting",
+      ja: "コードホスティング"
     }
   }
 ];
