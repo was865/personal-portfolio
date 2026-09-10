@@ -4,7 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useMemo, useState } from "react"
 import { motion } from "motion/react"
-import { HiChevronLeft } from "react-icons/hi"
+import BackLink from "@/components/BackLink"
 import { useTranslations } from "next-intl"
 import { customMapImageUrl } from "@/lib/notion"
 import { extractTags, getTitleWithoutTags, detectContentLang, type ContentLang } from "@/lib/utils"
@@ -84,22 +84,12 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
   const visible = filter === "all" ? posts : posts.filter((p) => p.lang === filter)
 
   return (
-    <div className="px-4 pb-16">
-      <header className="mx-auto mb-10 flex max-w-6xl flex-col gap-6">
-        <Link
-          href={`/${locale}`}
-          prefetch={true}
-          className={cn(
-            fontSourceCodePro.className,
-            "inline-flex w-fit items-center gap-1 text-[11px] tracking-[0.14em] text-gray-500 transition",
-            "hover:text-[#e9882a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9882a]",
-            "dark:text-white/50 dark:hover:text-yellow",
-          )}
-        >
-          <HiChevronLeft className="h-4 w-4" />
-          {t("back")}
-        </Link>
+    // コンテナの形は詳細ページ（NotionPage）と揃える。
+    // 片方だけ padding を max-w の外に置くと、戻るリンクが 16px ずれる。
+    <div className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6">
+      <BackLink href={`/${locale}`}>{t("back")}</BackLink>
 
+      <header className="mb-10 mt-6 flex flex-col gap-6">
         <div>
           <h1 className="text-2xl font-medium sm:text-3xl">{t("title")}</h1>
           <p className="mt-1 text-sm text-gray-500 dark:text-white/50">{t("description")}</p>
@@ -132,7 +122,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
       </header>
 
       <motion.ul
-        className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
@@ -216,7 +206,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
       </motion.ul>
 
       {visible.length === 0 && (
-        <p className="mx-auto mt-16 max-w-6xl text-center text-sm text-gray-500 dark:text-white/50">
+        <p className="mt-16 text-center text-sm text-gray-500 dark:text-white/50">
           {t("empty")}
         </p>
       )}

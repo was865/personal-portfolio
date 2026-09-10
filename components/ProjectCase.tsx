@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
+import BackLink from "@/components/BackLink"
 import { projectsData } from "@/lib/data"
 import Lightbox, { type LightboxItem } from "@/components/Lightbox"
 import { fontSourceCodePro } from "@/config/fonts"
@@ -37,18 +38,7 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
 
   return (
     <article className="mx-auto w-full max-w-5xl px-4 pb-24 pt-24 sm:px-6 sm:pt-28">
-      <Link
-        href={`/${locale}#projects`}
-        className={cn(
-          fontSourceCodePro.className,
-          "inline-flex items-center gap-1 text-[11px] tracking-[0.14em] text-gray-500 transition",
-          "hover:text-[#e9882a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9882a]",
-          "dark:text-white/50 dark:hover:text-yellow",
-        )}
-      >
-        <HiChevronLeft className="h-4 w-4" />
-        {t("back")}
-      </Link>
+      <BackLink href={`/${locale}#projects`}>{t("back")}</BackLink>
 
       <header className="mt-6 border-b border-black/10 pb-8 dark:border-white/10">
         <h1 className="max-w-3xl text-2xl font-semibold leading-tight text-gray-900 dark:text-white sm:text-4xl">

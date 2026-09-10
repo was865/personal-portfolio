@@ -30,6 +30,12 @@
     border-color: var(--color-gray-200, currentColor);
   }
 
+  /* スクロールバーの幅を常に確保する。短いページと長いページを行き来すると、
+     バーの出入りで中央寄せのコンテンツが 8px 横に飛んで、遷移がちらつく。 */
+  html {
+    scrollbar-gutter: stable;
+  }
+
   /* 既定の書体。next/font の className を body に付けるとレイヤー外の規則になり、
      @layer base 側の言語別指定が特異度に関わらず負ける。変数方式に統一する。 */
   body {

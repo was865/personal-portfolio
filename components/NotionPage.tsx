@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { mapPageUrl, type TocEntry } from '@/lib/notion';
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import BackLink from "@/components/BackLink";
 import { fontSourceCodePro } from "@/config/fonts";
 import { detectContentLang } from '@/lib/utils';
 import { useTranslations } from "next-intl"
@@ -167,14 +168,7 @@ export const NotionPage = ({
   return (
     <div lang={contentLang} className={`min-h-screen ${getContentFontClass()}`}>
       <div className="mx-auto w-full max-w-6xl px-4 pb-24 sm:px-6">
-        <Link
-          href={`/${locale}/blog`}
-          prefetch={true}
-          className={`${fontSourceCodePro.className} inline-flex w-fit items-center gap-1 text-[11px] tracking-[0.14em] text-gray-500 transition hover:text-[#e9882a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9882a] dark:text-white/50 dark:hover:text-yellow`}
-        >
-          <HiChevronLeft className="h-4 w-4" />
-          {t('back')}
-        </Link>
+        <BackLink href={`/${locale}/blog`}>{t('back_to_list')}</BackLink>
 
         <header className="mt-6 border-b border-black/10 pb-8 dark:border-white/10">
           {tags.length > 0 && (

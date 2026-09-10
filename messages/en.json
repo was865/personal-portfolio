@@ -58,7 +58,8 @@
     "filter_en": "English",
     "empty": "No articles in this language yet.",
     "toc": "Contents",
-    "reading_time": "{minutes} min read"
+    "reading_time": "{minutes} min read",
+    "back_to_list": "All posts"
   },
   "OpenBadge": {
     "title": "OpenBadge",
