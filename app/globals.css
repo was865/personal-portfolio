@@ -120,13 +120,18 @@
   }
 }
 
-/* Tailwind v4用のカスタムフォントクラス */
-.font-ja {
-  font-family: var(--font-noto-sans-jp), var(--font-inter), sans-serif;
+/* 記事の表記言語を指定するクラス。@layer の外なので、
+   Notion 側の !important 以外にはこれが勝つ。 */
+.font-ja,
+.font-ja .notion,
+.font-ja [class*="notion-"] {
+  font-family: var(--font-inter), var(--font-noto-sans-jp), sans-serif;
 }
 
-.font-zh {
-  font-family: var(--font-noto-sans-sc), var(--font-inter), sans-serif;
+.font-zh,
+.font-zh .notion,
+.font-zh [class*="notion-"] {
+  font-family: var(--font-inter), var(--font-noto-sans-sc), sans-serif;
 }
 
 .react-grid-item.react-grid-placeholder {

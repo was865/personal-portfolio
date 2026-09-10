@@ -11,6 +11,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { FiCalendar } from "react-icons/fi";
 import { mapPageUrl } from '@/lib/notion';
+import { detectContentLang } from '@/lib/utils';
 import { useTranslations } from "next-intl"
 const prismComponents = [
   "prism-markup-templating",
@@ -115,9 +116,12 @@ export const NotionPage = ({
     []
   );
 
-  // ロケールに基づいたフォントクラスを取得
-  const getLocaleFontClass = () => {
-    switch (locale) {
+  // 記事の表記言語。UI のロケールで決めると、日本語UIで中文記事を開いたときに
+  // 簡体字だけが OS のフォールバックに落ちて字形が混ざる。
+  const contentLang = detectContentLang(title);
+
+  const getContentFontClass = () => {
+    switch (contentLang) {
       case 'ja':
         return 'font-ja';
       case 'zh':
@@ -150,7 +154,7 @@ export const NotionPage = ({
     : '';
 
   return (
-    <div className={`min-h-screen ${getLocaleFontClass()}`}>
+    <div lang={contentLang} className={`min-h-screen ${getContentFontClass()}`}>
       {/* Background decoration */}
       {/* <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-[40%] -right-[10%] w-[70%] h-[70%] rounded-full bg-gradient-to-br from-purple-100/20 to-blue-100/20 blur-3xl dark:from-purple-900/10 dark:to-blue-900/10"></div>
@@ -204,7 +208,7 @@ export const NotionPage = ({
                   fullPage={false}
                   recordMap={recordMap}
                   rootPageId={rootPageId}
-                  className={`notion-container ${getLocaleFontClass()}`}
+                  className={`notion-container ${getContentFontClass()}`}
                   mapPageUrl={(pageId) => mapPageUrl(pageId, locale)}
                 />
                 
