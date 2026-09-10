@@ -35,6 +35,16 @@ function initialFilter(locale: string): Filter {
   return "all"
 }
 
+/** Notion が配信するURLか。サーバ側 fetch が 403 になるので最適化を通さない。 */
+function isNotionHosted(src: string) {
+  return src.startsWith("https://www.notion.so/")
+}
+
+function coverSrc(post: { pageCover: string; block: unknown }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return customMapImageUrl(post.pageCover, post.block as any)
+}
+
 function formatDate(date: Date, locale: string) {
   return new Intl.DateTimeFormat(locale === "zh" ? "zh-CN" : locale === "ja" ? "ja-JP" : "en-US", {
     year: "numeric",
@@ -141,11 +151,14 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
               <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-[#ffe9c9] to-[#e8eaea] dark:from-[#2a2320] dark:to-[#161a1c]">
                 {post.pageCover && !brokenCovers.includes(post.id) ? (
                   <Image
-                    src={customMapImageUrl(post.pageCover, post.block)}
+                    src={coverSrc(post)}
                     alt=""
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
                     quality={75}
+                    // Notion はサーバ側の fetch を User-Agent で弾く。
+                    // next/image の最適化を通すと 403 になるので、ブラウザに直接読ませる。
+                    unoptimized={isNotionHosted(coverSrc(post))}
                     className="object-cover transition duration-500 group-hover:scale-[1.04]"
                     onError={() =>
                       setBrokenCovers((prev) => (prev.includes(post.id) ? prev : [...prev, post.id]))

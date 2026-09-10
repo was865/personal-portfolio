@@ -159,33 +159,51 @@ export const customMapImageUrl = (url: string, block: Block): string => {
     throw new Error("URL can't be empty");
   }
 
-  if (url.startsWith("data:") || url.startsWith("https://images.unsplash.com")) {
+  if (url.startsWith("data:")) {
     return url;
   }
 
-  try {
-    const u = new URL(url);
-    const isSignedNotionS3Url =
-      u.pathname.startsWith("/secure.notion-static.com") &&
-      u.hostname.endsWith(".amazonaws.com") &&
-      u.searchParams.has("X-Amz-Credential") &&
-      u.searchParams.has("X-Amz-Signature") &&
-      u.searchParams.has("X-Amz-Algorithm");
-
-    if (isSignedNotionS3Url) {
-      url = u.origin + u.pathname;
-    }
-  } catch {
-    // Invalid URLs are handled by the Notion image proxy below.
+  // Notion 組み込みカバー（/images/page-cover/...）は公開の静的ファイル。
+  // これをプロキシに通すと二重に包まれて 302 になり、画像が出なくなる。
+  if (url.startsWith("/images/")) {
+    return `https://www.notion.so${url}`;
   }
 
-  const imagePath = url.startsWith("/images")
-    ? `https://www.notion.so${url}`
-    : url;
+  let parsed: URL | null = null;
+  try {
+    const candidate = new URL(url);
+    // attachment:xxx は例外を投げずスキームとして解釈されてしまう。
+    // http(s) 以外は素通しせず、下のプロキシに解決させる。
+    if (candidate.protocol === "http:" || candidate.protocol === "https:") {
+      parsed = candidate;
+    }
+  } catch {
+    // 相対パスなど。下のプロキシで解決する。
+  }
+
+  if (parsed) {
+    // 既にプロキシ形式ならそのまま使う。
+    if (parsed.hostname === "www.notion.so" && parsed.pathname.startsWith("/image")) {
+      return url;
+    }
+
+    // Notion が保管しているファイルだけがプロキシ（再署名）を必要とする。
+    // 外部の公開URL（Unsplash / imgur など）は直接読んだほうが確実で速い。
+    const isNotionHosted =
+      parsed.hostname.endsWith(".amazonaws.com") ||
+      parsed.hostname.endsWith("notion-static.com") ||
+      parsed.hostname.endsWith("notion.so");
+
+    if (!isNotionHosted) {
+      return url;
+    }
+
+    // 署名は失効するので、パスだけ残してプロキシ側に付け直させる。
+    url = parsed.origin + parsed.pathname;
+  }
+
   const notionImageUrl = new URL(
-    `https://www.notion.so${
-      imagePath.startsWith("/image") ? imagePath : `/image/${encodeURIComponent(imagePath)}`
-    }`
+    `https://www.notion.so/image/${encodeURIComponent(url)}`
   );
 
   let table = block.parent_table === "space" ? "block" : block.parent_table;

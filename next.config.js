@@ -29,6 +29,15 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.notion.so",
       },
+      // ブログのカバー画像。Notion のプロキシは 302 を返すだけなので直接読む。
+      {
+        protocol: "https",
+        hostname: "i.imgur.com",
+      },
+      {
+        protocol: "https",
+        hostname: "s.baoyu.io",
+      },
     ],
   },
 }
