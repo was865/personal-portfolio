@@ -50,7 +50,13 @@
     "title": "My Blog",
     "description": "powered by Notion API",
     "tags": "タグ",
-    "back": "全ての記事に戻る"
+    "back": "ホームへ",
+    "filter_label": "記事の言語で絞り込む",
+    "filter_all": "すべて",
+    "filter_ja": "日本語",
+    "filter_zh": "中文",
+    "filter_en": "English",
+    "empty": "この言語の記事はまだありません。"
   },
   "OpenBadge": {
     "title": "OpenBadge",

@@ -50,7 +50,13 @@
     "title": "My Blog",
     "description": "powered by Notion API",
     "tags": "Tags",
-    "back": "Back to all posts"
+    "back": "Home",
+    "filter_label": "Filter by article language",
+    "filter_all": "All",
+    "filter_ja": "日本語",
+    "filter_zh": "中文",
+    "filter_en": "English",
+    "empty": "No articles in this language yet."
   },
   "OpenBadge": {
     "title": "OpenBadge",

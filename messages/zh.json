@@ -50,7 +50,13 @@
     "title": "My Blog",
     "description": "powered by Notion API",
     "tags": "标签",
-    "back": "返回所有文章"
+    "back": "返回首页",
+    "filter_label": "按文章语言筛选",
+    "filter_all": "全部",
+    "filter_ja": "日本語",
+    "filter_zh": "中文",
+    "filter_en": "English",
+    "empty": "暂无该语言的文章。"
   },
   "OpenBadge": {
     "title": "OpenBadge",
