@@ -20,13 +20,15 @@ import { useLocale, useTranslations } from "next-intl"
 export default function Experience({ isMobile }: { isMobile: boolean }) {
   const { theme } = useTheme()
   const variants = {
+    // 左右から滑り込む動きは残す。ただし透明からは始めない
+    // （JS が動くまで経歴が全部消えている状態だった）。振り幅も抑える。
     left: {
-      hidden: { x: -200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
+      hidden: { x: -56 },
+      visible: { x: 0, transition: { duration: 0.5 } },
     },
     right: {
-      hidden: { x: 200, opacity: 0 },
-      visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
+      hidden: { x: 56 },
+      visible: { x: 0, transition: { duration: 0.5 } },
     },
   }
 

@@ -140,6 +140,15 @@
   font-family: var(--font-inter), var(--font-noto-sans-sc), sans-serif;
 }
 
+/* 横スクロールするナビ用。バーが出ると 1 行が 2 段に見えてしまう。 */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .react-grid-item.react-grid-placeholder {
   background: gray;
   transition-duration: 300ms;

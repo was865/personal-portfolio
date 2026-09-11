@@ -1,13 +1,13 @@
 {
   "IntroSection": {
     "hello_im": "Hi, my name is",
-    "name": "Silas Wang",
-    "short_intro": "I enjoy exploring new things...",
+    "name": "Ansen Wang",
     "download_cv": "Download CV",
     "blog": "Blog",
-    "focus_is": "My focus is",
-    "innovation_ai": "Innovation (AI)",
-    "im_a": "I'm a "
+    "im_a": "I'm a ",
+    "role": "Full-stack engineer / AI Engineer",
+    "view_projects": "View projects",
+    "now_building": "Currently building retrieval and agents over company knowledge"
   },
   "Header": {
     "home": "Home",
@@ -37,14 +37,20 @@
     "photos_title": "Photos I took",
     "photo_caption": "Photo {n}",
     "photo_open": "Open photo {n}",
-    "photo_hint": "{count} photos · drag to flip · click to zoom"
+    "photo_hint": "{count} photos · drag to flip · click to zoom",
+    "swap_photo": "Swap photo"
   },
   "ProjectsSection": {
     "view_all": "View All Projects",
     "view_case": "View {count} screens",
     "back": "All projects",
     "gallery": "Screens",
-    "open_viewer": "Open viewer"
+    "open_viewer": "Open viewer",
+    "case_problem": "Problem",
+    "case_role": "Role",
+    "case_decision": "Decisions",
+    "case_result": "Result",
+    "more_shots": "{count} more"
   },
   "Blog": {
     "title": "My Blog",
@@ -69,5 +75,11 @@
     "badgeTitle": "JDLA Deep Learning for ENGINEER",
     "issuer": "Japan Deep Learning Association",
     "issueDate": "Obtained on March 14, 2022"
+  },
+  "SkillsSection": {
+    "group_ai": "AI & retrieval",
+    "group_backend": "Backend & data",
+    "group_frontend": "Frontend",
+    "group_infra": "Infrastructure"
   }
 }

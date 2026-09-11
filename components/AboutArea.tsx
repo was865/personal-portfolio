@@ -70,8 +70,9 @@ const AboutArea = ({
     <motion.section
       ref={ref}
       className="mb-50 text-start leading-8 sm:mb-40 scroll-mt-28"
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
+      // 動きは残すが、透明からは始めない。静止状態＝読める状態にする。
+      initial={{ y: 24 }}
+      animate={{ y: 0 }}
       transition={{ delay: 0.175 }}
       id="about"
     >

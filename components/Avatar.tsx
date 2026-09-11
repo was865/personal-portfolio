@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { MdOutlineSync } from "react-icons/md";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +15,7 @@ const AvatarTransition: React.FC<AvatarTransitionProps> = ({
   dogUrl,
 }: AvatarTransitionProps) => {
   const [toggle, setToggle] = useState(false);
+  const t = useTranslations("AboutSection");
 
   const avatarVariants = {
     enter: { scale: 1, opacity: 1, rotate: 0 },
@@ -79,13 +81,13 @@ const AvatarTransition: React.FC<AvatarTransitionProps> = ({
         </motion.div>
       </div>
       <motion.button
-        className="flex items-center justify-center gap-2 rounded-full bg-transparent border border-gray-200 px-4 py-2 transition-all hover:bg-gray-50 dark:text-white dark:border-[#1e293b] dark:hover:bg-[#1e293b]/10 w-[120px] h-[40px] select-none cursor-pointer"
+        className="flex items-center justify-center gap-2 rounded-full bg-transparent border border-gray-200 px-4 py-2 transition-all hover:bg-gray-50 dark:text-white dark:border-[#1e293b] dark:hover:bg-[#1e293b]/10 h-11 whitespace-nowrap select-none cursor-pointer"
         onMouseDown={(e) => e.stopPropagation()}
         onClick={() => setToggle((prev) => !prev)}
         whileTap={{ scale: 0.95 }}
       >
         <MdOutlineSync size={16} className="mr-1" />
-        Toggle
+        {t("swap_photo")}
       </motion.button>
     </div>
   );

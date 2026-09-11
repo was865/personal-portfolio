@@ -220,6 +220,30 @@ export type ProjectTags = typeof projectsData[number]["tags"];
 export const projectsData = [
     {
         "slug": "arag",
+        // 事例の骨格。問題と判断は既存の説明文から要約したもの。
+        // role と result は本人しか書けないので空のまま。空欄は描画しない。
+        "caseStudy": {
+                  "problem": {
+                            "zh": "企业知识散在盖章扫描件、手写批注、流程图照片和多页 PDF 里，关键词检索找不到，跨文档的问题只能人工翻。",
+                            "ja": "社内の知識が押印スキャン・手書き注記・フロー図の写真・複数ページPDFに散らばり、キーワード検索では届かず、文書をまたぐ問いは人手で追うしかなかった。",
+                            "en": "Company knowledge sits in stamped scans, handwritten notes, flowchart photos and multi-page PDFs. Keyword search misses it, and cross-document questions have to be traced by hand."
+                  },
+                  "decisions": {
+                            "zh": "MinerU 做版面解析，BGE-M3 向量配 Qdrant 混合检索（RRF → rerank → 邻近扩展）。Agent 循环在证据不足时自动重新检索，所以多跳问题能一次跨多份文档得出结论。",
+                            "ja": "MinerU でレイアウト解析、BGE-M3 埋め込みと Qdrant のハイブリッド検索（RRF → rerank → 近傍拡張）。根拠不足をエージェントループが検知して再検索するので、多ホップの問いも一度に解ける。",
+                            "en": "MinerU for layout parsing, BGE-M3 embeddings with Qdrant hybrid search (RRF → rerank → neighbour expansion). The agent loop re-queries when evidence falls short, so multi-hop questions resolve in one pass."
+                  },
+                  "role": {
+                            "zh": "",
+                            "ja": "",
+                            "en": ""
+                  },
+                  "result": {
+                            "zh": "",
+                            "ja": "",
+                            "en": ""
+                  }
+        },
         "title": "ARag: Agentic RAG for enterprise knowledge",
         "title_zh": "ARag：企业知识库的智能体RAG助手",
         "title_ja": "ARag：社内ナレッジ横断のエージェント型RAG",
@@ -290,6 +314,30 @@ export const projectsData = [
     },
     {
         "slug": "arag-agents",
+        // 事例の骨格。問題と判断は既存の説明文から要約したもの。
+        // role と result は本人しか書けないので空のまま。空欄は描画しない。
+        "caseStudy": {
+                  "problem": {
+                            "zh": "协商交期要人工在 ERP 里查未出库订单和即时库存，再对着交付周期表和工作日历算，算完还要解释依据。",
+                            "ja": "交渉用の納期を出すのに、ERP で未出荷注文と即時在庫を人手で調べ、リードタイム表と稼働カレンダーを突き合わせて計算し、根拠も説明する必要があった。",
+                            "en": "Quoting a delivery date meant manually pulling open orders and live stock from the ERP, working it out against lead-time tables and the working calendar, then explaining the reasoning."
+                  },
+                  "decisions": {
+                            "zh": "做成插件式能力包，从金蝶 ERP 取数后自动推算。逐字段展示测算依据，业务人员能核对每一个数字，确认后一键写回销售订单。",
+                            "ja": "プラグイン式の能力パックにし、Kingdee ERP から取得して自動で算出。項目ごとに根拠を出して担当者が数字を確認でき、確定すると受注に書き戻す。",
+                            "en": "Built as a plug-in capability pack that reads Kingdee ERP and computes the date. Every field shows its basis so staff can check each number, then write it back to the sales order in one step."
+                  },
+                  "role": {
+                            "zh": "",
+                            "ja": "",
+                            "en": ""
+                  },
+                  "result": {
+                            "zh": "",
+                            "ja": "",
+                            "en": ""
+                  }
+        },
         "title": "ARag Agents: an agent that operates the ERP",
         "title_zh": "ARag Agents：可操作 ERP 的业务智能体",
         "title_ja": "ARag Agents：ERPを操作する業務エージェント",
@@ -336,6 +384,30 @@ export const projectsData = [
     },
     {
         "slug": "contract-analyzer",
+        // 事例の骨格。問題と判断は既存の説明文から要約したもの。
+        // role と result は本人しか書けないので空のまま。空欄は描画しない。
+        "caseStudy": {
+                  "problem": {
+                            "zh": "合同审阅靠人逐条读，风险点容易漏，改法也要凭经验。",
+                            "ja": "契約レビューは条項を一つずつ人が読む作業で、リスクの見落としが起きやすく、修正案も経験頼みだった。",
+                            "en": "Contract review means reading clause by clause. Risks get missed, and the suggested wording depends on who is reading."
+                  },
+                  "decisions": {
+                            "zh": "做成上传即分析的 Web 应用，由 AI 标出风险条款并给出修改建议，人来判断采纳与否。",
+                            "ja": "アップロードするだけで解析する Web アプリにし、AI がリスク条項を指摘して修正案を出し、採否は人が判断する形にした。",
+                            "en": "A web app that analyses on upload: the model flags risky clauses and proposes wording, and a person decides whether to take it."
+                  },
+                  "role": {
+                            "zh": "",
+                            "ja": "",
+                            "en": ""
+                  },
+                  "result": {
+                            "zh": "",
+                            "ja": "",
+                            "en": ""
+                  }
+        },
         "title": "Contract Analyzer: Analyze contracts with AI",
         "title_zh": "AI合同分析：使用AI分析合同风险并提出修改建议",
         "title_ja": "AI契約書分析：AIによる契約リスク分析と提案",
@@ -374,6 +446,30 @@ export const projectsData = [
     },
     {
         "slug": "employee-management",
+        // 事例の骨格。問題と判断は既存の説明文から要約したもの。
+        // role と result は本人しか書けないので空のまま。空欄は描画しない。
+        "caseStudy": {
+                  "problem": {
+                            "zh": "管理者要知道员工此刻在做什么、日程如何，只能逐个问或翻各自的日历。",
+                            "ja": "管理者が「今この人が何をしているか」を知るには、本人に聞くか各自のカレンダーを開いて回るしかなかった。",
+                            "en": "To see what someone is working on right now, a manager had to ask them or open each person's calendar one by one."
+                  },
+                  "decisions": {
+                            "zh": "接 Google Calendar API，把日程和当前状态汇总到一个界面，实时更新。",
+                            "ja": "Google Calendar API をつなぎ、予定と現在の状態を1画面に集約してリアルタイムに更新する。",
+                            "en": "Wired up the Google Calendar API so schedules and current status land on one screen and update live."
+                  },
+                  "role": {
+                            "zh": "",
+                            "ja": "",
+                            "en": ""
+                  },
+                  "result": {
+                            "zh": "",
+                            "ja": "",
+                            "en": ""
+                  }
+        },
         "title": "Employee Management System: Manage employees with Goolge Calendar API",
         "title_zh": "员工管理系统：使用Google Calendar API实时查看管理员工的日程与目前状态",
         "title_ja": "従業員管理システム：Google Calendar APIによる従業員の日程と状態をリアルタイムで確認",
@@ -437,6 +533,21 @@ export const projectsData = [
 
 /** スキルのピル。AI/エージェント → バックエンド → フロントエンド →
  *  データ → インフラ → ツール の順で並べ、今の主戦場から先に読めるようにしている。 */
+/**
+ * スキルの並べ方。平らに24個並べても「何ができる人か」は伝わらない。
+ * 上のグループほど中心。id は skillsDataWithIcons のものを指す。
+ *
+ * 意図的に外したもの:
+ *   web    — 情報量がない
+ *   github / gitlab — git に含める。3つ並べても3つぶんの意味はない
+ */
+export const skillGroups = [
+  { key: "group_ai", ids: ["agentic-rag", "langgraph", "openai", "claude", "vector-search"] },
+  { key: "group_backend", ids: ["python", "fastapi", "django", "nodejs", "csharp", "postgres", "dbt", "snowflake"] },
+  { key: "group_frontend", ids: ["typescript", "react", "nextjs", "tailwind"] },
+  { key: "group_infra", ids: ["aws", "docker", "vercel", "git"] },
+] as const;
+
 export const skillsDataWithIcons = [
   {
     id: "agentic-rag",

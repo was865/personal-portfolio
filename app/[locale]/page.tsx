@@ -6,6 +6,7 @@ import Experience from "@/components/Experience"
 import { isMobileDevice, getRandomPhotos } from "@/lib/utils-server"
 import Header from "@/components/Header"
 import AboutArea from "@/components/AboutArea"
+import { siteConfig } from "@/config/site"
 
 export default async function Home() {
   const isMobile = await isMobileDevice()
@@ -22,7 +23,7 @@ export default async function Home() {
     webagentUrl: "/images/webagent.jpg",
     chatbotUrl: "/images/chatbot.jpg",
     paperUrl: "/images/paper.jpg",
-    openBadgeUrl: "https://www.openbadge-global.com/api/v1.0/openBadge/v2/Wallet/Public/GetAssertionShare/SU02RC9nakE3Y3dNeWVOMTMxUEhnZz09",
+    openBadgeUrl: siteConfig.links.openBadge,
   }
 
   return (

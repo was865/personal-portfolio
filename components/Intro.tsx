@@ -2,27 +2,43 @@
 
 import Image from "next/image"
 import { motion } from "motion/react"
-import { HiDownload } from "react-icons/hi"
 import { FaGithubSquare, FaEnvelope } from "react-icons/fa"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { useSectionInView } from "@/lib/hooks"
+import { projectsData } from "@/lib/data"
 import { TypeAnimation } from "react-type-animation"
 import useSound from "use-sound"
 import ClickSpark from "@/components/reactbits/ClickSpark"
 import { fontSourceCodePro } from "@/config/fonts"
 
-/** ヒーローの操作ボタン。高さを 44px で揃え、指で押せる大きさを確保する。 */
-const PILL =
-  "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white text-gray-700" +
-  " transition cursor-pointer focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950" +
-  " active:scale-105 borderBlack dark:bg-white/10 dark:text-white/60"
 import DecryptedText from "@/components/reactbits/DecryptedText"
+import { siteConfig } from "@/config/site"
+import { MdVerified } from "react-icons/md"
+import { GoArrowUpRight } from "react-icons/go"
+
+/**
+ * ヒーローの操作ボタン。高さを 44px で揃え、指で押せる大きさを確保する。
+ * 色は base に混ぜない。bg-white と bg-[#e9882a] を同じ文字列に並べても
+ * どちらが勝つかは生成された CSS の順で決まり、白地に白文字になっていた。
+ */
+const PILL_BASE =
+  "inline-flex h-11 items-center justify-center gap-2 rounded-full" +
+  " transition cursor-pointer focus:scale-[1.15] hover:scale-[1.15] active:scale-105"
+
+const PILL =
+  PILL_BASE +
+  " bg-white text-gray-700 hover:text-gray-950 borderBlack dark:bg-white/10 dark:text-white/60"
+
+/** ページ内で唯一の主ボタン。アクセント色はここだけに使う。 */
+const PILL_PRIMARY =
+  PILL_BASE + " bg-[#e9882a] text-white hover:text-white shadow-sm shadow-black/10"
 
 export default function Intro() {
   const { ref } = useSectionInView("Home")
   const activeLocale = useLocale()
   const t = useTranslations("IntroSection")
+  const badge = useTranslations("OpenBadge")
   const [playHover] = useSound("/sounds/bubble.wav", { volume: 0.2 })
 
   return (
@@ -58,7 +74,6 @@ export default function Intro() {
           </ClickSpark>
           <motion.span
             onHoverStart={() => {
-              console.log("sound")
               playHover()
             }}
             initial={{ scale: 0 }}
@@ -76,39 +91,38 @@ export default function Intro() {
           </motion.span>
         </div>
       </div>
-      <motion.h1
-        className="mb-10 mt-4 px-4 text-2xl font-medium leading-[1.5]! sm:text-4xl flex flex-col items-center justify-center"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
+      <motion.div
+        className="mb-10 mt-4 flex flex-col items-center justify-center px-4"
+        // 静止状態＝読める状態にする。透明から始めると JS が動くまで消えている。
+        initial={{ y: 24 }}
+        animate={{ y: 0 }}
       >
         <span className={`${fontSourceCodePro.className} text-sm tracking-wider `}>
           {t("hello_im")}
         </span>
         <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ scale: 0.92 }}
+          animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="col-span-8 place-self-center text-center sm:text-left justify-self-start"
+          className="place-self-center text-center"
         >
-          <div className="text-center">
+          {/* このページで最大の文字は名前。以前は下の職種のほうが大きく、
+              最初に目に入るのが冗談のほうだった。解密の演出はそのまま。 */}
+          <h1 className="text-center text-5xl font-bold leading-[1.15] tracking-tight sm:text-7xl">
             <DecryptedText
               text={t("name")}
-              parentClassName="text-center text-4xl font-bold tracking-tight sm:text-5xl"
+              parentClassName="block"
               useOriginalCharsOnly={true}
               speed={80}
             />
-          </div>
+          </h1>
 
-          <div className="text-center">
-            <span
-              className={`${fontSourceCodePro.className} text-sm tracking-wider`}
-            >
-              {t("im_a")}
-            </span>
-            <h2
-              id="name"
-              className=" text-center text-2xl sm:text-5xl lg:text-4xl lg:leading-normal font-extrabold"
-            >
+          {/* 肩書きと、くるくる変わる職種を同じ行に落とす。
+              打字机はそのまま回す（性格として残す）が、主役ではなくなる。 */}
+          <p className="mt-3 text-center text-base font-medium text-gray-700 sm:text-lg dark:text-white/75">
+            {t("role")}
+            <span className="mx-2 text-gray-400 dark:text-white/30">·</span>
+            <span className={`${fontSourceCodePro.className} text-sm sm:text-base`}>
               <TypeAnimation
                 sequence={[
                   "Genshin Impact Player",
@@ -122,27 +136,43 @@ export default function Intro() {
                 speed={50}
                 repeat={Infinity}
               />
-            </h2>
-          </div>
-        </motion.div>
-        <p>{t("short_intro")}</p>
-        <div className="flex items-center justify-center gap-1">
-          <p>
-            {t("focus_is")}
+            </span>
           </p>
+
+          {/* 取得資格。検証ページに飛べるようにしておく（見せるだけより強い）。
+              職種の行に混ぜるとスマホで折り返すので、独立した行にする。 */}
+          <Link
+            href={siteConfig.links.openBadge}
+            target="_blank"
+            rel="noopener"
+            className="mt-2.5 inline-flex items-center gap-1.5 text-[13px] text-gray-500 underline-offset-4 transition hover:text-gray-800 hover:underline focus-visible:underline dark:text-white/45 dark:hover:text-white/80"
+          >
+            <MdVerified className="h-3.5 w-3.5 shrink-0" aria-hidden />
+            {badge("badgeTitle")}
+            <GoArrowUpRight className="h-3 w-3 shrink-0 opacity-60" aria-hidden />
+          </Link>
+        </motion.div>
+        {/* 「探索が好き」「関心は Innovation (AI)」の2行は、上の肩書きと資格で
+            すでに3回言っていることの繰り返しだった。いま何を作っているかの
+            1行に置き換える。ここは本人しか書けない＝いちばん効く情報。
+            解密の演出はホバー時だけにして、読む邪魔をしない。 */}
+        <Link
+          href={`/${activeLocale}/projects/${projectsData[0].slug}`}
+          className="mt-5 text-center text-[15px] text-gray-600 underline-offset-4 transition hover:text-gray-900 hover:underline focus-visible:underline sm:text-base dark:text-white/65 dark:hover:text-white"
+        >
           <DecryptedText
-            text={t("innovation_ai")}
-            className="italic font-bold"
+            text={t("now_building")}
+            animateOn="hover"
             revealDirection="center"
-            // useOriginalCharsOnly={true}
+            speed={45}
           />
-        </div>
-      </motion.h1>
+        </Link>
+      </motion.div>
 
       <motion.div
         className="flex flex-wrap items-center justify-center gap-3 px-4 text-lg font-medium"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ y: 24 }}
+        animate={{ y: 0 }}
         transition={{
           delay: 0.1,
         }}
@@ -160,13 +190,10 @@ export default function Intro() {
         </Link> */}
 
         <Link
-          className={`${PILL} px-4 text-sm`}
-          href={
-            `${activeLocale}/404.pdf`
-          }
+          className={`${PILL_PRIMARY} px-5 text-sm font-semibold`}
+          href={`/${activeLocale}/projects/${projectsData[0].slug}`}
         >
-          {t("download_cv")}
-          <HiDownload />
+          {t("view_projects")}
         </Link>
         <Link
           className={`${PILL} w-11 text-[1.35rem]`}

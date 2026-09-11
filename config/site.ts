@@ -6,6 +6,9 @@ export const siteConfig = {
   links: {
     github: "https://github.com/was865",
     email: "mailto:wangansen865@gmail.com",
+    // 取得した資格の検証ページ。About のバッジとヒーローの両方から参照する。
+    openBadge:
+      "https://www.openbadge-global.com/api/v1.0/openBadge/v2/Wallet/Public/GetAssertionShare/SU02RC9nakE3Y3dNeWVOMTMxUEhnZz09",
   },
 };
 

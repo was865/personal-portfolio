@@ -2,12 +2,12 @@
   "IntroSection": {
     "hello_im": "你好，我是",
     "name": "汪 安森",
-    "short_intro": "我享受探索的乐趣！",
     "download_cv": "下载简历",
     "blog": "博客",
-    "focus_is": "我的关注点是",
-    "innovation_ai": "Innovation (AI)",
-    "im_a": "I'm a "
+    "im_a": "I'm a ",
+    "role": "全栈工程师 / AI Engineer",
+    "view_projects": "看项目",
+    "now_building": "最近在做企业知识库的检索与 Agent"
   },
   "Header": {
     "home": "首页",
@@ -37,14 +37,20 @@
     "photos_title": "我拍的照片",
     "photo_caption": "照片 {n}",
     "photo_open": "打开照片 {n}",
-    "photo_hint": "{count} 张 · 拖动翻页 · 点击放大"
+    "photo_hint": "{count} 张 · 拖动翻页 · 点击放大",
+    "swap_photo": "换张照片"
   },
   "ProjectsSection": {
     "view_all": "查看所有项目",
     "view_case": "查看 {count} 张界面",
     "back": "全部项目",
     "gallery": "界面",
-    "open_viewer": "在查看器中打开"
+    "open_viewer": "在查看器中打开",
+    "case_problem": "问题",
+    "case_role": "角色",
+    "case_decision": "决策",
+    "case_result": "结果",
+    "more_shots": "还有 {count} 张"
   },
   "Blog": {
     "title": "My Blog",
@@ -69,5 +75,11 @@
     "badgeTitle": "JDLA Deep Learning for ENGINEER",
     "issuer": "Japan Deep Learning Association",
     "issueDate": "Obtained on March 14, 2022"
+  },
+  "SkillsSection": {
+    "group_ai": "AI 与检索",
+    "group_backend": "后端与数据",
+    "group_frontend": "前端",
+    "group_infra": "基础设施"
   }
 }

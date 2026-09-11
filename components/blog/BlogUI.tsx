@@ -45,6 +45,16 @@ function coverSrc(post: { pageCover: string; block: unknown }) {
   return customMapImageUrl(post.pageCover, post.block as any)
 }
 
+/**
+ * カバーが使えない記事の下地。記事 id から色相を決めるので、
+ * 記事ごとに違い、かつ何度開いても同じ色になる。
+ */
+function tintFor(id: string) {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) % 360;
+  return h;
+}
+
 function formatDate(date: Date, locale: string) {
   return new Intl.DateTimeFormat(locale === "zh" ? "zh-CN" : locale === "ja" ? "ja-JP" : "en-US", {
     year: "numeric",
@@ -59,6 +69,20 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
   // Notion 経由のカバーは 403 で落ちることがある。落ちた記事は id で覚えて
   // 空の箱ではなく穏やかな下地を出す。
   const [brokenCovers, setBrokenCovers] = useState<string[]>([])
+
+  // Notion 側で同じページカバーを使い回している記事が多く、一覧に同じ写真が
+  // 何枚も並んでいた。2記事以上で共有されている画像は記事を見分ける手がかりに
+  // なっていないので、カバーとしては使わず記事ごとの下地に置き換える。
+  // 変換後の URL で数える（Notion 側の値が違っても同じ画像を指すことがある）。
+  const sharedCovers = useMemo(() => {
+    const seen = new Map<string, number>();
+    for (const post of blogPosts) {
+      if (!post.pageCover) continue;
+      const url = coverSrc(post);
+      seen.set(url, (seen.get(url) ?? 0) + 1);
+    }
+    return new Set([...seen].filter(([, n]) => n > 1).map(([url]) => url));
+  }, [blogPosts]);
 
   // 記事ごとに表記言語を1回だけ判定しておく。
   const posts = useMemo(
@@ -107,7 +131,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
                 aria-pressed={active}
                 className={cn(
                   fontSourceCodePro.className,
-                  "rounded-full px-3 py-1.5 text-[11px] tracking-[0.1em] transition",
+                  "inline-flex h-11 items-center rounded-full px-4 text-[11px] tracking-[0.1em] transition",
                   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9882a]",
                   active
                     ? "bg-[#e9882a] text-white"
@@ -123,8 +147,8 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
 
       <motion.ul
         className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ y: 12 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.4 }}
       >
         {visible.map((post) => (
@@ -138,8 +162,13 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
                 "dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20",
               )}
             >
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-[#ffe9c9] to-[#e8eaea] dark:from-[#2a2320] dark:to-[#161a1c]">
-                {post.pageCover && !brokenCovers.includes(post.id) ? (
+              <div
+                className="relative aspect-[16/9] w-full overflow-hidden"
+                style={{ backgroundColor: `oklch(0.93 0.035 ${tintFor(post.id)})` }}
+              >
+                {post.pageCover &&
+                !sharedCovers.has(coverSrc(post)) &&
+                !brokenCovers.includes(post.id) ? (
                   <Image
                     src={coverSrc(post)}
                     alt=""
@@ -159,10 +188,10 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
                     aria-hidden
                     className={cn(
                       fontSourceCodePro.className,
-                      "absolute inset-0 flex items-center justify-center text-[11px] tracking-[0.2em] text-black/25 dark:text-white/25",
+                      "absolute inset-0 flex items-end p-4 text-[12px] tracking-[0.08em] text-black/45",
                     )}
                   >
-                    {post.tags[0]?.toUpperCase() ?? "NOTE"}
+                    {post.tags[0] ?? ""}
                   </span>
                 )}
               </div>

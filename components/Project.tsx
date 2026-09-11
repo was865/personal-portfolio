@@ -28,8 +28,8 @@ export default function Project({
   const ref = useRef<HTMLDivElement>(null)
   const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ["0 1", "1.33 1"] })
-  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1])
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.6, 1])
+  // 拡大の演出は残す。半透明は外す（読む前からカードが褪せて見えていた）。
+  const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1])
   const locale = useLocale()
   const t = useTranslations("ProjectsSection")
 
@@ -41,7 +41,7 @@ export default function Project({
   return (
     <motion.div
       ref={ref}
-      style={reduceMotion ? undefined : { scale, opacity }}
+      style={reduceMotion ? undefined : { scale }}
       className="group mb-4 w-full max-w-[52rem] sm:mb-8 last:mb-0"
     >
       <Link

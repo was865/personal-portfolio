@@ -2,12 +2,12 @@
   "IntroSection": {
     "hello_im": "こんにちは、私は",
     "name": "オウ アンシン",
-    "short_intro": "新しいものを探索するのが好きです！",
     "download_cv": "履歴書をダウンロード",
     "blog": "ブログ",
-    "focus_is": "私の焦点は",
-    "innovation_ai": "イノベーション(AI)",
-    "im_a": "I'm a "
+    "im_a": "I'm a ",
+    "role": "フルスタックエンジニア / AI Engineer",
+    "view_projects": "プロジェクトを見る",
+    "now_building": "いまは社内ナレッジ横断の検索とエージェントを作っています"
   },
   "Header": {
     "home": "ホーム",
@@ -37,14 +37,20 @@
     "photos_title": "撮影した写真",
     "photo_caption": "写真 {n}",
     "photo_open": "写真 {n} を開く",
-    "photo_hint": "{count}枚 · ドラッグでめくる · クリックで拡大"
+    "photo_hint": "{count}枚 · ドラッグでめくる · クリックで拡大",
+    "swap_photo": "写真を切り替え"
   },
   "ProjectsSection": {
     "view_all": "全てのプロジェクトを見る",
     "view_case": "{count}枚の画面を見る",
     "back": "プロジェクト一覧",
     "gallery": "画面",
-    "open_viewer": "ビューアで開く"
+    "open_viewer": "ビューアで開く",
+    "case_problem": "課題",
+    "case_role": "担当",
+    "case_decision": "判断",
+    "case_result": "結果",
+    "more_shots": "ほか{count}枚"
   },
   "Blog": {
     "title": "My Blog",
@@ -69,5 +75,11 @@
     "badgeTitle": "JDLA Deep Learning for ENGINEER",
     "issuer": "一般社団法人 日本ディープラーニング協会",
     "issueDate": "2022年3月14日取得"
+  },
+  "SkillsSection": {
+    "group_ai": "AI と検索",
+    "group_backend": "バックエンドとデータ",
+    "group_frontend": "フロントエンド",
+    "group_infra": "インフラ"
   }
 }

@@ -23,6 +23,9 @@ function pick(locale: string, en: string, ja: string, zh: string) {
   return locale === "zh" ? zh : locale === "ja" ? ja : en
 }
 
+/** 大きく見せる枚数。残りはサムネイルからビューアで開く。 */
+const LEAD_SHOTS = 2
+
 export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
   const locale = useLocale()
   const t = useTranslations("ProjectsSection")
@@ -30,6 +33,17 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
 
   const title = pick(locale, project.title, project.title_ja, project.title_zh)
   const description = pick(locale, project.description, project.desc_ja, project.desc_zh)
+
+  // 空欄（まだ書いていない項目）は行ごと出さない。
+  const cs = project.caseStudy
+  const caseRows: [string, string][] = (
+    [
+      [t("case_problem"), pick(locale, cs.problem.en, cs.problem.ja, cs.problem.zh)],
+      [t("case_role"), pick(locale, cs.role.en, cs.role.ja, cs.role.zh)],
+      [t("case_decision"), pick(locale, cs.decisions.en, cs.decisions.ja, cs.decisions.zh)],
+      [t("case_result"), pick(locale, cs.result.en, cs.result.ja, cs.result.zh)],
+    ] as [string, string][]
+  ).filter(([, v]) => v.trim().length > 0)
 
   const items: LightboxItem[] = project.shots.map((shot) => ({
     src: shot.src,
@@ -61,6 +75,28 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
         </ul>
       </header>
 
+      {/* スクリーンショットだけでは「何を解いたのか」「結果どうだったか」が
+          伝わらない。図版の前に事例の骨格を置く。中身が空の行は出さない。 */}
+      {caseRows.length > 0 && (
+        <dl className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-[5.5rem_1fr]">
+          {caseRows.map(([label, value]) => (
+            <div key={label} className="contents">
+              <dt
+                className={cn(
+                  fontSourceCodePro.className,
+                  "text-[11px] tracking-[0.16em] text-gray-500 sm:pt-1 dark:text-white/45",
+                )}
+              >
+                {label}
+              </dt>
+              <dd className="m-0 max-w-2xl leading-relaxed text-gray-700 dark:text-white/75">
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
       {/* 画面：番号・キャプション・大きな図版。クリックでビューア。 */}
       <section className="mt-14">
         <h2
@@ -69,11 +105,11 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
             "mb-8 text-[11px] tracking-[0.18em] text-gray-500 dark:text-white/45",
           )}
         >
-          {t("gallery").toUpperCase()} — {String(project.shots.length).padStart(2, "0")}
+          {t("gallery")}（{project.shots.length}）
         </h2>
 
         <ol className="space-y-14">
-          {items.map((item, i) => (
+          {items.slice(0, LEAD_SHOTS).map((item, i) => (
             <li key={i}>
               <button
                 type="button"
@@ -88,7 +124,9 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
                   <span
                     className={cn(
                       fontSourceCodePro.className,
-                      "shrink-0 text-[11px] tabular-nums tracking-[0.14em] text-[#e9882a]",
+                      // #e9882a は薄い下地の上で 2.36:1 しかなく読めない
+                      "shrink-0 text-[11px] tabular-nums tracking-[0.14em]",
+                      "text-gray-500 dark:text-white/45",
                     )}
                   >
                     {String(i + 1).padStart(2, "0")}
@@ -112,6 +150,38 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
             </li>
           ))}
         </ol>
+
+        {/* 残りは縮めて並べる。押せばビューアでその位置から見られる。 */}
+        {items.length > LEAD_SHOTS && (
+          <ul className="mt-10 flex flex-wrap gap-3">
+            {items.slice(LEAD_SHOTS).map((item, i) => {
+              const index = i + LEAD_SHOTS
+              return (
+                <li key={index}>
+                  <button
+                    type="button"
+                    onClick={() => setOpenAt(index)}
+                    aria-label={`${t("open_viewer")}：${item.caption}`}
+                    className={cn(
+                      "relative block h-16 w-28 overflow-hidden rounded-lg border border-black/10 transition",
+                      "hover:border-[#e9882a]/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9882a]",
+                      "dark:border-white/10",
+                    )}
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.caption}
+                      fill
+                      sizes="160px"
+                      quality={70}
+                      className="object-cover object-left-top"
+                    />
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        )}
       </section>
 
       {(prev || next) && (
