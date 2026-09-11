@@ -24,7 +24,10 @@ export default function BackLink({
       prefetch={true}
       className={cn(
         fontSourceCodePro.className,
-        "inline-flex w-fit items-center gap-1 text-[11px] leading-4 tracking-[0.14em]",
+        // 文字は小さいままでいいが、押せる高さは 44px 欲しい。
+        // 上下の padding を負の margin で打ち消すので見た目の位置は動かない。
+        "inline-flex w-fit items-center gap-1 py-3.5 -my-3.5",
+        "text-[11px] leading-4 tracking-[0.14em]",
         "text-gray-500 transition hover:text-[#e9882a]",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9882a]",
         "dark:text-white/50 dark:hover:text-yellow",

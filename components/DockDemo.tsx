@@ -12,7 +12,9 @@ interface DockDemoProps {
 
 export function DockDemo({ resumeUrl }: DockDemoProps) {
   return (
-    <button className="self-end" onMouseDown={(e) => e.stopPropagation()}>
+    // グリッドのドラッグを止めたいだけなので button である必要はない。
+    // button の中に link を入れるのは不正な HTML で、Tab 順も読み上げも壊れる。
+    <div className="self-end" onMouseDown={(e) => e.stopPropagation()}>
       <Dock>
         <DockIcon url={resumeUrl}>
           <IoDocumentText className="h-5 w-5" />
@@ -27,6 +29,6 @@ export function DockDemo({ resumeUrl }: DockDemoProps) {
           <IoMail className="h-5 w-5" />
         </DockIcon>
       </Dock>
-    </button>
+    </div>
   );
 }

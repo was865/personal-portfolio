@@ -7,6 +7,7 @@ import ThemeSwitch from "@/components/ThemeTwich"
 // import { usePathname } from "next/navigation"
 import LanguageSwitch from "@/components/LanguageSwitch"
 import { NextIntlClientProvider, useMessages } from "next-intl"
+import { MotionConfig } from "motion/react"
 import WidgetWrapper from "@/components/WidgetWrapper"
 import { 
   fontOleoScript, 
@@ -83,6 +84,7 @@ export default function LocaleLayout(
         <div className="bg-[#b9f1fb] absolute top-[-1rem] -z-10 left-[-10rem] sm:left-[-35rem] h-[20rem] sm:h-[31.25rem] w-[100%] sm:w-[50rem] rounded-full blur-[5rem] sm:blur-[10rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#433f68]"></div>
 
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <MotionConfig reducedMotion="user">
           <ThemeContextProvider>
             <ActionSectionContextProvider>
               <div className="safe-top">
@@ -95,6 +97,7 @@ export default function LocaleLayout(
               </WidgetWrapper>
             </ActionSectionContextProvider>
           </ThemeContextProvider>
+          </MotionConfig>
         </NextIntlClientProvider>
       </body>
     </html>

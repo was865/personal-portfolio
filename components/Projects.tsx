@@ -27,7 +27,7 @@ export default function Projects() {
         ))}
       </div>
       <Link
-        className="group tracing-wide font-semibold hover:underline hover:underline-offset-4 hover:decoration-[#80bef9] text-slate-800 dark:text-slate-400 w-full flex gap-1 items-center justify-center mt-10"
+        className="group mt-10 inline-flex h-11 w-full items-center justify-center gap-1 font-semibold text-slate-800 hover:underline hover:underline-offset-4 hover:decoration-[#80bef9] dark:text-slate-400"
         target="_blank"
         href="https://github.com/was865"
       >

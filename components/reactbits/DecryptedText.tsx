@@ -203,7 +203,10 @@ export default function DecryptedText({
             {...hoverProps}
             {...props}
         >
-            <span className="sr-only">{displayText}</span>
+            {/* 読み上げ用の控え。select-none を付けないと、目に見える方と
+               二重に選択され、コピーすると「名前名前」のように重複する。
+               user-select は読み上げには影響しない。 */}
+            <span className="sr-only select-none">{displayText}</span>
 
             <span aria-hidden="true">
                 {displayText.split('').map((char, index) => {
