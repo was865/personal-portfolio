@@ -13,9 +13,8 @@ import ClickSpark from "@/components/reactbits/ClickSpark"
 import { fontSourceCodePro } from "@/config/fonts"
 
 import DecryptedText from "@/components/reactbits/DecryptedText"
-import { siteConfig } from "@/config/site"
 import { MdVerified } from "react-icons/md"
-import { GoArrowUpRight } from "react-icons/go"
+import { siteConfig } from "@/config/site"
 
 /**
  * ヒーローの操作ボタン。高さを 44px で揃え、指で押せる大きさを確保する。
@@ -121,8 +120,31 @@ export default function Intro() {
               打字机はそのまま回す（性格として残す）が、主役ではなくなる。 */}
           <p className="mt-3 text-center text-base font-medium text-gray-700 sm:text-lg dark:text-white/75">
             {t("role")}
+
+            {/* 資格は行を1本使うほどのものではない。肩書きの後ろに小さな印を
+                置き、ホバー（とキーボードのフォーカス）で正式名称を出す。
+                押せば検証ページへ。関于我のバッジカードに完全版がある。 */}
+            <Link
+              href={siteConfig.links.openBadge}
+              target="_blank"
+              rel="noopener"
+              aria-label={badge("badgeTitle")}
+              className="group relative ml-1.5 inline-flex translate-y-[0.08em] items-center align-baseline text-gray-400 transition hover:text-[#e9882a] focus-visible:text-[#e9882a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9882a] dark:text-white/30 dark:hover:text-[#e9882a]"
+            >
+              <MdVerified className="h-[0.9em] w-[0.9em]" aria-hidden />
+              <span className="pointer-events-none absolute bottom-full left-1/2 z-20 mb-2 hidden -translate-x-1/2 whitespace-nowrap rounded-md bg-gray-900 px-2 py-1 text-[11px] font-normal text-white group-hover:block group-focus-visible:block">
+                {badge("badgeTitle")}
+                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+              </span>
+            </Link>
             <span className="mx-2 text-gray-400 dark:text-white/30">·</span>
-            <span className={`${fontSourceCodePro.className} text-sm sm:text-base`}>
+            {/* 幅を最長の文字列ぶん確保する。中央寄せの行で中身が伸び縮み
+                すると行全体が測り直され、手前にある資格の印まで左右に 75px
+                動いてしまう（押そうとすると逃げる）。等幅なので ch で足りる。
+                21ch = "Genshin Impact Player"。カーソル分を足して 22ch。 */}
+            <span
+              className={`${fontSourceCodePro.className} inline-block min-w-[22ch] text-left align-baseline text-sm sm:text-base`}
+            >
               <TypeAnimation
                 sequence={[
                   "Genshin Impact Player",
@@ -141,32 +163,8 @@ export default function Intro() {
 
           {/* 取得資格。検証ページに飛べるようにしておく（見せるだけより強い）。
               職種の行に混ぜるとスマホで折り返すので、独立した行にする。 */}
-          <Link
-            href={siteConfig.links.openBadge}
-            target="_blank"
-            rel="noopener"
-            className="mt-2.5 inline-flex items-center gap-1.5 text-[13px] text-gray-500 underline-offset-4 transition hover:text-gray-800 hover:underline focus-visible:underline dark:text-white/45 dark:hover:text-white/80"
-          >
-            <MdVerified className="h-3.5 w-3.5 shrink-0" aria-hidden />
-            {badge("badgeTitle")}
-            <GoArrowUpRight className="h-3 w-3 shrink-0 opacity-60" aria-hidden />
-          </Link>
         </motion.div>
-        {/* 「探索が好き」「関心は Innovation (AI)」の2行は、上の肩書きと資格で
-            すでに3回言っていることの繰り返しだった。いま何を作っているかの
-            1行に置き換える。ここは本人しか書けない＝いちばん効く情報。
-            解密の演出はホバー時だけにして、読む邪魔をしない。 */}
-        <Link
-          href={`/${activeLocale}/projects/${projectsData[0].slug}`}
-          className="mt-5 text-center text-[15px] text-gray-600 underline-offset-4 transition hover:text-gray-900 hover:underline focus-visible:underline sm:text-base dark:text-white/65 dark:hover:text-white"
-        >
-          <DecryptedText
-            text={t("now_building")}
-            animateOn="hover"
-            revealDirection="center"
-            speed={45}
-          />
-        </Link>
+
       </motion.div>
 
       <motion.div

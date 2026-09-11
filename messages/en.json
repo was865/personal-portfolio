@@ -6,8 +6,7 @@
     "blog": "Blog",
     "im_a": "I'm a ",
     "role": "Full-stack engineer / AI Engineer",
-    "view_projects": "View projects",
-    "now_building": "Currently building retrieval and agents over company knowledge"
+    "view_projects": "View projects"
   },
   "Header": {
     "home": "Home",
