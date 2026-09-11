@@ -11,6 +11,12 @@ import { TypeAnimation } from "react-type-animation"
 import useSound from "use-sound"
 import ClickSpark from "@/components/reactbits/ClickSpark"
 import { fontSourceCodePro } from "@/config/fonts"
+
+/** ヒーローの操作ボタン。高さを 44px で揃え、指で押せる大きさを確保する。 */
+const PILL =
+  "inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white text-gray-700" +
+  " transition cursor-pointer focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950" +
+  " active:scale-105 borderBlack dark:bg-white/10 dark:text-white/60"
 import DecryptedText from "@/components/reactbits/DecryptedText"
 
 export default function Intro() {
@@ -134,7 +140,7 @@ export default function Intro() {
       </motion.h1>
 
       <motion.div
-        className="flex flex-col sm:flex-row items-center justify-center  gap-3 px-4 text-lg font-medium"
+        className="flex flex-wrap items-center justify-center gap-3 px-4 text-lg font-medium"
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -154,7 +160,7 @@ export default function Intro() {
         </Link> */}
 
         <Link
-          className="bg-white py-2 px-3 text-sm text-gray-700 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          className={`${PILL} px-4 text-sm`}
           href={
             `${activeLocale}/404.pdf`
           }
@@ -163,7 +169,7 @@ export default function Intro() {
           <HiDownload />
         </Link>
         <Link
-          className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          className={`${PILL} w-11 text-[1.35rem]`}
           href="https://github.com/was865"
           target="_blank"
         >
@@ -177,7 +183,7 @@ export default function Intro() {
           <FaBilibili />
         </a> */}
         <Link
-          className="bg-white p-3 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          className={`${PILL} w-11 text-[1.35rem]`}
           href="mailto:wangansen865@gmail.com"
           target="_blank"
         >
@@ -191,7 +197,7 @@ export default function Intro() {
           <FaFileWord />
         </Link> */}
         <Link
-          className=" bg-white py-2 px-3 text-sm text-gray-700 flex items-center gap-2  rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+          className={`${PILL} px-4 text-sm`}
           href={`/${activeLocale}/blog`}
           prefetch={true}
         >
