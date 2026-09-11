@@ -244,12 +244,21 @@ export default function Lightbox({
         >
           <div
             ref={panelRef}
-            className="flex h-full w-full flex-col"
+            // クロームバーの左右余白。セーフエリアと足し合わせるので変数にしておく。
+            className="flex h-full w-full flex-col [--lb-gutter:0.75rem] sm:[--lb-gutter:1.25rem]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* クロームバー：出典・枚数・表示倍率・閉じる */}
             <header
-              className="flex shrink-0 items-center gap-3 border-b px-3 py-2.5 sm:px-5"
+              className={cn(
+                "flex shrink-0 items-center gap-3 border-b pb-2.5",
+                // iOS のホーム画面から開くと viewport-fit=cover でバーがステータスバーの
+                // 下に潜り、閉じるボタンが押せなくなる。セーフエリアぶん中身を下げる。
+                // 背景は画面の端まで伸ばしたままにして、時計や電池の背当てにする。
+                "pt-[calc(0.625rem+env(safe-area-inset-top))]",
+                "pl-[calc(var(--lb-gutter)+env(safe-area-inset-left))]",
+                "pr-[calc(var(--lb-gutter)+env(safe-area-inset-right))]",
+              )}
               style={{ backgroundColor: INK_SOFT, borderColor: "rgba(255,255,255,0.07)" }}
             >
               <h2
@@ -302,7 +311,9 @@ export default function Lightbox({
             </header>
 
             {/* ステージ */}
-            <div className="relative min-h-0 flex-1">
+            {/* 横向きのとき、写真がノッチや画面の丸角に食われないようにする。
+                矢印は絶対配置でこの padding の影響を受けないので、別途あちらで詰める。 */}
+            <div className="relative min-h-0 flex-1 pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
               <div
                 ref={stageRef}
                 className={cn(
@@ -370,7 +381,13 @@ export default function Lightbox({
 
             {/* キャプションとフィルムストリップ */}
             <footer
-              className="shrink-0 border-t px-3 pb-3 pt-2.5 sm:px-5"
+              className={cn(
+                "shrink-0 border-t pt-2.5",
+                // フィルムストリップがホームインジケータに隠れないようにする。
+                "pb-[calc(0.75rem+env(safe-area-inset-bottom))]",
+                "pl-[calc(var(--lb-gutter)+env(safe-area-inset-left))]",
+                "pr-[calc(var(--lb-gutter)+env(safe-area-inset-right))]",
+              )}
               style={{ backgroundColor: INK_SOFT, borderColor: "rgba(255,255,255,0.07)" }}
             >
               {current.caption && (
@@ -441,7 +458,10 @@ function NavButton({ side, onClick }: { side: "left" | "right"; onClick: () => v
       className={cn(
         "absolute top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/55 p-2.5 text-white/85 backdrop-blur-sm transition",
         "hover:bg-black/80 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2",
-        side === "left" ? "left-2 sm:left-4" : "right-2 sm:right-4",
+        // 横向きだとこちら側がノッチや丸角に掛かる。セーフエリアぶん内へ寄せる。
+        side === "left"
+          ? "left-[calc(0.5rem+env(safe-area-inset-left))] sm:left-[calc(1rem+env(safe-area-inset-left))]"
+          : "right-[calc(0.5rem+env(safe-area-inset-right))] sm:right-[calc(1rem+env(safe-area-inset-right))]",
       )}
       style={{ outlineColor: ACCENT }}
     >
