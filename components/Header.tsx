@@ -20,13 +20,20 @@ function Header() {
 
   return (
     <header className="z-999 relative">
+      {/* 帯は画面の一番上から引く。iOS の PWA では時計やアンテナの下を本文が
+          流れていくので、そこに背当てを置く。中身はセーフエリアぶん下げる。
+          横幅の丸いバーになるのは sm から。 */}
       <motion.div
-        className="fixed top-[calc(env(safe-area-inset-top)+0)] left-1/2 -translate-x-1/2 h-[3.5rem] w-full rounded-none border border-white/50 bg-white/80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.65rem] sm:top-[calc(env(safe-area-inset-top)+1.5rem)] sm:h-[3.25rem] sm:w-[30rem] sm:rounded-full dark:bg-gray-950/85 dark:border-black/40"
+        className="fixed left-1/2 top-0 h-[calc(3.5rem+var(--safe-top))] w-full -translate-x-1/2 rounded-none border-0 border-b border-white/50 bg-white/80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.65rem] sm:top-[calc(var(--safe-top)+1.5rem)] sm:h-[3.25rem] sm:w-[30rem] sm:rounded-full sm:border dark:border-black/40 dark:bg-gray-950/85"
         initial={{ y: -16 }}
         animate={{ y: 0 }}
       ></motion.div>
-      <nav className="fixed left-1/2 top-[calc(env(safe-area-inset-top)+0)] flex h-[3.5rem] w-full max-w-[30rem] -translate-x-1/2 items-center px-2 sm:top-[calc(env(safe-area-inset-top)+1.7rem)] sm:h-[initial] sm:w-[initial] sm:px-0">
-        <ul className="no-scrollbar flex w-full flex-nowrap items-center justify-start overflow-x-auto text-[0.9rem] font-medium text-gray-500 sm:w-[initial] sm:justify-center sm:gap-5 sm:overflow-visible">
+      {/* 横向きだと左右も切り欠きに掛かるので、余白はセーフエリアと大きい方を取る。 */}
+      <nav className="fixed left-1/2 top-[var(--safe-top)] flex h-[3.5rem] w-full max-w-[30rem] -translate-x-1/2 items-center pl-[max(0.5rem,var(--safe-left))] pr-[max(0.5rem,var(--safe-right))] sm:top-[calc(var(--safe-top)+1.7rem)] sm:h-[initial] sm:w-[initial] sm:px-0">
+        {/* w-max + mx-auto なら、収まるときは中央、あふれるときは左端から
+            スクロールできる。justify-center だけだと、あふれた分が左に隠れて
+            「首页」に戻れなくなる。 */}
+        <ul className="no-scrollbar mx-auto flex w-max max-w-full flex-nowrap items-center overflow-x-auto overscroll-x-contain text-[0.9rem] font-medium text-gray-500 sm:gap-5 sm:overflow-visible">
           {links.map((link) => (
             <motion.li
               key={link.hash}
@@ -37,7 +44,8 @@ function Header() {
               <Link
                 href={hrefFor(link.hash)}
                 className={clsx(
-                  "flex h-11 w-full items-center justify-center whitespace-nowrap px-3 transition hover:text-gray-950 dark:hover:text-gray-300",
+                  // 5項目が 375px の画面にも収まるよう、狭いうちは詰める。
+                  "flex h-11 w-full items-center justify-center whitespace-nowrap px-2.5 transition hover:text-gray-950 sm:px-3 dark:hover:text-gray-300",
                   {
                     "text-gray-950": activeSection === link.name,
                     "dark:hover:text-gray-600": activeSection == link.name,
@@ -51,7 +59,7 @@ function Header() {
                 {t(link.name.toLowerCase())}
                 {link.name === activeSection && (
                   <motion.span
-                    className="bg-gray-100 rounded-full absolute inset-0 -z-10"
+                    className="absolute inset-0 -z-10 rounded-full bg-gray-100 dark:bg-white/10"
                     layoutId="activeSection"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   ></motion.span>
