@@ -33,19 +33,19 @@
 **Interfaces:**
 - Produces: `deepMerge<T>(base: T, override: unknown): T`
 
-- [ ] **Step 1: 依存を入れる**
+- [x] **Step 1: 依存を入れる**
 
 ```bash
 pnpm add @vercel/blob zod sharp jose
 pnpm add -D vitest
 ```
 
-- [ ] **Step 2: vitest 設定と scripts**
+- [x] **Step 2: vitest 設定と scripts**
 
 `vitest.config.ts` は `@` エイリアスを repo root に解決し、`environment: 'node'`、`include: ['lib/**/*.test.ts', 'config/**/*.test.ts']`。
 `package.json` に `"test": "vitest run"` を追加。
 
-- [ ] **Step 3: 失敗するテストを書く**
+- [x] **Step 3: 失敗するテストを書く**
 
 ```ts
 // lib/cms/deep-merge.test.ts
@@ -70,9 +70,9 @@ it("base を破壊しない", () => {
 })
 ```
 
-- [ ] **Step 4: 失敗を確認** — `pnpm test lib/cms/deep-merge.test.ts`
-- [ ] **Step 5: 実装して緑にする**
-- [ ] **Step 6: コミット** — `chore: CMS 用の依存と vitest を追加`
+- [x] **Step 4: 失敗を確認** — `pnpm test lib/cms/deep-merge.test.ts`
+- [x] **Step 5: 実装して緑にする**
+- [x] **Step 6: コミット** — `chore: CMS 用の依存と vitest を追加`
 
 ---
 
@@ -89,7 +89,7 @@ it("base を破壊しない", () => {
   - `collectionSchemas: Record<CollectionName, ZodType>`、`type CollectionName = "projects" | "experiences" | "skills" | "photos" | "about"`
   - `pick<T>(value: L<T>, locale: string): T`
 
-- [ ] **Step 1: 失敗するテストを書く**
+- [x] **Step 1: 失敗するテストを書く**
 
 ```ts
 import { expect, it } from "vitest"
@@ -112,10 +112,10 @@ it("pick は未知の locale で en に落ちる", () => {
 })
 ```
 
-- [ ] **Step 2: 失敗を確認**
-- [ ] **Step 3: スキーマを実装**（`items` 配列でラップし、将来のメタ追加に備える）
-- [ ] **Step 4: 緑を確認**
-- [ ] **Step 5: コミット** — `feat: CMS コンテンツの zod スキーマを追加`
+- [x] **Step 2: 失敗を確認**
+- [x] **Step 3: スキーマを実装**（`items` 配列でラップし、将来のメタ追加に備える）
+- [x] **Step 4: 緑を確認**
+- [x] **Step 5: コミット** — `feat: CMS コンテンツの zod スキーマを追加`
 
 ---
 
@@ -130,11 +130,11 @@ it("pick は未知の locale で en に落ちる", () => {
 **Interfaces:**
 - Produces: `readSnapshot(name: CollectionName): unknown`
 
-- [ ] **Step 1: `lib/data.ts` の内容を JSON へ変換**
+- [x] **Step 1: `lib/data.ts` の内容を JSON へ変換**
 
 `experiencesData` / `experiencesDataZn` / `experiencesDataJa` を 1 本へ畳み、`title` `location` `description` `date` を `L` にする。プロジェクトは `title`/`title_ja`/`title_zh` を `title: L`、`description`/`desc_ja`/`desc_zh` を `description: L`、`caseStudy` はそのまま `L`。アイコンは `React.createElement(FaCode)` を `"FaCode"` に。
 
-- [ ] **Step 2: 画像の幅高さを埋める**
+- [x] **Step 2: 画像の幅高さを埋める**
 
 ```bash
 node scripts/measure-images.mjs
@@ -142,7 +142,7 @@ node scripts/measure-images.mjs
 
 `content/*.json` の `image.url` が `/images/...` のものを `public` から読み、`width` `height` を書き戻す。
 
-- [ ] **Step 3: スナップショットがスキーマを通ることをテスト**
+- [x] **Step 3: スナップショットがスキーマを通ることをテスト**
 
 ```ts
 import { expect, it } from "vitest"
@@ -157,8 +157,8 @@ it.each(["projects", "experiences", "skills", "photos", "about"] as const)(
 )
 ```
 
-- [ ] **Step 4: 緑を確認**
-- [ ] **Step 5: コミット** — `feat: 既存コンテンツを content/*.json へ移行`
+- [x] **Step 4: 緑を確認**
+- [x] **Step 5: コミット** — `feat: 既存コンテンツを content/*.json へ移行`
 
 ---
 
@@ -176,7 +176,7 @@ it.each(["projects", "experiences", "skills", "photos", "about"] as const)(
   - `writeCollection(name, data, ifMatch): Promise<{ etag: string }>` — 不一致は `ConflictError`
   - `contentTag(name): string`
 
-- [ ] **Step 1: 失敗するテストを書く**（`@vercel/blob` は `vi.mock` で差し替え）
+- [x] **Step 1: 失敗するテストを書く**（`@vercel/blob` は `vi.mock` で差し替え）
 
 ```ts
 it("Blob が落ちてもスナップショットで描画できる")
@@ -184,15 +184,15 @@ it("etag 不一致は ConflictError")
 it("本体取得 URL に ?v=<etag> が付く（CDN を外す）")
 ```
 
-- [ ] **Step 2: 失敗を確認**
-- [ ] **Step 3: 実装**
+- [x] **Step 2: 失敗を確認**
+- [x] **Step 3: 実装**
 
 `readCollection` は `unstable_cache(fn, [name], { tags: [contentTag(name)] })`。
 `writeCollection` は `head` → 比較 → 履歴退避 → `put(..., { allowOverwrite: true, ifMatch, cacheControlMaxAge: 60, addRandomSuffix: false })` → `revalidateTag`。
 トークン未設定時は読みはスナップショット、書きは `BlobNotConfiguredError`。
 
-- [ ] **Step 4: 緑を確認**
-- [ ] **Step 5: コミット** — `feat: Blob 上のコンテンツ読み書きを追加`
+- [x] **Step 4: 緑を確認**
+- [x] **Step 5: コミット** — `feat: Blob 上のコンテンツ読み書きを追加`
 
 ---
 
@@ -210,7 +210,7 @@ it("本体取得 URL に ?v=<etag> が付く（CDN を外す）")
 - Consumes: Task 4 の `readCollection`
 - Produces: `resolveIcon(name: string, className?: string): ReactElement`
 
-- [ ] **Step 1: アイコン解決のテスト**
+- [x] **Step 1: アイコン解決のテスト**
 
 ```ts
 it("未知のアイコン名でも落ちず既定を返す", () => {
@@ -218,18 +218,18 @@ it("未知のアイコン名でも落ちず既定を返す", () => {
 })
 ```
 
-- [ ] **Step 2: 実装（許可リスト）**
-- [ ] **Step 3: サーバコンポーネントで読み、props で渡す**
+- [x] **Step 2: 実装（許可リスト）**
+- [x] **Step 3: サーバコンポーネントで読み、props で渡す**
 
 クライアントコンポーネントは `@/lib/data` を import せず props で受ける。React 要素は props で渡さず、アイコン名を渡してクライアント側で `resolveIcon` する。
 
-- [ ] **Step 4: messages のマージ**
+- [x] **Step 4: messages のマージ**
 
 `i18n/request.ts` で `deepMerge(messages, about.messages[locale])`。
 
-- [ ] **Step 5: `pnpm exec tsc --noEmit` と `pnpm build` を通す**
-- [ ] **Step 6: dev サーバで 3 ロケール + プロジェクト詳細を目視**
-- [ ] **Step 7: コミット** — `refactor: サイト表示を CMS コンテンツ経由に切り替え`
+- [x] **Step 5: `pnpm exec tsc --noEmit` と `pnpm build` を通す**
+- [x] **Step 6: dev サーバで 3 ロケール + プロジェクト詳細を目視**
+- [x] **Step 7: コミット** — `refactor: サイト表示を CMS コンテンツ経由に切り替え`
 
 ---
 
@@ -249,7 +249,7 @@ it("未知のアイコン名でも落ちず既定を返す", () => {
   - `requireAuth(req): Promise<"cookie" | "service" | null>`
   - `compareToken(a, b): boolean`（長さ差でも例外を投げない）
 
-- [ ] **Step 1: 失敗するテストを書く**
+- [x] **Step 1: 失敗するテストを書く**
 
 ```ts
 it("長さの違うトークンでも例外を投げず false", () => {
@@ -262,9 +262,9 @@ it("scrypt のハッシュを検証できる", () => {
 })
 ```
 
-- [ ] **Step 2: 失敗を確認 → 実装 → 緑を確認**
-- [ ] **Step 3: API ルートを実装**（`runtime = "nodejs"`、zod 検証、409、`revalidateTag`）
-- [ ] **Step 4: CLI を実装**
+- [x] **Step 2: 失敗を確認 → 実装 → 緑を確認**
+- [x] **Step 3: API ルートを実装**（`runtime = "nodejs"`、zod 検証、409、`revalidateTag`）
+- [x] **Step 4: CLI を実装**
 
 ```bash
 pnpm cms get projects
@@ -272,7 +272,7 @@ pnpm cms put projects file.json
 pnpm cms hash-password
 ```
 
-- [ ] **Step 5: コミット** — `feat: CMS の認証と管理 API を追加`
+- [x] **Step 5: コミット** — `feat: CMS の認証と管理 API を追加`
 
 ---
 
@@ -283,10 +283,10 @@ pnpm cms hash-password
 - Create: `app/admin/photos/page.tsx` `app/admin/projects/page.tsx` `app/admin/projects/[slug]/page.tsx` `app/admin/experiences/page.tsx` `app/admin/skills/page.tsx` `app/admin/about/page.tsx`
 - Create: `components/admin/*`
 
-- [ ] **Step 1: レイアウトで認証、未認証は `/admin/login` へ**
-- [ ] **Step 2: 各画面は `{etag,data}` を取り、保存時に `PUT`。409 は再読込を促す**
-- [ ] **Step 3: スマホ幅（375px）で操作できることを確認**
-- [ ] **Step 4: コミット** — `feat: CMS の管理画面を追加`
+- [x] **Step 1: レイアウトで認証、未認証は `/admin/login` へ**
+- [x] **Step 2: 各画面は `{etag,data}` を取り、保存時に `PUT`。409 は再読込を促す**
+- [x] **Step 3: スマホ幅（375px）で操作できることを確認**
+- [x] **Step 4: コミット** — `feat: CMS の管理画面を追加`
 
 ---
 
@@ -301,10 +301,10 @@ pnpm cms hash-password
 **Interfaces:**
 - Produces: `processImage(buf, kind): Promise<{ full, thumb, width, height }>`
 
-- [ ] **Step 1: 失敗するテストを書く**（3000x2000 が長辺 2000 に収まり webp になること）
-- [ ] **Step 2: 実装 → 緑を確認**
-- [ ] **Step 3: ルートを実装**（`maxDuration = 60`）
-- [ ] **Step 4: コミット** — `feat: 画像アップロードと webp 変換を追加`
+- [x] **Step 1: 失敗するテストを書く**（3000x2000 が長辺 2000 に収まり webp になること）
+- [x] **Step 2: 実装 → 緑を確認**
+- [x] **Step 3: ルートを実装**（`maxDuration = 60`）
+- [x] **Step 4: コミット** — `feat: 画像アップロードと webp 変換を追加`
 
 ---
 
@@ -314,8 +314,33 @@ pnpm cms hash-password
 - Modify: `CLAUDE.md`
 - Create: `docs/cms-setup.md`
 
-- [ ] **Step 1: `pnpm lint`**
-- [ ] **Step 2: `pnpm exec tsc --noEmit`**
-- [ ] **Step 3: `pnpm test`**
-- [ ] **Step 4: `pnpm build`**
-- [ ] **Step 5: ドキュメントを書いてコミット、ブランチを push**
+- [x] **Step 1: `pnpm lint`**
+- [x] **Step 2: `pnpm exec tsc --noEmit`**
+- [x] **Step 3: `pnpm test`**
+- [x] **Step 4: `pnpm build`**
+- [x] **Step 5: ドキュメントを書いてコミット、ブランチを push**
+
+---
+
+## 実装後のメモ（計画との差分）
+
+実装して分かったことと、計画から変えた点。
+
+- **読み出しは `head()` + `?v=<etag>` ではなく `get(path, { useCache: false })`。**
+  @vercel/blob 2.8 の `get()` に CDN を外して origin から読む指定があり、
+  1 回の呼び出しで本文と ETag の両方が取れる。2 段構えは不要だった。
+- **`revalidateTag(tag)` の 1 引数形は Next 16 で型エラー**（非推奨）。
+  `"max"` は stale-while-revalidate で「保存したのにまだ古い」が一度出るため、
+  即時公開には `revalidateTag(tag, { expire: 0 })` を使う。`updateTag` は Server Action 専用。
+- **パスワードハッシュの区切りは `$` ではなく `:`。**
+  `scrypt$salt$hash` は env ローダが `$salt` を変数参照として展開し、
+  「正しいパスワードで 401」になる。実際に踏んだ。
+- 環境変数名は `ADMIN_PASSWORD_HASH` ではなく `CMS_` 接頭辞で統一した。
+- `scripts/measure-images.mjs` は独立させず `scripts/migrate-content.mjs` に含めた。
+  画像の寸法とぼかしは移行と同時にしか要らない。
+- 画像の `blurDataURL` をスキーマに足した。既存の `placeholder="blur"` を維持するため。
+- vite を devDependency に足した。移行スクリプトが `lib/data.ts`（react-icons の React 要素と
+  Next の静的画像 import を含む）を読むために SSR ローダが要る。
+- **未検証**: 実 Blob ストアに対する書き込み経路（保存・履歴・画像アップロード）は
+  トークンが無いため単体テスト（モック）止まり。`docs/cms-setup.md` の手順で
+  ストアを繋いだあと、一度 `/admin` から保存して確かめること。
