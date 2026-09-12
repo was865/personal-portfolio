@@ -1,0 +1,4 @@
+/** 新しい要素に振る短い id。人が読む必要はないので衝突しなければよい。 */
+export function randomId(): string {
+  return Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4)
+}
