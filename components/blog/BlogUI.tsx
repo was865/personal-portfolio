@@ -70,20 +70,6 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
   // 空の箱ではなく穏やかな下地を出す。
   const [brokenCovers, setBrokenCovers] = useState<string[]>([])
 
-  // Notion 側で同じページカバーを使い回している記事が多く、一覧に同じ写真が
-  // 何枚も並んでいた。2記事以上で共有されている画像は記事を見分ける手がかりに
-  // なっていないので、カバーとしては使わず記事ごとの下地に置き換える。
-  // 変換後の URL で数える（Notion 側の値が違っても同じ画像を指すことがある）。
-  const sharedCovers = useMemo(() => {
-    const seen = new Map<string, number>();
-    for (const post of blogPosts) {
-      if (!post.pageCover) continue;
-      const url = coverSrc(post);
-      seen.set(url, (seen.get(url) ?? 0) + 1);
-    }
-    return new Set([...seen].filter(([, n]) => n > 1).map(([url]) => url));
-  }, [blogPosts]);
-
   // 記事ごとに表記言語を1回だけ判定しておく。
   const posts = useMemo(
     () =>
@@ -166,9 +152,9 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
                 className="relative aspect-[16/9] w-full overflow-hidden"
                 style={{ backgroundColor: `oklch(0.93 0.035 ${tintFor(post.id)})` }}
               >
-                {post.pageCover &&
-                !sharedCovers.has(coverSrc(post)) &&
-                !brokenCovers.includes(post.id) ? (
+                {/* 同じカバーを複数の記事で使い回していても、そのまま出す。
+                    カバーが無い記事と読み込みに失敗した記事だけ下地にする。 */}
+                {post.pageCover && !brokenCovers.includes(post.id) ? (
                   <Image
                     src={coverSrc(post)}
                     alt=""

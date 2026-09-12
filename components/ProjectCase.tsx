@@ -23,8 +23,27 @@ function pick(locale: string, en: string, ja: string, zh: string) {
   return locale === "zh" ? zh : locale === "ja" ? ja : en
 }
 
-/** 大きく見せる枚数。残りはサムネイルからビューアで開く。 */
+/** 大きく見せる枚数。残りは小さいカードにするが、番号と説明は最後まで出す。 */
 const LEAD_SHOTS = 2
+
+/** 図版の見出し。番号は通し（01…07）で、カードの大小にかかわらず続ける。 */
+function ShotLabel({ n, caption }: { n: number; caption: string }) {
+  return (
+    <div className="mb-3 flex items-baseline gap-3">
+      <span
+        className={cn(
+          fontSourceCodePro.className,
+          // #e9882a は薄い下地の上で 2.36:1 しかなく読めない
+          "shrink-0 text-[11px] tabular-nums tracking-[0.14em]",
+          "text-gray-500 dark:text-white/45",
+        )}
+      >
+        {String(n).padStart(2, "0")}
+      </span>
+      <span className="text-sm leading-snug text-gray-700 dark:text-white/70">{caption}</span>
+    </div>
+  )
+}
 
 export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
   const locale = useLocale()
@@ -120,21 +139,7 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
                   "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e9882a]",
                 )}
               >
-                <div className="mb-3 flex items-baseline gap-3">
-                  <span
-                    className={cn(
-                      fontSourceCodePro.className,
-                      // #e9882a は薄い下地の上で 2.36:1 しかなく読めない
-                      "shrink-0 text-[11px] tabular-nums tracking-[0.14em]",
-                      "text-gray-500 dark:text-white/45",
-                    )}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-sm leading-snug text-gray-700 dark:text-white/70">
-                    {item.caption}
-                  </span>
-                </div>
+                <ShotLabel n={i + 1} caption={item.caption} />
 
                 <div className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_10px_40px_-28px_rgba(0,0,0,0.6)] transition group-hover:border-[#e9882a]/60 dark:border-white/10 dark:bg-white/5">
                   <Image
@@ -151,11 +156,16 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
           ))}
         </ol>
 
-        {/* 残りは縮めて並べる。押せばビューアでその位置から見られる。 */}
+        {/* 残りは 2 列に縮めて並べる。図版は小さくしても、番号と説明は付けたまま
+            にする（説明が 02 で切れると、以降の画面が何なのか読めなくなる）。 */}
         {items.length > LEAD_SHOTS && (
-          <ul className="mt-10 flex flex-wrap gap-3">
-            {items.slice(LEAD_SHOTS).map((item, i) => {
+          <ol className="mt-14 grid gap-x-6 gap-y-10 sm:grid-cols-2">
+            {project.shots.slice(LEAD_SHOTS).map((shot, i) => {
               const index = i + LEAD_SHOTS
+              const item = items[index]
+              // 縦横比は画面ごとにばらばら（横長のログ画面から縦長のスマホまで）。
+              // 元の比をそのまま使い、極端なものだけ枠を詰めて余白を抑える。
+              const ratio = Math.min(Math.max(shot.src.width / shot.src.height, 0.8), 2.2)
               return (
                 <li key={index}>
                   <button
@@ -163,24 +173,30 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
                     onClick={() => setOpenAt(index)}
                     aria-label={`${t("open_viewer")}：${item.caption}`}
                     className={cn(
-                      "relative block h-16 w-28 overflow-hidden rounded-lg border border-black/10 transition",
-                      "hover:border-[#e9882a]/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e9882a]",
-                      "dark:border-white/10",
+                      "group block w-full cursor-zoom-in text-left",
+                      "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e9882a]",
                     )}
                   >
-                    <Image
-                      src={item.src}
-                      alt={item.caption}
-                      fill
-                      sizes="160px"
-                      quality={70}
-                      className="object-cover object-left-top"
-                    />
+                    <ShotLabel n={index + 1} caption={item.caption} />
+
+                    <div
+                      className="relative overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_10px_40px_-28px_rgba(0,0,0,0.6)] transition group-hover:border-[#e9882a]/60 dark:border-white/10 dark:bg-white/5"
+                      style={{ aspectRatio: ratio }}
+                    >
+                      <Image
+                        src={item.src}
+                        alt={item.caption}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 480px"
+                        quality={75}
+                        className="object-contain"
+                      />
+                    </div>
                   </button>
                 </li>
               )
             })}
-          </ul>
+          </ol>
         )}
       </section>
 
