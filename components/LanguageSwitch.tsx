@@ -34,7 +34,8 @@ export default function LanguageSwitch() {
     <>
       <button
         onClick={onChangeLanguage}
-        className="w-[2.5rem] h-[2.5rem] bg-opacity-80 flex items-center justify-center gap-1 transition-all "
+        // 押せる大きさは他の要素と同じ 44px に揃える（iOS の下限でもある）。
+        className="bg-opacity-80 flex h-11 w-11 items-center justify-center gap-1 transition-all"
       >
         <span className="sr-only">Change Language</span>
         {/* <IoLanguageOutline /> */}

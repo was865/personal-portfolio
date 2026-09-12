@@ -9,7 +9,8 @@ export default function ThemeSwitch() {
   const { theme, toggleTheme } = useTheme()
   return (
     <button
-      className="w-[2.5rem] h-[2.5rem] flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all"
+      // 押せる大きさは他の要素と同じ 44px に揃える（iOS の下限でもある）。
+      className="flex h-11 w-11 items-center justify-center transition-all hover:scale-[1.15] active:scale-105"
       onClick={toggleTheme}
     >
       <span className="sr-only">change dark mode</span>
