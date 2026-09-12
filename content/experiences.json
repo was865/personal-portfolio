@@ -1,0 +1,154 @@
+{
+  "items": [
+    {
+      "id": "tata-consultancy-services-japan",
+      "order": 0,
+      "title": {
+        "en": "Tata Consultancy Services Japan",
+        "ja": "日本タタ・コンサルタンシー・サービシズ株式会社",
+        "zh": "日本塔塔咨询服务有限公司（TCS Japan）"
+      },
+      "location": {
+        "en": "Technical Lead / Fullstack Engineer",
+        "ja": "テクニカルリード / フルスタックエンジニア",
+        "zh": "技术负责人 / 全栈工程师"
+      },
+      "description": {
+        "en": "IT services and consulting company, a joint venture between the Tata Group and Mitsubishi Corporation. As a technical lead, I drive the modernization of core business systems for large B2B enterprises — requirement analysis, technical validation, architecture definition, design and development — working alongside client business teams under a spec-driven development (SDD) process. Tech stack: React, Next.js, Node.js and AWS (EC2, S3, Lambda).",
+        "ja": "タタ・グループと三菱商事の合弁によるITサービス・コンサルティング企業。テクニカルリードとして、大手toB企業の基幹システムのモダナイゼーションを担当。顧客のビジネスチームと協働しながら、ビジネス要件分析・技術検証・アーキテクチャ策定から設計・開発までをスペック駆動開発（SDD）で推進している。技術スタックは React / Next.js / Node.js / AWS（EC2、S3、Lambda）。",
+        "zh": "塔塔集团与三菱商事合资的IT服务与咨询公司。作为技术负责人（Technical Lead），负责大型toB企业基干系统的现代化改造（Modernization）。与客户业务团队协作，以规范驱动开发（SDD）推进业务需求分析、技术验证、架构制定与设计开发。技术栈为React、Next.js、Node.js与AWS（EC2、S3、Lambda）。"
+      },
+      "icon": "FaCode",
+      "date": {
+        "en": "2026 Aug - Present",
+        "ja": "2026年8月 - 現在",
+        "zh": "2026年8月 - 至今"
+      }
+    },
+    {
+      "id": "sunborn-corporation",
+      "order": 1,
+      "title": {
+        "en": "Sunborn Corporation",
+        "ja": "株式会社Sunborn",
+        "zh": "株式会社Sunborn"
+      },
+      "location": {
+        "en": "Software Engineer",
+        "ja": "ソフトウェアエンジニア",
+        "zh": "软件工程师"
+      },
+      "description": {
+        "en": "Working on various projects including development of consolidated accounting systems for major trading companies. Responsible for detailed design, development, testing, and production operations. Technical stack includes TypeScript, Python, SQL, React, Django, AWS, DBT, Power BI, and Snowflake databases. Successfully improved code maintainability through readable SQL and thorough DBT execution verification.",
+        "ja": "大手商社向けの連結会計システム開発など複数のプロジェクトを担当。詳細設計、開発、テスト、本番運用の責任者として活躍。技術スタックはTypeScript、Python、SQL、React、Django、AWS、DBT、Power BI、Snowflakeデータベースなど。",
+        "zh": "负责多个项目，包括为大型贸易公司开发合并会计系统。担任详细设计、开发、测试和生产运营职责。技术栈包括TypeScript、Python、SQL、React、Django、AWS、DBT、Power BI和Snowflake数据库。通过编写可读性强的SQL和彻底的DBT执行效果验证，成功提高了代码的可维护性。"
+      },
+      "icon": "FaCode",
+      "date": {
+        "en": "2023 Jan - 2026 Jul",
+        "ja": "2023年1月 - 2026年7月",
+        "zh": "2023年1月 - 2026年7月"
+      }
+    },
+    {
+      "id": "otus-corporation-part-time",
+      "order": 2,
+      "title": {
+        "en": "Otus Corporation (Part-time)",
+        "ja": "株式会社オータス（副業）",
+        "zh": "株式会社Otus（兼职）"
+      },
+      "location": {
+        "en": "Web Developer",
+        "ja": "Webデベロッパー",
+        "zh": "Web开发工程师"
+      },
+      "description": {
+        "en": "Side job while working full-time. Developing portal sites for gas and electricity contractors and converting core system functions to web applications. Using technologies like PHP/CakePHP, TypeScript/Next.js/Prisma. Successfully led initial sprints of a project alone, building a highly extensible project base with component development focused on reusability (Atomic design, Storybook). Later served as tech lead for the India offshore team — designing and developing new features, handing over specifications, reviewing code, and sharing knowledge across the team.",
+        "ja": "本業と並行して副業に従事。ガス・電気契約者向けのポータルサイト開発や、基幹システム機能のWebアプリケーション化を担当。PHP/CakePHP、TypeScript/Next.js/Prismaなどの技術を活用。プロジェクト始動期のスプリントを一人で担当し、Atomic design、Storybook、jestの活用により、拡張性、メンテナンス性の高いプロジェクトのベースを構築。後半はインドのオフショアチームのテックリードとして、新規機能の設計開発、仕様共有・コードレビュー、チームのナレッジ共有を担当した。",
+        "zh": "全职工作的同时进行兼职。为燃气和电力承包商开发门户网站，并将核心系统功能转换为Web应用程序。使用PHP/CakePHP、TypeScript/Next.js/Prisma等技术。成功独自领导项目的初始冲刺阶段，构建了高度可扩展的项目基础，组件开发注重重用性（原子设计、Storybook）。后期作为印度离岸（offshore）团队的技术负责人（Tech Lead），负责新功能的设计开发、规格交接与代码评审，以及团队知识共享。"
+      },
+      "icon": "FaReact",
+      "date": {
+        "en": "2022 Oct - 2026 Mar",
+        "ja": "2022年10月 - 2026年3月",
+        "zh": "2022年10月 - 2026年3月"
+      }
+    },
+    {
+      "id": "m-s-i-corporation",
+      "order": 3,
+      "title": {
+        "en": "M.S.I Corporation",
+        "ja": "株式会社エム・エス・アイ",
+        "zh": "株式会社M.S.I"
+      },
+      "location": {
+        "en": "Software Engineer",
+        "ja": "ソフトウェアエンジニア",
+        "zh": "软件工程师"
+      },
+      "description": {
+        "en": "Developed business management systems for factory operations and created a staff location management web application from scratch that was later commercialized. Worked on full-stack development using C#, JavaScript, .Net, Azure, Express, Node.js, and databases like SQL Server, SQLite, and PostgreSQL. During this period, passed the JDLA Deep Learning for ENGINEER certification.",
+        "ja": "工場向け業務管理システムの開発を担当。また、社員の在席状態管理Webアプリケーションをゼロから開発し、後に自社製品として商品化された。C#、.Net、JavaScript、Express、Node.js、Azureなどを使用し、SQL Server、SQLite、PostgreSQLなどのデータベースでフルスタック開発を担当。業務と並行してAI分野の学習にも取り組み、JDLA Deep Learning for ENGINEER認定を取得した。",
+        "zh": "为工厂运营开发业务管理系统，并从零开始创建了员工位置管理Web应用程序，该应用后来实现了商业化。进行全栈开发，使用C#、JavaScript、.Net、Azure、Express、Node.js和SQL Server、SQLite、PostgreSQL等数据库。在职期间通过了JDLA Deep Learning for ENGINEER认证。"
+      },
+      "icon": "FaCode",
+      "date": {
+        "en": "2020 Jul - 2022 Oct",
+        "ja": "2020年7月 - 2022年10月",
+        "zh": "2020年7月 - 2022年10月"
+      }
+    },
+    {
+      "id": "graduate-school-yamagata-university",
+      "order": 4,
+      "title": {
+        "en": "Graduate School, Yamagata University",
+        "ja": "山形大学大学院",
+        "zh": "山形大学研究生院"
+      },
+      "location": {
+        "en": "Master's in Cultural Systems",
+        "ja": "人文社会科学研究科・文化システム専攻",
+        "zh": "文化系统专业硕士"
+      },
+      "description": {
+        "en": "Completed graduate studies in the Faculty of Humanities and Social Sciences, Cultural Systems program. During this period, began working part-time at M.S.I Corporation, which led to full-time employment after graduation.",
+        "ja": "人文社会科学研究科・文化システム専攻の修士課程を修了。この期間中、株式会社エム・エス・アイでインターンを始め、卒業後に正式入社する。",
+        "zh": "完成了人文社会科学研究科文化系统专业的研究生学习。在此期间，开始在M.S.I公司实习，毕业后正式入职。"
+      },
+      "icon": "LuGraduationCap",
+      "date": {
+        "en": "2019 Apr - 2021 Mar",
+        "ja": "2019年4月 - 2021年3月",
+        "zh": "2019年4月 - 2021年3月"
+      }
+    },
+    {
+      "id": "chengdu-medical-college-university",
+      "order": 5,
+      "title": {
+        "en": "Chengdu Medical College University",
+        "ja": "成都医学院大学",
+        "zh": "成都医学院大学"
+      },
+      "location": {
+        "en": "Bachelor's in Rehabilitation Medicine",
+        "ja": "臨床医学部リハビリテーション学科",
+        "zh": "康复医学学士"
+      },
+      "description": {
+        "en": "Completed undergraduate studies in the Faculty of Clinical Medicine, Department of Rehabilitation. Also obtained Level 3 National Public Nutritionist certification in China and passed the Japanese Language Proficiency Test (JLPT N1) during this period.",
+        "ja": "臨床医学部リハビリテーション学科の学士課程を修了。この期間中、中国の国家公共栄養師（三級）資格を取得し、日本語能力試験（JLPT・N1）にも合格。",
+        "zh": "完成了临床医学系康复学专业的本科学习。在此期间，还取得了中国三级国家公共营养师资格证书，并通过了日语能力测试（JLPT N1）。"
+      },
+      "icon": "LuGraduationCap",
+      "date": {
+        "en": "2013 Sep - 2017 Jun",
+        "ja": "2013年9月 - 2017年6月",
+        "zh": "2013年9月 - 2017年6月"
+      }
+    }
+  ]
+}

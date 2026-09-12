@@ -1,0 +1,287 @@
+{
+  "groups": [
+    {
+      "key": "group_ai",
+      "ids": [
+        "agentic-rag",
+        "langgraph",
+        "openai",
+        "claude",
+        "vector-search"
+      ]
+    },
+    {
+      "key": "group_backend",
+      "ids": [
+        "python",
+        "fastapi",
+        "django",
+        "nodejs",
+        "csharp",
+        "postgres",
+        "dbt",
+        "snowflake"
+      ]
+    },
+    {
+      "key": "group_frontend",
+      "ids": [
+        "typescript",
+        "react",
+        "nextjs",
+        "tailwind"
+      ]
+    },
+    {
+      "key": "group_infra",
+      "ids": [
+        "aws",
+        "docker",
+        "vercel",
+        "git"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "agentic-rag",
+      "name": "Agentic RAG",
+      "icon": "FaRobot",
+      "desc": {
+        "zh": "智能体RAG的设计与实现",
+        "en": "Agentic RAG design and delivery",
+        "ja": "エージェント型RAGの設計・実装"
+      }
+    },
+    {
+      "id": "langgraph",
+      "name": "LangGraph",
+      "icon": "SiLangchain",
+      "desc": {
+        "zh": "多智能体编排",
+        "en": "Multi-agent orchestration",
+        "ja": "マルチエージェントのオーケストレーション"
+      }
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "icon": "SiOpenai",
+      "desc": {
+        "zh": "OpenAI API",
+        "en": "OpenAI API",
+        "ja": "OpenAI API"
+      }
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "icon": "SiAnthropic",
+      "desc": {
+        "zh": "Anthropic Claude API",
+        "en": "Anthropic Claude API",
+        "ja": "Anthropic Claude API"
+      }
+    },
+    {
+      "id": "vector-search",
+      "name": "Vector Search",
+      "icon": "FaDatabase",
+      "desc": {
+        "zh": "基于 Qdrant 与 BGE-M3 的混合检索",
+        "en": "Hybrid retrieval with Qdrant and BGE-M3",
+        "ja": "Qdrant・BGE-M3によるハイブリッド検索"
+      }
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "icon": "FaPython",
+      "desc": {
+        "zh": "熟悉Python编程",
+        "en": "Python Programming",
+        "ja": "Pythonプログラミング"
+      }
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "icon": "SiFastapi",
+      "desc": {
+        "zh": "FastAPI 服务开发",
+        "en": "FastAPI services",
+        "ja": "FastAPIでのAPI開発"
+      }
+    },
+    {
+      "id": "django",
+      "name": "Django",
+      "icon": "SiDjango",
+      "desc": {
+        "zh": "Django开发",
+        "en": "Django Development",
+        "ja": "Django開発"
+      }
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "icon": "FaNodeJs",
+      "desc": {
+        "zh": "Node.js开发",
+        "en": "Node.js Development",
+        "ja": "Node.js開発"
+      }
+    },
+    {
+      "id": "csharp",
+      "name": "C sharp",
+      "icon": "TbBrandCSharp",
+      "desc": {
+        "zh": "C#.net 开发",
+        "en": "C#.net Development",
+        "ja": "C#.net 開発"
+      }
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "icon": "SiTypescript",
+      "desc": {
+        "zh": "熟悉TypeScript",
+        "en": "TypeScript Development",
+        "ja": "TypeScript開発"
+      }
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "icon": "FaReact",
+      "desc": {
+        "zh": "React开发",
+        "en": "React Development",
+        "ja": "React開発"
+      }
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "icon": "RiNextjsFill",
+      "desc": {
+        "zh": "熟悉Next.js开发",
+        "en": "Familiar with Next.js Development",
+        "ja": "Next.js開発"
+      }
+    },
+    {
+      "id": "tailwind",
+      "name": "Tailwind CSS",
+      "icon": "SiTailwindcss",
+      "desc": {
+        "zh": "Tailwind CSS",
+        "en": "Tailwind CSS",
+        "ja": "Tailwind CSS"
+      }
+    },
+    {
+      "id": "web",
+      "name": "Web",
+      "icon": "FaCode",
+      "desc": {
+        "zh": "Web开发",
+        "en": "Web Development",
+        "ja": "Web開発"
+      }
+    },
+    {
+      "id": "postgres",
+      "name": "PostgreSQL",
+      "icon": "SiPostgresql",
+      "desc": {
+        "zh": "PostgreSQL",
+        "en": "PostgreSQL",
+        "ja": "PostgreSQL"
+      }
+    },
+    {
+      "id": "dbt",
+      "name": "DBT",
+      "icon": "SiDbt",
+      "desc": {
+        "zh": "数据仓库",
+        "en": "Data Warehouse",
+        "ja": "データウェアハウス"
+      }
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake",
+      "icon": "SiSnowflake",
+      "desc": {
+        "zh": "数据仓库",
+        "en": "Data Warehouse",
+        "ja": "データウェアハウス"
+      }
+    },
+    {
+      "id": "aws",
+      "name": "AWS",
+      "icon": "FaAws",
+      "desc": {
+        "zh": "AWS（EC2、S3、Lambda）",
+        "en": "AWS (EC2, S3, Lambda)",
+        "ja": "AWS（EC2・S3・Lambda）"
+      }
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "icon": "SiDocker",
+      "desc": {
+        "zh": "Docker 与 Compose",
+        "en": "Docker and Compose",
+        "ja": "Docker・Compose"
+      }
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "icon": "SiVercel",
+      "desc": {
+        "zh": "Vercel部署",
+        "en": "Vercel Deployment",
+        "ja": "Vercelデプロイ"
+      }
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "icon": "BiLogoGit",
+      "desc": {
+        "zh": "版本控制",
+        "en": "Version Control",
+        "ja": "バージョン管理"
+      }
+    },
+    {
+      "id": "github",
+      "name": "Github",
+      "icon": "FaGithub",
+      "desc": {
+        "zh": "代码托管",
+        "en": "Code Hosting",
+        "ja": "コードホスティング"
+      }
+    },
+    {
+      "id": "gitlab",
+      "name": "Gitlab",
+      "icon": "FaGitlab",
+      "desc": {
+        "zh": "代码托管",
+        "en": "Code Hosting",
+        "ja": "コードホスティング"
+      }
+    }
+  ]
+}
