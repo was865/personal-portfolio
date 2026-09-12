@@ -133,4 +133,12 @@ describe("writeCollection", () => {
       /BLOB_READ_WRITE_TOKEN/,
     )
   })
+
+  it("Blob 未設定でも内容の不正は先に分かる（何が悪いか返せる）", async () => {
+    delete process.env.BLOB_READ_WRITE_TOKEN
+
+    await expect(writeCollection("about", { messages: { fr: {} } }, null)).rejects.not.toThrow(
+      /BLOB_READ_WRITE_TOKEN/,
+    )
+  })
 })

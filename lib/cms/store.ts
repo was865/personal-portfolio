@@ -97,9 +97,10 @@ export async function writeCollection<N extends CollectionName>(
   data: unknown,
   ifMatch: string | null,
 ): Promise<{ etag: string; data: CollectionData[N] }> {
-  if (!isBlobConfigured()) throw new BlobNotConfiguredError()
-
+  // 先に内容を検証する。Blob 未設定でも「何が不正か」は返せたほうがいい。
   const validated = collectionSchemas[name].parse(data) as CollectionData[N]
+
+  if (!isBlobConfigured()) throw new BlobNotConfiguredError()
 
   const current = await readContentBlob(name)
   const currentEtag = current?.etag ?? null
