@@ -15,3 +15,6 @@
 /public/fallback-*.js
 /public/fallback-*.js.map
 /.playwright-mcp
+
+# Next.js が dev/build のたびに書き換える。追跡しない（公式もそう案内している）。
+next-env.d.ts
