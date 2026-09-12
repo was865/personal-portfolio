@@ -43,6 +43,11 @@
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-left: env(safe-area-inset-left, 0px);
     --safe-right: env(safe-area-inset-right, 0px);
+
+    /* iOS 26 の状態バーはすりガラスで、下の内容をぼかす。ぼかしは安全域の
+       少し下まで滲むので、メニューの文字をそのぶん下へ逃がす。
+       ヘッダーの帯の高さと文字の位置の両方がこれを見る。 */
+    --nav-top-gap: 0.75rem;
   }
 
   /* 既定の書体。next/font の className を body に付けるとレイヤー外の規則になり、

@@ -21,10 +21,10 @@ function Header() {
   return (
     <header className="z-999 relative">
       {/* 帯は画面の一番上から引く。iOS の PWA では時計やアンテナの下を本文が
-          流れていくので、そこに背当てを置く。中身はセーフエリアぶん下げる。
-          横幅の丸いバーになるのは sm から。 */}
+          流れていくので、そこに背当てを置く。中身はセーフエリアと --nav-top-gap
+          のぶん下げる。横幅の丸いバーになるのは sm から。 */}
       <motion.div
-        className="fixed inset-x-0 top-0 mx-auto h-[calc(3.5rem+var(--safe-top))] w-full rounded-none border-0 border-b border-white/50 bg-white/80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.65rem] sm:top-[calc(var(--safe-top)+1.5rem)] sm:h-[3.25rem] sm:w-[30rem] sm:rounded-full sm:border dark:border-black/40 dark:bg-gray-950/85"
+        className="fixed inset-x-0 top-0 mx-auto h-[calc(3.5rem+var(--safe-top)+var(--nav-top-gap))] w-full rounded-none border-0 border-b border-white/50 bg-white/80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.65rem] sm:top-[calc(var(--safe-top)+1.5rem)] sm:h-[3.25rem] sm:w-[30rem] sm:rounded-full sm:border dark:border-black/40 dark:bg-gray-950/85"
         initial={{ y: -16 }}
         animate={{ y: 0 }}
       ></motion.div>
@@ -32,7 +32,7 @@ function Header() {
           中央寄せに translate を使わない。画面幅が奇数（iPhone は 393px）だと
           left:50% が 196.667px になり、それを打ち消す小数の translate が残る。
           iOS はこの層を一度描いてから小数ぶんずらすので、文字がぼやける。 */}
-      <nav className="fixed inset-x-0 top-[var(--safe-top)] mx-auto flex h-[3.5rem] w-full max-w-[30rem] items-center pl-[max(0.5rem,var(--safe-left))] pr-[max(0.5rem,var(--safe-right))] sm:top-[calc(var(--safe-top)+1.7rem)] sm:h-[initial] sm:w-[initial] sm:px-0">
+      <nav className="fixed inset-x-0 top-[calc(var(--safe-top)+var(--nav-top-gap))] mx-auto flex h-[3.5rem] w-full max-w-[30rem] items-center pl-[max(0.5rem,var(--safe-left))] pr-[max(0.5rem,var(--safe-right))] sm:top-[calc(var(--safe-top)+1.7rem)] sm:h-[initial] sm:w-[initial] sm:px-0">
         {/* w-max + mx-auto なら、収まるときは中央、あふれるときは左端から
             スクロールできる。justify-center だけだと、あふれた分が左に隠れて
             「首页」に戻れなくなる。 */}
