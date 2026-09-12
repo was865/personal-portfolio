@@ -12,6 +12,11 @@ const nextConfig = {
   images: {
     qualities: [70, 75, 80, 95, 100],
     remotePatterns: [
+      // CMS がアップロードした画像（Vercel Blob）
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
       {
         protocol: "https",
         hostname: "images.unsplash.com",

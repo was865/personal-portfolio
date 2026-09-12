@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { projectsData } from "@/lib/data"
+import type { Project as ProjectItem } from "@/lib/cms/schema"
 import { useSectionInView } from "@/lib/hooks"
 import SectionHeading from "./SectionHeading"
 import Project from "./Project"
@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl"
 import Link from "next/link"
 import { FaAngleRight } from "react-icons/fa6"
 
-export default function Projects() {
+export default function Projects({ projects }: { projects: ProjectItem[] }) {
   const { ref } = useSectionInView("Projects", 0.1)
   const sectionT = useTranslations("SectionName")
   const projectsT = useTranslations("ProjectsSection")
@@ -20,9 +20,9 @@ export default function Projects() {
         {sectionT("projects")}
       </SectionHeading>
       <div className="w-full flex flex-col items-center">
-        {projectsData.map((project, index) => (
-          <React.Fragment key={index}>
-            <Project {...project} />
+        {projects.map((project) => (
+          <React.Fragment key={project.slug}>
+            <Project project={project} />
           </React.Fragment>
         ))}
       </div>

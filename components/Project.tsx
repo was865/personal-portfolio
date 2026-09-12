@@ -1,30 +1,23 @@
 "use client"
 
 import { useRef } from "react"
-import { projectsData } from "@/lib/data"
 import Image from "next/image"
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { fontSourceCodePro } from "@/config/fonts"
 import { cn } from "@/lib/utils"
+import { pick, type Project as ProjectItem } from "@/lib/cms/schema"
 
-type ProjectProps = (typeof projectsData)[number]
+type ProjectProps = {
+  project: ProjectItem
+}
 
 /** コンタクトシートに出す枚数。残りは最後のコマに「+N」として畳む。 */
 const SHEET_SIZE = 4
 
-export default function Project({
-  slug,
-  title,
-  description,
-  title_zh,
-  desc_zh,
-  title_ja,
-  desc_ja,
-  tags,
-  shots,
-}: ProjectProps) {
+export default function Project({ project }: ProjectProps) {
+  const { slug, tags, shots } = project
   const ref = useRef<HTMLDivElement>(null)
   const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ["0 1", "1.33 1"] })
@@ -33,8 +26,8 @@ export default function Project({
   const locale = useLocale()
   const t = useTranslations("ProjectsSection")
 
-  const localizedTitle = locale === "zh" ? title_zh : locale === "ja" ? title_ja : title
-  const localizedDesc = locale === "zh" ? desc_zh : locale === "ja" ? desc_ja : description
+  const localizedTitle = pick(project.title, locale)
+  const localizedDesc = pick(project.description, locale)
   const sheet = shots.slice(0, SHEET_SIZE)
   const overflow = shots.length - sheet.length
 
@@ -95,8 +88,8 @@ export default function Project({
                 <li key={i} className="relative overflow-hidden rounded-lg bg-black/5 dark:bg-black/30">
                   <div className="relative aspect-[16/10]">
                     <Image
-                      src={shot.src}
-                      alt={locale === "zh" ? shot.caption.zh : locale === "ja" ? shot.caption.ja : shot.caption.en}
+                      src={shot.image.thumbUrl ?? shot.image.url}
+                      alt={pick(shot.caption, locale)}
                       fill
                       sizes="(max-width: 640px) 45vw, 260px"
                       quality={70}

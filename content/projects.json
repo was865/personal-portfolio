@@ -53,7 +53,8 @@
           "image": {
             "url": "/images/projects/arag-answer-multihop.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAAAwAQCdASoMAAgAA4BaJZwAA3AA/vOc5+bjJ+kxss7v9WlCAAA="
           },
           "caption": {
             "en": "Multi-hop root-cause analysis across five documents",
@@ -65,7 +66,8 @@
           "image": {
             "url": "/images/projects/arag-agent-steps.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAAAwAQCdASoMAAgAA4BaJZwAA3AA/vPV4bRs5o67UQb/PehAAAA="
           },
           "caption": {
             "en": "Agent trace: two retrieval rounds, hybrid search and rerank",
@@ -77,7 +79,8 @@
           "image": {
             "url": "/images/projects/arag-image-understanding.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRj4AAABXRUJQVlA4IDIAAADQAQCdASoMAAgAA4BaJYwC7AEPDmsQAAD+9SvzC3QJTDa2bKsyXMmirUoLVIAkOAAAAA=="
           },
           "caption": {
             "en": "A photographed flowchart read back as a graph",
@@ -89,7 +92,8 @@
           "image": {
             "url": "/images/projects/arag-scanned-form.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACwAQCdASoMAAgAA4BaJZQAAudQYnAAAP72B8CfvTjEbCrsgAA="
           },
           "caption": {
             "en": "Field extraction from a stamped, handwritten scan",
@@ -101,7 +105,8 @@
           "image": {
             "url": "/images/projects/arag-table-extraction.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAADQAQCdASoMAAgAA4BaJZwAAudVp61KAAD+9SlDY5KcDBvFwAA="
           },
           "caption": {
             "en": "Cross-page PDF financial tables, restructured",
@@ -113,7 +118,8 @@
           "image": {
             "url": "/images/projects/arag-sources-panel.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAACwAQCdASoMAAgAA4BaJZwAAudabS4wAP72DQJgnSfxPjdLMAA="
           },
           "caption": {
             "en": "Citation panel with the original document alongside",
@@ -125,7 +131,8 @@
           "image": {
             "url": "/images/projects/arag-document-library.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRjAAAABXRUJQVlA4ICQAAADQAQCdASoMAAgAA4BaJZQAAudmocYSwAD+9goQVJqr2e0swAA="
           },
           "caption": {
             "en": "Document library with per-file parse status",
@@ -188,7 +195,8 @@
           "image": {
             "url": "/images/projects/arag-agents-home.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRi4AAABXRUJQVlA4ICIAAACQAQCdASoMAAgAA4BaJZwAAudGZmAA/vdMyJZwyS0oQAAA"
           },
           "caption": {
             "en": "Two business agents and the steps each one runs",
@@ -200,7 +208,8 @@
           "image": {
             "url": "/images/projects/arag-agent-delivery-trace.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAAAwAQCdASoMAAgAA4BaJZwAA3AA/vPSZpEWNw2VIZwIAA=="
           },
           "caption": {
             "en": "Delivery date derived field by field from ERP records",
@@ -212,7 +221,8 @@
           "image": {
             "url": "/images/projects/arag-agent-delivery-writeback.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRiwAAABXRUJQVlA4ICAAAAAwAQCdASoMAAgAA4BaJZwAA3AA/vPSbIj0fig5wIAAAA=="
           },
           "caption": {
             "en": "Order-level summary, ready to write back to the ERP",
@@ -224,7 +234,8 @@
           "image": {
             "url": "/images/projects/arag-agent-scheduling.webp",
             "width": 1500,
-            "height": 950
+            "height": 950,
+            "blurDataURL": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAABQAQCdASoMAAgAA4BaJZwABDOAAP7z0wTfRRkRMJZgYqrvFwAAAA=="
           },
           "caption": {
             "en": "The working calendar pushes T+2 past the weekend",
@@ -286,7 +297,8 @@
           "image": {
             "url": "/images/projects/contract-analyzer-content.webp",
             "width": 1790,
-            "height": 1386
+            "height": 1386,
+            "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoMAAkAA4BaJaQAAu18cRmvAAD+749iDbIpjDiYD39WuDtoRnkIewAAAAA="
           },
           "caption": {
             "en": "Clause-by-clause analysis of the uploaded contract",
@@ -298,7 +310,8 @@
           "image": {
             "url": "/images/projects/contract-analyzer-upload.webp",
             "width": 1856,
-            "height": 1230
+            "height": 1230,
+            "blurDataURL": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoMAAgAA4BaJaQAAujcAwAAAP70O46HW3T4scMuiQTNniAA"
           },
           "caption": {
             "en": "Uploading a contract for review",
@@ -310,7 +323,8 @@
           "image": {
             "url": "/images/projects/contract-analyzer-output.webp",
             "width": 1784,
-            "height": 628
+            "height": 628,
+            "blurDataURL": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoMAAQAA4BaJaQAAujbodsgAP7zTsGeYnE2QjygtFrEAAAA"
           },
           "caption": {
             "en": "Identified risks and suggested revisions",
@@ -374,7 +388,8 @@
           "image": {
             "url": "/images/projects/employee-manager-home.webp",
             "width": 2006,
-            "height": 1536
+            "height": 1536,
+            "blurDataURL": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoMAAkAA4BaJZwAAp0notMAAP73rIRoYF209VVZxIwap8IA"
           },
           "caption": {
             "en": "Home view of the team's current status",
@@ -386,7 +401,8 @@
           "image": {
             "url": "/images/projects/employee-manager-schedule.webp",
             "width": 1942,
-            "height": 1536
+            "height": 1536,
+            "blurDataURL": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoMAAkAA4BaJZwAAudP+RvAAP73f581bVAU2cKMT9v7gAAA"
           },
           "caption": {
             "en": "Schedules synced from Google Calendar",
@@ -398,7 +414,8 @@
           "image": {
             "url": "/images/projects/employee-manager-card.webp",
             "width": 2004,
-            "height": 1522
+            "height": 1522,
+            "blurDataURL": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoMAAkAA4BaJZwAAvafOTq6gAD+98GeU83U00/8oOgVbGCGjoY2hCXwAAA="
           },
           "caption": {
             "en": "Member card with presence and contact details",
@@ -410,7 +427,8 @@
           "image": {
             "url": "/images/projects/employee-manager-leave.webp",
             "width": 1950,
-            "height": 1522
+            "height": 1522,
+            "blurDataURL": "data:image/webp;base64,UklGRjYAAABXRUJQVlA4ICoAAACQAQCdASoMAAkAA4BaJZwAAuTqwUAA/vbDPJSY+NxGkrDW53l73xTWAAA="
           },
           "caption": {
             "en": "Leave requests and approval state",
@@ -422,7 +440,8 @@
           "image": {
             "url": "/images/projects/employee-manager-dashboard.webp",
             "width": 2012,
-            "height": 1510
+            "height": 1510,
+            "blurDataURL": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAADQAQCdASoMAAkAA4BaJZwAAujeyid+AAD+9seS4YZPzSLp2+b2eAAA"
           },
           "caption": {
             "en": "Dashboard of attendance across the team",
@@ -434,7 +453,8 @@
           "image": {
             "url": "/images/projects/employee-manager-responsive.webp",
             "width": 874,
-            "height": 1552
+            "height": 1552,
+            "blurDataURL": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAABQAwCdASoMABUAPu1orU2ppqSiMAgBMB2JZQAAewgDRm2G6AD+8HKbmv5YHp3Kid7wGNhaNb2Vx8ItUBU2Z1Eiru2W3nFBAFx8rbBLYrSWWcBwAAA="
           },
           "caption": {
             "en": "The same views on a phone",

@@ -116,7 +116,7 @@ describe("writeCollection", () => {
 
     await writeCollection("about", { messages: { ja: {} } }, null)
 
-    expect(nextCache.revalidateTag).toHaveBeenCalledWith(contentTag("about"))
+    expect(nextCache.revalidateTag).toHaveBeenCalledWith(contentTag("about"), { expire: 0 })
   })
 
   it("スキーマに合わない内容は保存しない", async () => {

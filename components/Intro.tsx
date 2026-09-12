@@ -6,7 +6,6 @@ import { FaGithubSquare, FaEnvelope } from "react-icons/fa"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { useSectionInView } from "@/lib/hooks"
-import { projectsData } from "@/lib/data"
 import { TypeAnimation } from "react-type-animation"
 import useSound from "use-sound"
 import ClickSpark from "@/components/reactbits/ClickSpark"
@@ -33,7 +32,12 @@ const PILL =
 const PILL_PRIMARY =
   PILL_BASE + " bg-[#e9882a] text-white hover:text-white shadow-sm shadow-black/10"
 
-export default function Intro() {
+type IntroProps = {
+  /** 「プロジェクトを見る」の行き先。CMS の先頭プロジェクト。 */
+  featuredProjectSlug: string
+}
+
+export default function Intro({ featuredProjectSlug }: IntroProps) {
   const { ref } = useSectionInView("Home")
   const activeLocale = useLocale()
   const t = useTranslations("IntroSection")
@@ -189,7 +193,7 @@ export default function Intro() {
 
         <Link
           className={`${PILL_PRIMARY} px-5 text-sm font-semibold`}
-          href={`/${activeLocale}/projects/${projectsData[0].slug}`}
+          href={`/${activeLocale}/projects/${featuredProjectSlug}`}
         >
           {t("view_projects")}
         </Link>

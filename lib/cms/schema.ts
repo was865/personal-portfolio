@@ -20,6 +20,8 @@ const imageRef = z.object({
   width: z.number().int().positive(),
   height: z.number().int().positive(),
   thumbUrl: z.string().min(1).optional(),
+  /** 読み込み中に出すぼかし。無ければ `placeholder="empty"` になるだけで壊れない。 */
+  blurDataURL: z.string().startsWith("data:image/").optional(),
 })
 
 export type ImageRef = z.infer<typeof imageRef>

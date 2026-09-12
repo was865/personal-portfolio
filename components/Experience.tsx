@@ -6,18 +6,21 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component"
 import "react-vertical-timeline-component/style.min.css"
-import {
-  experiencesData,
-  experiencesDataZn as experiencesDataZh,
-  experiencesDataJa,
-} from "@/lib/data"
 import SectionHeading from "./SectionHeading"
 import { motion } from "motion/react"
 import { useTheme } from "@/context/theme-context"
 import { ExperienceLabel } from "./ExperienceLabel"
 import { useLocale, useTranslations } from "next-intl"
+import { resolveIcon } from "@/config/icon-registry"
+import { pick, type Experience as ExperienceItem } from "@/lib/cms/schema"
 
-export default function Experience({ isMobile }: { isMobile: boolean }) {
+type ExperienceProps = {
+  isMobile: boolean
+  /** CMS から order 昇順で渡ってくる経歴。 */
+  items: ExperienceItem[]
+}
+
+export default function Experience({ isMobile, items }: ExperienceProps) {
   const { theme } = useTheme()
   const variants = {
     // 左右から滑り込む動きは残す。ただし透明からは始めない
@@ -35,9 +38,6 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
   const activeLocale = useLocale()
   const t = useTranslations("SectionName")
 
-  const experienceDataShown =
-    activeLocale == "zh" ? experiencesDataZh : activeLocale == "ja" ? experiencesDataJa : experiencesData
-
   return (
     <section className="sm:mb-40 relative mb-20 px-4">
       <ExperienceLabel />
@@ -46,9 +46,9 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
       </SectionHeading>
       {!isMobile ? (
         <VerticalTimeline lineColor={theme == "light" ? "#e9e9ea" : "#3b3d4f"}>
-          {experienceDataShown.map((item, index) => (
+          {items.map((item, index) => (
             <motion.div
-              key={index}
+              key={item.id}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
@@ -72,18 +72,18 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
                       ? "0.4rem solid #9ca3af"
                       : "0.4rem solid rgba(255, 255, 255, 0.5)",
                 }}
-                date={item.date}
-                icon={<>{item.icon}</>}
+                date={pick(item.date, activeLocale)}
+                icon={<>{resolveIcon(item.icon)}</>}
                 iconStyle={{
                   background:
                     theme === "light" ? "white" : "rgba(255, 255, 255, 0.15)",
                   fontSize: "1.5rem",
                 }}
               >
-                <h3 className="font-bold capitalize">{item.title}</h3>
-                <p className="font-normal mt-0!">{item.location}</p>
+                <h3 className="font-bold capitalize">{pick(item.title, activeLocale)}</h3>
+                <p className="font-normal mt-0!">{pick(item.location, activeLocale)}</p>
                 <p className="mt-1! font-normal! text-gray-700 dark:text-white/75">
-                  {item.description}
+                  {pick(item.description, activeLocale)}
                 </p>
               </VerticalTimelineElement>
             </motion.div>
@@ -91,20 +91,20 @@ export default function Experience({ isMobile }: { isMobile: boolean }) {
         </VerticalTimeline>
       ) : (
         <div className="flex flex-col gap-6">
-          {experienceDataShown.map((item, index) => (
+          {items.map((item, index) => (
             <div
-              key={index}
+              key={item.id}
               className={`flex dark:bg-slate-800 dark:text-slate-100 bg-slate-100 border-1 border-opacity-80 rounded-lg p-6 pb-8 flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-8 `}
             >
               <div className="w-10 h-5 sm:w-24 sm:h-24 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
-                {item.icon}
+                {resolveIcon(item.icon)}
               </div>
-              {item.date}
+              {pick(item.date, activeLocale)}
               <div className="flex flex-col gap-2">
-                <h3 className="font-bold capitalize">{item.title}</h3>
-                <p className="font-normal mt-0!">{item.location}</p>
+                <h3 className="font-bold capitalize">{pick(item.title, activeLocale)}</h3>
+                <p className="font-normal mt-0!">{pick(item.location, activeLocale)}</p>
                 <p className="mt-1! font-normal! text-gray-700 dark:text-white/75">
-                  {item.description}
+                  {pick(item.description, activeLocale)}
                 </p>
               </div>
             </div>

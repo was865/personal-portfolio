@@ -121,7 +121,10 @@ export async function writeCollection<N extends CollectionName>(
     currentEtag ?? undefined,
   )
 
-  revalidateTag(contentTag(name))
+  // `"max"` は stale-while-revalidate なので「保存したのにまだ古い」が一度起きる。
+  // 保存＝即公開にしたいので即時失効させる（updateTag は Server Action 専用で
+  // ここ（Route Handler）からは呼べない）。
+  revalidateTag(contentTag(name), { expire: 0 })
 
   return { etag, data: validated }
 }

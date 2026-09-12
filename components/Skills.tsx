@@ -1,13 +1,14 @@
 "use client"
 
 import React from "react"
-import { skillsDataWithIcons, skillGroups } from "@/lib/data"
 import { useSectionInView } from "@/lib/hooks"
 import { motion } from "motion/react"
 import SectionHeading from "./SectionHeading"
 import { useLocale, useTranslations } from "next-intl"
 import useSound from "use-sound";
 import { fontSourceCodePro } from "@/config/fonts"
+import { resolveIcon } from "@/config/icon-registry"
+import { pick, type SkillGroup, type Skill } from "@/lib/cms/schema"
 
 // 透明から始めると JS が動くまで消えているので、位置だけ動かす。
 const fadeInAnimationVariants = {
@@ -22,9 +23,14 @@ const fadeInAnimationVariants = {
   }),
 }
 
-const byId = new Map(skillsDataWithIcons.map((s) => [s.id, s]))
+type SkillsProps = {
+  /** 表示するまとまり。ids は items の id を指す。 */
+  groups: SkillGroup[]
+  items: Skill[]
+}
 
-export default function Skills() {
+export default function Skills({ groups, items }: SkillsProps) {
+  const byId = new Map(items.map((item) => [item.id, item]))
   const { ref } = useSectionInView("Skills")
   const activeLocale = useLocale()
   const sectionLan = useTranslations("SectionName")
@@ -45,7 +51,7 @@ export default function Skills() {
           4つに分け、いちばん上のグループだけ濃くする。
           ホバーの揺れ・音・吹き出しはそのまま。 */}
       <div className="mx-auto flex max-w-[46rem] flex-col text-left">
-        {skillGroups.map((group, gi) => (
+        {groups.map((group, gi) => (
           <div
             key={group.key}
             className="grid grid-cols-1 gap-x-6 gap-y-3 border-t border-black/10 py-5 sm:grid-cols-[7.5rem_1fr] dark:border-white/10"
@@ -82,7 +88,7 @@ export default function Skills() {
                     }}
                   >
                     <div className="flex items-center gap-2">
-                      {skill.icon}
+                      {resolveIcon(skill.icon, "text-xl")}
                       <span>{skill.name}</span>
                     </div>
 
@@ -92,7 +98,7 @@ export default function Skills() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      {activeLocale === "zh" ? skill.desc.zh : activeLocale === "ja" ? skill.desc.ja : skill.desc.en}
+                      {pick(skill.desc, activeLocale)}
                       <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
                     </motion.div>
                   </motion.li>

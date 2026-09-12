@@ -6,21 +6,25 @@ import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 import BackLink from "@/components/BackLink"
-import { projectsData } from "@/lib/data"
 import Lightbox, { type LightboxItem } from "@/components/Lightbox"
 import { fontSourceCodePro } from "@/config/fonts"
 import { cn } from "@/lib/utils"
+import { pick, type Project } from "@/lib/cms/schema"
 
-type Project = (typeof projectsData)[number]
+/** 前後リンクに必要なのは行き先と見出しだけ。 */
+export type ProjectLink = Pick<Project, "slug" | "title">
 
 type ProjectCaseProps = {
   project: Project
-  prev: Pick<Project, "slug" | "title" | "title_ja" | "title_zh"> | null
-  next: Pick<Project, "slug" | "title" | "title_ja" | "title_zh"> | null
+  prev: ProjectLink | null
+  next: ProjectLink | null
 }
 
-function pick(locale: string, en: string, ja: string, zh: string) {
-  return locale === "zh" ? zh : locale === "ja" ? ja : en
+/** blurDataURL を持つ画像だけ blur プレースホルダにする。無い画像でも壊さない。 */
+function blurProps(image: Project["shots"][number]["image"]) {
+  return image.blurDataURL
+    ? ({ placeholder: "blur", blurDataURL: image.blurDataURL } as const)
+    : {}
 }
 
 /** 大きく見せる枚数。残りは小さいカードにするが、番号と説明は最後まで出す。 */
@@ -50,23 +54,23 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
   const t = useTranslations("ProjectsSection")
   const [openAt, setOpenAt] = useState<number | null>(null)
 
-  const title = pick(locale, project.title, project.title_ja, project.title_zh)
-  const description = pick(locale, project.description, project.desc_ja, project.desc_zh)
+  const title = pick(project.title, locale)
+  const description = pick(project.description, locale)
 
   // 空欄（まだ書いていない項目）は行ごと出さない。
   const cs = project.caseStudy
   const caseRows: [string, string][] = (
     [
-      [t("case_problem"), pick(locale, cs.problem.en, cs.problem.ja, cs.problem.zh)],
-      [t("case_role"), pick(locale, cs.role.en, cs.role.ja, cs.role.zh)],
-      [t("case_decision"), pick(locale, cs.decisions.en, cs.decisions.ja, cs.decisions.zh)],
-      [t("case_result"), pick(locale, cs.result.en, cs.result.ja, cs.result.zh)],
+      [t("case_problem"), pick(cs.problem, locale)],
+      [t("case_role"), pick(cs.role, locale)],
+      [t("case_decision"), pick(cs.decisions, locale)],
+      [t("case_result"), pick(cs.result, locale)],
     ] as [string, string][]
   ).filter(([, v]) => v.trim().length > 0)
 
   const items: LightboxItem[] = project.shots.map((shot) => ({
-    src: shot.src,
-    caption: pick(locale, shot.caption.en, shot.caption.ja, shot.caption.zh),
+    src: shot.image.url,
+    caption: pick(shot.caption, locale),
   }))
 
   return (
@@ -128,32 +132,37 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
         </h2>
 
         <ol className="space-y-14">
-          {items.slice(0, LEAD_SHOTS).map((item, i) => (
-            <li key={i}>
-              <button
-                type="button"
-                onClick={() => setOpenAt(i)}
-                aria-label={`${t("open_viewer")}：${item.caption}`}
-                className={cn(
-                  "group block w-full cursor-zoom-in text-left",
-                  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e9882a]",
-                )}
-              >
-                <ShotLabel n={i + 1} caption={item.caption} />
+          {project.shots.slice(0, LEAD_SHOTS).map((shot, i) => {
+            const caption = items[i].caption
+            return (
+              <li key={i}>
+                <button
+                  type="button"
+                  onClick={() => setOpenAt(i)}
+                  aria-label={`${t("open_viewer")}：${caption}`}
+                  className={cn(
+                    "group block w-full cursor-zoom-in text-left",
+                    "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e9882a]",
+                  )}
+                >
+                  <ShotLabel n={i + 1} caption={caption} />
 
-                <div className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_10px_40px_-28px_rgba(0,0,0,0.6)] transition group-hover:border-[#e9882a]/60 dark:border-white/10 dark:bg-white/5">
-                  <Image
-                    src={item.src}
-                    alt={item.caption}
-                    sizes="(max-width: 1024px) 100vw, 1024px"
-                    quality={80}
-                    placeholder="blur"
-                    className="h-auto w-full"
-                  />
-                </div>
-              </button>
-            </li>
-          ))}
+                  <div className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_10px_40px_-28px_rgba(0,0,0,0.6)] transition group-hover:border-[#e9882a]/60 dark:border-white/10 dark:bg-white/5">
+                    <Image
+                      src={shot.image.url}
+                      alt={caption}
+                      width={shot.image.width}
+                      height={shot.image.height}
+                      sizes="(max-width: 1024px) 100vw, 1024px"
+                      quality={80}
+                      {...blurProps(shot.image)}
+                      className="h-auto w-full"
+                    />
+                  </div>
+                </button>
+              </li>
+            )
+          })}
         </ol>
 
         {/* 残りは 2 列に縮めて並べる。図版は小さくしても、番号と説明は付けたまま
@@ -165,7 +174,7 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
               const item = items[index]
               // 縦横比は画面ごとにばらばら（横長のログ画面から縦長のスマホまで）。
               // 元の比をそのまま使い、極端なものだけ枠を詰めて余白を抑える。
-              const ratio = Math.min(Math.max(shot.src.width / shot.src.height, 0.8), 2.2)
+              const ratio = Math.min(Math.max(shot.image.width / shot.image.height, 0.8), 2.2)
               return (
                 <li key={index}>
                   <button
@@ -184,7 +193,7 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
                       style={{ aspectRatio: ratio }}
                     >
                       <Image
-                        src={item.src}
+                        src={shot.image.url}
                         alt={item.caption}
                         fill
                         sizes="(max-width: 640px) 100vw, 480px"
@@ -216,7 +225,7 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
                 <HiChevronLeft className="h-3.5 w-3.5" /> PREV
               </span>
               <span className="mt-1.5 block text-sm text-gray-800 transition group-hover:text-[#e9882a] dark:text-white/80 dark:group-hover:text-yellow">
-                {pick(locale, prev.title, prev.title_ja, prev.title_zh)}
+                {pick(prev.title, locale)}
               </span>
             </Link>
           ) : (
@@ -237,7 +246,7 @@ export default function ProjectCase({ project, prev, next }: ProjectCaseProps) {
                 NEXT <HiChevronRight className="h-3.5 w-3.5" />
               </span>
               <span className="mt-1.5 block text-sm text-gray-800 transition group-hover:text-[#e9882a] dark:text-white/80 dark:group-hover:text-yellow">
-                {pick(locale, next.title, next.title_ja, next.title_zh)}
+                {pick(next.title, locale)}
               </span>
             </Link>
           )}

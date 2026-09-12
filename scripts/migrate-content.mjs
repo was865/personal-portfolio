@@ -40,8 +40,19 @@ async function measure(publicUrl) {
   return { width, height }
 }
 
+/** 読み込み中に出すぼかし。12px 幅の webp なので 1 枚 300 バイト前後で済む。 */
+async function blurDataUrl(publicUrl) {
+  const file = path.join(root, "public", publicUrl.replace(/^\//, ""))
+  const buffer = await sharp(file).resize(12, null, { fit: "inside" }).webp({ quality: 40 }).toBuffer()
+  return `data:image/webp;base64,${buffer.toString("base64")}`
+}
+
 async function imageRef(publicUrl) {
-  return { url: publicUrl, ...(await measure(publicUrl)) }
+  return {
+    url: publicUrl,
+    ...(await measure(publicUrl)),
+    blurDataURL: await blurDataUrl(publicUrl),
+  }
 }
 
 function slugify(value) {
