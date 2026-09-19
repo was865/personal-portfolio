@@ -76,9 +76,9 @@
     "issueDate": "2022年3月14日取得"
   },
   "SkillsSection": {
-    "group_ai": "AI と検索",
-    "group_backend": "バックエンドとデータ",
-    "group_frontend": "フロントエンド",
-    "group_infra": "インフラ"
+    "group_ai": "AI & retrieval",
+    "group_backend": "Backend & data",
+    "group_frontend": "Frontend",
+    "group_infra": "Infrastructure"
   }
 }
