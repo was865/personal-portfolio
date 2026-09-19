@@ -160,7 +160,7 @@
     background-repeat: no-repeat;
     background-size: 100% 1000px;
     background-image:
-      radial-gradient(ellipse 87.5% 280px at calc(50% - 160px) 144px,
+      radial-gradient(ellipse 87.5% 280px at calc(50% - 160px + var(--aurora-drift-cx, 0px)) calc(144px + var(--aurora-drift-cy, 0px)),
         rgb(var(--aurora-cool) / 0.918) 0%, rgb(var(--aurora-cool) / 0.92) 4.7%,
         rgb(var(--aurora-cool) / 0.903) 12.5%, rgb(var(--aurora-cool) / 0.875) 18.8%,
         rgb(var(--aurora-cool) / 0.81) 27.3%, rgb(var(--aurora-cool) / 0.758) 32.8%,
@@ -170,7 +170,7 @@
         rgb(var(--aurora-cool) / 0.209) 73.4%, rgb(var(--aurora-cool) / 0.154) 78.9%,
         rgb(var(--aurora-cool) / 0.105) 85.2%, rgb(var(--aurora-cool) / 0.071) 90.6%,
         rgb(var(--aurora-cool) / 0.039) 99.2%, rgb(var(--aurora-cool) / 0) 100%),
-      radial-gradient(ellipse 99% 317.5px at 50% 112px,
+      radial-gradient(ellipse 99% 317.5px at calc(50% + var(--aurora-drift-wx, 0px)) calc(112px + var(--aurora-drift-wy, 0px)),
         rgb(var(--aurora-warm) / 0.927) 0%, rgb(var(--aurora-warm) / 0.914) 0.8%,
         rgb(var(--aurora-warm) / 0.915) 4.7%, rgb(var(--aurora-warm) / 0.902) 9.4%,
         rgb(var(--aurora-warm) / 0.889) 12.5%, rgb(var(--aurora-warm) / 0.862) 17.2%,
@@ -193,7 +193,7 @@
   @media (min-width: 30rem) {
     body {
       background-image:
-        radial-gradient(ellipse 95% 340px at calc(50% - 160px) 144px,
+        radial-gradient(ellipse 95% 340px at calc(50% - 160px + var(--aurora-drift-cx, 0px)) calc(144px + var(--aurora-drift-cy, 0px)),
           rgb(var(--aurora-cool) / 0.951) 0%, rgb(var(--aurora-cool) / 0.951) 3.9%,
           rgb(var(--aurora-cool) / 0.94) 10.2%, rgb(var(--aurora-cool) / 0.916) 16.4%,
           rgb(var(--aurora-cool) / 0.872) 23.4%, rgb(var(--aurora-cool) / 0.797) 30.5%,
@@ -204,7 +204,7 @@
           rgb(var(--aurora-cool) / 0.072) 77.3%, rgb(var(--aurora-cool) / 0.051) 81.3%,
           rgb(var(--aurora-cool) / 0.025) 90.6%, rgb(var(--aurora-cool) / 0.011) 99.2%,
           rgb(var(--aurora-cool) / 0) 100%),
-        radial-gradient(ellipse 115% 400px at 50% 112px,
+        radial-gradient(ellipse 115% 400px at calc(50% + var(--aurora-drift-wx, 0px)) calc(112px + var(--aurora-drift-wy, 0px)),
           rgb(var(--aurora-warm) / 0.952) 0%, rgb(var(--aurora-warm) / 0.951) 3.1%,
           rgb(var(--aurora-warm) / 0.941) 7.8%, rgb(var(--aurora-warm) / 0.923) 12.5%,
           rgb(var(--aurora-warm) / 0.887) 18%, rgb(var(--aurora-warm) / 0.831) 23.4%,
@@ -223,7 +223,7 @@
     body {
       --aurora-cool-x: -160px;
       background-image:
-        radial-gradient(ellipse 875px 650px at var(--aurora-cool-x) 234px,
+        radial-gradient(ellipse 875px 650px at calc(var(--aurora-cool-x) + var(--aurora-drift-cx, 0px)) calc(234px + var(--aurora-drift-cy, 0px)),
           rgb(var(--aurora-cool) / 0.851) 0%, rgb(var(--aurora-cool) / 0.851) 3.1%,
           rgb(var(--aurora-cool) / 0.826) 10.2%, rgb(var(--aurora-cool) / 0.783) 16.4%,
           rgb(var(--aurora-cool) / 0.731) 21.9%, rgb(var(--aurora-cool) / 0.662) 27.3%,
@@ -232,7 +232,7 @@
           rgb(var(--aurora-cool) / 0.11) 65.6%, rgb(var(--aurora-cool) / 0.065) 71.9%,
           rgb(var(--aurora-cool) / 0.031) 79.7%, rgb(var(--aurora-cool) / 0.012) 88.3%,
           rgb(var(--aurora-cool) / 0) 100%),
-        radial-gradient(circle 610px at calc(100% - 426px) 154px,
+        radial-gradient(circle 610px at calc(100% - 426px + var(--aurora-drift-wx, 0px)) calc(154px + var(--aurora-drift-wy, 0px)),
           rgb(var(--aurora-warm) / 0.698) 0%, rgb(var(--aurora-warm) / 0.697) 3.9%,
           rgb(var(--aurora-warm) / 0.677) 9.4%, rgb(var(--aurora-warm) / 0.645) 14.8%,
           rgb(var(--aurora-warm) / 0.615) 18.8%, rgb(var(--aurora-warm) / 0.528) 27.3%,
@@ -248,6 +248,42 @@
   @media (min-width: 64rem) { body { --aurora-cool-x: -48px; } }
   @media (min-width: 80rem) { body { --aurora-cool-x: 160px; } }
   @media (min-width: 96rem) { body { --aurora-cool-x: 320px; } }
+
+  /* 光をゆっくり漂わせる。要素を足すと合成レイヤが増えて、直したばかりの
+     「レイヤの下で背景が描かれない」問題に戻りかねないので、body の背景
+     そのもの（グラデーションの中心）を動かす。
+     43s と 67s は互いに素なので、2 つの光が同じ並びに戻るまで約 96 分かかる。
+     気づかせるための動きではない。目を離して戻したときに少し違う、程度。
+
+     steps(40) なのは見た目のためではなく描画量のため。背景を動かすと毎フレーム
+     ビューポート全面を塗り直すことになり、CPU 6 倍スロットルでフレームの中央値が
+     6.1ms から 12.1ms に伸びた。1 歩は 2〜3px で、この柔らかさなら 1 画素あたりの
+     変化は 1/255 未満。見た目は変わらないまま、塗り直しが毎秒 120 回から
+     1.5 回に減る。 */
+  @media (prefers-reduced-motion: no-preference) {
+    body {
+      animation:
+        aurora-warm-drift 43s steps(40) infinite alternate,
+        aurora-cool-drift 67s steps(40) infinite alternate;
+    }
+  }
+}
+
+/* 補間させるので型付きで登録する。@property が無い環境（iOS 16.3 以前など）では
+   上の var() のフォールバック 0px が使われ、背景は静止したままになる。 */
+@property --aurora-drift-wx { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --aurora-drift-wy { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --aurora-drift-cx { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --aurora-drift-cy { syntax: "<length>"; inherits: false; initial-value: 0px; }
+
+@keyframes aurora-warm-drift {
+  from { --aurora-drift-wx: -55px; --aurora-drift-wy: -26px; }
+  to   { --aurora-drift-wx:  55px; --aurora-drift-wy:  30px; }
+}
+
+@keyframes aurora-cool-drift {
+  from { --aurora-drift-cx:  70px; --aurora-drift-cy:  24px; }
+  to   { --aurora-drift-cx: -70px; --aurora-drift-cy: -20px; }
 }
 
 /* 記事の表記言語を指定するクラス。@layer の外なので、
