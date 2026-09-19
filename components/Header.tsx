@@ -36,7 +36,7 @@ function Header() {
         {/* w-max + mx-auto なら、収まるときは中央、あふれるときは左端から
             スクロールできる。justify-center だけだと、あふれた分が左に隠れて
             「首页」に戻れなくなる。 */}
-        <ul className="no-scrollbar mx-auto flex w-max max-w-full flex-nowrap items-center overflow-x-auto overscroll-x-contain text-[0.9rem] font-medium text-gray-500 sm:gap-5 sm:overflow-visible">
+        <ul className="no-scrollbar mx-auto flex w-max max-w-full flex-nowrap items-center overflow-x-auto overscroll-x-contain text-[0.9rem] font-medium text-gray-500 sm:gap-5 dark:text-gray-400 sm:overflow-visible">
           {links.map((link) => (
             <motion.li
               key={link.hash}
@@ -48,10 +48,11 @@ function Header() {
                 href={hrefFor(link.hash)}
                 className={clsx(
                   // 5項目が 375px の画面にも収まるよう、狭いうちは詰める。
-                  "flex h-11 w-full items-center justify-center whitespace-nowrap px-2.5 transition hover:text-gray-950 sm:px-3 dark:hover:text-gray-300",
+                  // ダークでは選択中を gray-950 のままにしていたので、
+                  // 帯（ほぼ黒）と同じ色になって読めなかった。明暗を反転させる。
+                  "flex h-11 w-full items-center justify-center whitespace-nowrap px-2.5 transition hover:text-gray-950 sm:px-3 dark:hover:text-white",
                   {
-                    "text-gray-950": activeSection === link.name,
-                    "dark:hover:text-gray-600": activeSection == link.name,
+                    "text-gray-950 dark:text-gray-50": activeSection === link.name,
                   }
                 )}
                 onClick={() => {
