@@ -158,9 +158,9 @@
     --aurora-warm: 255 233 155;
     --aurora-cool: 185 241 251;
     background-repeat: no-repeat;
-    background-size: 100% 1000px;
+    background-size: 100% 1100px;
     background-image:
-      radial-gradient(ellipse 87.5% 280px at calc(50% - 160px + var(--aurora-drift-cx, 0px)) calc(144px + var(--aurora-drift-cy, 0px)),
+      radial-gradient(ellipse calc(87.5% * var(--aurora-cool-scale, 1)) calc(280px * var(--aurora-cool-scale, 1)) at calc(50% - 160px + var(--aurora-drift-cx, 0px)) calc(144px + var(--aurora-drift-cy, 0px)),
         rgb(var(--aurora-cool) / 0.918) 0%, rgb(var(--aurora-cool) / 0.92) 4.7%,
         rgb(var(--aurora-cool) / 0.903) 12.5%, rgb(var(--aurora-cool) / 0.875) 18.8%,
         rgb(var(--aurora-cool) / 0.81) 27.3%, rgb(var(--aurora-cool) / 0.758) 32.8%,
@@ -170,7 +170,7 @@
         rgb(var(--aurora-cool) / 0.209) 73.4%, rgb(var(--aurora-cool) / 0.154) 78.9%,
         rgb(var(--aurora-cool) / 0.105) 85.2%, rgb(var(--aurora-cool) / 0.071) 90.6%,
         rgb(var(--aurora-cool) / 0.039) 99.2%, rgb(var(--aurora-cool) / 0) 100%),
-      radial-gradient(ellipse 99% 317.5px at calc(50% + var(--aurora-drift-wx, 0px)) calc(112px + var(--aurora-drift-wy, 0px)),
+      radial-gradient(ellipse calc(99% * var(--aurora-warm-scale, 1)) calc(317.5px * var(--aurora-warm-scale, 1)) at calc(50% + var(--aurora-drift-wx, 0px)) calc(112px + var(--aurora-drift-wy, 0px)),
         rgb(var(--aurora-warm) / 0.927) 0%, rgb(var(--aurora-warm) / 0.914) 0.8%,
         rgb(var(--aurora-warm) / 0.915) 4.7%, rgb(var(--aurora-warm) / 0.902) 9.4%,
         rgb(var(--aurora-warm) / 0.889) 12.5%, rgb(var(--aurora-warm) / 0.862) 17.2%,
@@ -193,7 +193,7 @@
   @media (min-width: 30rem) {
     body {
       background-image:
-        radial-gradient(ellipse 95% 340px at calc(50% - 160px + var(--aurora-drift-cx, 0px)) calc(144px + var(--aurora-drift-cy, 0px)),
+        radial-gradient(ellipse calc(95% * var(--aurora-cool-scale, 1)) calc(340px * var(--aurora-cool-scale, 1)) at calc(50% - 160px + var(--aurora-drift-cx, 0px)) calc(144px + var(--aurora-drift-cy, 0px)),
           rgb(var(--aurora-cool) / 0.951) 0%, rgb(var(--aurora-cool) / 0.951) 3.9%,
           rgb(var(--aurora-cool) / 0.94) 10.2%, rgb(var(--aurora-cool) / 0.916) 16.4%,
           rgb(var(--aurora-cool) / 0.872) 23.4%, rgb(var(--aurora-cool) / 0.797) 30.5%,
@@ -204,7 +204,7 @@
           rgb(var(--aurora-cool) / 0.072) 77.3%, rgb(var(--aurora-cool) / 0.051) 81.3%,
           rgb(var(--aurora-cool) / 0.025) 90.6%, rgb(var(--aurora-cool) / 0.011) 99.2%,
           rgb(var(--aurora-cool) / 0) 100%),
-        radial-gradient(ellipse 115% 400px at calc(50% + var(--aurora-drift-wx, 0px)) calc(112px + var(--aurora-drift-wy, 0px)),
+        radial-gradient(ellipse calc(115% * var(--aurora-warm-scale, 1)) calc(400px * var(--aurora-warm-scale, 1)) at calc(50% + var(--aurora-drift-wx, 0px)) calc(112px + var(--aurora-drift-wy, 0px)),
           rgb(var(--aurora-warm) / 0.952) 0%, rgb(var(--aurora-warm) / 0.951) 3.1%,
           rgb(var(--aurora-warm) / 0.941) 7.8%, rgb(var(--aurora-warm) / 0.923) 12.5%,
           rgb(var(--aurora-warm) / 0.887) 18%, rgb(var(--aurora-warm) / 0.831) 23.4%,
@@ -223,7 +223,7 @@
     body {
       --aurora-cool-x: -160px;
       background-image:
-        radial-gradient(ellipse 875px 650px at calc(var(--aurora-cool-x) + var(--aurora-drift-cx, 0px)) calc(234px + var(--aurora-drift-cy, 0px)),
+        radial-gradient(ellipse calc(875px * var(--aurora-cool-scale, 1)) calc(650px * var(--aurora-cool-scale, 1)) at calc(var(--aurora-cool-x) + var(--aurora-drift-cx, 0px)) calc(234px + var(--aurora-drift-cy, 0px)),
           rgb(var(--aurora-cool) / 0.851) 0%, rgb(var(--aurora-cool) / 0.851) 3.1%,
           rgb(var(--aurora-cool) / 0.826) 10.2%, rgb(var(--aurora-cool) / 0.783) 16.4%,
           rgb(var(--aurora-cool) / 0.731) 21.9%, rgb(var(--aurora-cool) / 0.662) 27.3%,
@@ -232,7 +232,7 @@
           rgb(var(--aurora-cool) / 0.11) 65.6%, rgb(var(--aurora-cool) / 0.065) 71.9%,
           rgb(var(--aurora-cool) / 0.031) 79.7%, rgb(var(--aurora-cool) / 0.012) 88.3%,
           rgb(var(--aurora-cool) / 0) 100%),
-        radial-gradient(circle 610px at calc(100% - 426px + var(--aurora-drift-wx, 0px)) calc(154px + var(--aurora-drift-wy, 0px)),
+        radial-gradient(circle calc(610px * var(--aurora-warm-scale, 1)) at calc(100% - 426px + var(--aurora-drift-wx, 0px)) calc(154px + var(--aurora-drift-wy, 0px)),
           rgb(var(--aurora-warm) / 0.698) 0%, rgb(var(--aurora-warm) / 0.697) 3.9%,
           rgb(var(--aurora-warm) / 0.677) 9.4%, rgb(var(--aurora-warm) / 0.645) 14.8%,
           rgb(var(--aurora-warm) / 0.615) 18.8%, rgb(var(--aurora-warm) / 0.528) 27.3%,
@@ -252,19 +252,25 @@
   /* 光をゆっくり漂わせる。要素を足すと合成レイヤが増えて、直したばかりの
      「レイヤの下で背景が描かれない」問題に戻りかねないので、body の背景
      そのもの（グラデーションの中心）を動かす。
-     43s と 67s は互いに素なので、2 つの光が同じ並びに戻るまで約 96 分かかる。
-     気づかせるための動きではない。目を離して戻したときに少し違う、程度。
+     動きは 2 種類ある。位置（横は 2 つの光を逆向きに振る）と、光そのものの
+     伸縮。平行移動だけだと背景が滑っているように見えるが、伸縮が混ざると
+     光が息をしているように見える。31s / 41s / 29s / 43s は全て別々の素数で、
+     同じ組み合わせに戻るまで 36 日かかる。つまり繰り返しは目に入らない。
 
-     steps(40) なのは見た目のためではなく描画量のため。背景を動かすと毎フレーム
-     ビューポート全面を塗り直すことになり、CPU 6 倍スロットルでフレームの中央値が
-     6.1ms から 12.1ms に伸びた。1 歩は 2〜3px で、この柔らかさなら 1 画素あたりの
-     変化は 1/255 未満。見た目は変わらないまま、塗り直しが毎秒 120 回から
-     1.5 回に減る。 */
+     steps() なのは見た目のためではなく描画量のため。背景を動かすと毎フレーム
+     ビューポート全面を塗り直すことになり、刻まずに動かしたときは CPU 6 倍
+     スロットルでフレームの中央値が 6.1ms から 12.1ms に伸びた。1 歩を 2.5px
+     相当に量子化すると更新は毎秒 9 回で済み、同じ条件でも中央値 6.1ms と
+     動きなし（6.0ms）に並ぶ。4 本が同時に 1 歩進む最悪ケースでも画素の変化は
+     2/255 なので、刻んでも見た目は変わらない。
+     歩数を変えるときは 1 歩が 2.5px 相当を超えないようにすること。 */
   @media (prefers-reduced-motion: no-preference) {
     body {
       animation:
-        aurora-warm-drift 43s steps(40) infinite alternate,
-        aurora-cool-drift 67s steps(40) infinite alternate;
+        aurora-warm-drift 31s steps(104) infinite alternate,
+        aurora-cool-drift 41s steps(120) infinite alternate,
+        aurora-warm-breathe 29s steps(44) infinite alternate,
+        aurora-cool-breathe 43s steps(52) infinite alternate;
     }
   }
 }
@@ -275,15 +281,31 @@
 @property --aurora-drift-wy { syntax: "<length>"; inherits: false; initial-value: 0px; }
 @property --aurora-drift-cx { syntax: "<length>"; inherits: false; initial-value: 0px; }
 @property --aurora-drift-cy { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --aurora-warm-scale { syntax: "<number>"; inherits: false; initial-value: 1; }
+@property --aurora-cool-scale { syntax: "<number>"; inherits: false; initial-value: 1; }
 
+/* 横は互いに逆向きに振る。2 つの光が寄ったり離れたりして、暖色と寒色が
+   混ざる境目が画面を横切る。ここがいちばん目に見えて動く。 */
 @keyframes aurora-warm-drift {
-  from { --aurora-drift-wx: -55px; --aurora-drift-wy: -26px; }
-  to   { --aurora-drift-wx:  55px; --aurora-drift-wy:  30px; }
+  from { --aurora-drift-wx: -130px; --aurora-drift-wy: -40px; }
+  to   { --aurora-drift-wx:  130px; --aurora-drift-wy:  52px; }
 }
 
 @keyframes aurora-cool-drift {
-  from { --aurora-drift-cx:  70px; --aurora-drift-cy:  24px; }
-  to   { --aurora-drift-cx: -70px; --aurora-drift-cy: -20px; }
+  from { --aurora-drift-cx:  150px; --aurora-drift-cy:  44px; }
+  to   { --aurora-drift-cx: -150px; --aurora-drift-cy: -34px; }
+}
+
+/* 移動とは別に、光そのものが膨らんで縮む。平行移動だけだと背景が
+   滑っているように見えるが、これが入ると光が息をしているように見える。 */
+@keyframes aurora-warm-breathe {
+  from { --aurora-warm-scale: 0.92; }
+  to   { --aurora-warm-scale: 1.10; }
+}
+
+@keyframes aurora-cool-breathe {
+  from { --aurora-cool-scale: 1.08; }
+  to   { --aurora-cool-scale: 0.93; }
 }
 
 /* 記事の表記言語を指定するクラス。@layer の外なので、
