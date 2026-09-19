@@ -139,6 +139,115 @@
   [lang="zh"]:not(:root) a {
     font-family: var(--font-inter), var(--font-noto-sans-sc), sans-serif !important;
   }
+
+
+  /* 背景の淡い光。
+
+     以前は巨大な div 2 枚（#ffe99b と #b9f1fb）に filter: blur(10rem) を掛けて
+     -z-10 に置いていた。iPad Safari では、合成レイヤに昇格した要素
+     （アバターに被せていた ClickSpark の <canvas>）の下でこの 2 枚が描かれず、
+     その要素の矩形ぶんだけ body の地色 #f6f2f2 が四角く出てしまう。
+     body 自身の背景として描けば独立したレイヤが無くなり、穴が空かない。
+     blur(10rem) 2 枚のラスタライズも消えるのでモバイルが軽くなる。
+
+     ストップは元のぼかしをブラウザに実際に描かせて測り、それに最小二乗で
+     当てはめた結果。元の絵との差は sm 以上で最大 1.8/255、
+     それ未満で最大 6.6/255。1 つずつの値に意味は無いので手では直せない。
+     blob の色・大きさ・位置を変えたいときは、この規則ごと当てはめ直すこと。 */
+  body {
+    --aurora-warm: 255 233 155;
+    --aurora-cool: 185 241 251;
+    background-repeat: no-repeat;
+    background-size: 100% 1000px;
+    background-image:
+      radial-gradient(ellipse 87.5% 280px at calc(50% - 160px) 144px,
+        rgb(var(--aurora-cool) / 0.918) 0%, rgb(var(--aurora-cool) / 0.92) 4.7%,
+        rgb(var(--aurora-cool) / 0.903) 12.5%, rgb(var(--aurora-cool) / 0.875) 18.8%,
+        rgb(var(--aurora-cool) / 0.81) 27.3%, rgb(var(--aurora-cool) / 0.758) 32.8%,
+        rgb(var(--aurora-cool) / 0.646) 42.2%, rgb(var(--aurora-cool) / 0.526) 50.8%,
+        rgb(var(--aurora-cool) / 0.405) 58.6%, rgb(var(--aurora-cool) / 0.315) 64.8%,
+        rgb(var(--aurora-cool) / 0.243) 70.3%, rgb(var(--aurora-cool) / 0.238) 71.1%,
+        rgb(var(--aurora-cool) / 0.209) 73.4%, rgb(var(--aurora-cool) / 0.154) 78.9%,
+        rgb(var(--aurora-cool) / 0.105) 85.2%, rgb(var(--aurora-cool) / 0.071) 90.6%,
+        rgb(var(--aurora-cool) / 0.039) 99.2%, rgb(var(--aurora-cool) / 0) 100%),
+      radial-gradient(ellipse 99% 317.5px at 50% 112px,
+        rgb(var(--aurora-warm) / 0.927) 0%, rgb(var(--aurora-warm) / 0.914) 0.8%,
+        rgb(var(--aurora-warm) / 0.915) 4.7%, rgb(var(--aurora-warm) / 0.902) 9.4%,
+        rgb(var(--aurora-warm) / 0.889) 12.5%, rgb(var(--aurora-warm) / 0.862) 17.2%,
+        rgb(var(--aurora-warm) / 0.826) 21.9%, rgb(var(--aurora-warm) / 0.763) 28.1%,
+        rgb(var(--aurora-warm) / 0.715) 32%, rgb(var(--aurora-warm) / 0.614) 39.1%,
+        rgb(var(--aurora-warm) / 0.419) 50.8%, rgb(var(--aurora-warm) / 0.305) 59.4%,
+        rgb(var(--aurora-warm) / 0.186) 69.5%, rgb(var(--aurora-warm) / 0.129) 75.8%,
+        rgb(var(--aurora-warm) / 0.085) 82%, rgb(var(--aurora-warm) / 0.049) 89.1%,
+        rgb(var(--aurora-warm) / 0.02) 99.2%, rgb(var(--aurora-warm) / 0) 100%);
+  }
+
+  .dark body {
+    --aurora-warm: 91 59 60;
+    --aurora-cool: 67 63 104;
+  }
+
+  /* sm 未満の blob は w-[100%] だったので、画面幅で楕円の縦横比そのものが
+     変わる。1 本の radial-gradient では全幅を賄えないため 480px で当てはめ
+     直す。描画だけの都合で、レイアウトのブレークポイントではない。 */
+  @media (min-width: 30rem) {
+    body {
+      background-image:
+        radial-gradient(ellipse 95% 340px at calc(50% - 160px) 144px,
+          rgb(var(--aurora-cool) / 0.951) 0%, rgb(var(--aurora-cool) / 0.951) 3.9%,
+          rgb(var(--aurora-cool) / 0.94) 10.2%, rgb(var(--aurora-cool) / 0.916) 16.4%,
+          rgb(var(--aurora-cool) / 0.872) 23.4%, rgb(var(--aurora-cool) / 0.797) 30.5%,
+          rgb(var(--aurora-cool) / 0.698) 37.5%, rgb(var(--aurora-cool) / 0.618) 42.2%,
+          rgb(var(--aurora-cool) / 0.596) 43.8%, rgb(var(--aurora-cool) / 0.523) 47.7%,
+          rgb(var(--aurora-cool) / 0.352) 56.3%, rgb(var(--aurora-cool) / 0.253) 61.7%,
+          rgb(var(--aurora-cool) / 0.172) 67.2%, rgb(var(--aurora-cool) / 0.117) 71.9%,
+          rgb(var(--aurora-cool) / 0.072) 77.3%, rgb(var(--aurora-cool) / 0.051) 81.3%,
+          rgb(var(--aurora-cool) / 0.025) 90.6%, rgb(var(--aurora-cool) / 0.011) 99.2%,
+          rgb(var(--aurora-cool) / 0) 100%),
+        radial-gradient(ellipse 115% 400px at 50% 112px,
+          rgb(var(--aurora-warm) / 0.952) 0%, rgb(var(--aurora-warm) / 0.951) 3.1%,
+          rgb(var(--aurora-warm) / 0.941) 7.8%, rgb(var(--aurora-warm) / 0.923) 12.5%,
+          rgb(var(--aurora-warm) / 0.887) 18%, rgb(var(--aurora-warm) / 0.831) 23.4%,
+          rgb(var(--aurora-warm) / 0.754) 28.9%, rgb(var(--aurora-warm) / 0.7) 32%,
+          rgb(var(--aurora-warm) / 0.618) 35.9%, rgb(var(--aurora-warm) / 0.446) 43%,
+          rgb(var(--aurora-warm) / 0.341) 48.4%, rgb(var(--aurora-warm) / 0.274) 52.3%,
+          rgb(var(--aurora-warm) / 0.201) 57%, rgb(var(--aurora-warm) / 0.15) 60.9%,
+          rgb(var(--aurora-warm) / 0.116) 64.1%, rgb(var(--aurora-warm) / 0.081) 68%,
+          rgb(var(--aurora-warm) / 0.06) 71.1%, rgb(var(--aurora-warm) / 0.025) 78.9%,
+          rgb(var(--aurora-warm) / 0.009) 86.7%, rgb(var(--aurora-warm) / 0) 100%);
+    }
+  }
+
+  /* sm 以上は固定サイズの blob。青だけ画面幅に応じて左右に動く。 */
+  @media (min-width: 40rem) {
+    body {
+      --aurora-cool-x: -160px;
+      background-image:
+        radial-gradient(ellipse 875px 650px at var(--aurora-cool-x) 234px,
+          rgb(var(--aurora-cool) / 0.851) 0%, rgb(var(--aurora-cool) / 0.851) 3.1%,
+          rgb(var(--aurora-cool) / 0.826) 10.2%, rgb(var(--aurora-cool) / 0.783) 16.4%,
+          rgb(var(--aurora-cool) / 0.731) 21.9%, rgb(var(--aurora-cool) / 0.662) 27.3%,
+          rgb(var(--aurora-cool) / 0.583) 32.8%, rgb(var(--aurora-cool) / 0.339) 47.7%,
+          rgb(var(--aurora-cool) / 0.255) 53.1%, rgb(var(--aurora-cool) / 0.164) 60.2%,
+          rgb(var(--aurora-cool) / 0.11) 65.6%, rgb(var(--aurora-cool) / 0.065) 71.9%,
+          rgb(var(--aurora-cool) / 0.031) 79.7%, rgb(var(--aurora-cool) / 0.012) 88.3%,
+          rgb(var(--aurora-cool) / 0) 100%),
+        radial-gradient(circle 610px at calc(100% - 426px) 154px,
+          rgb(var(--aurora-warm) / 0.698) 0%, rgb(var(--aurora-warm) / 0.697) 3.9%,
+          rgb(var(--aurora-warm) / 0.677) 9.4%, rgb(var(--aurora-warm) / 0.645) 14.8%,
+          rgb(var(--aurora-warm) / 0.615) 18.8%, rgb(var(--aurora-warm) / 0.528) 27.3%,
+          rgb(var(--aurora-warm) / 0.339) 43%, rgb(var(--aurora-warm) / 0.249) 50.8%,
+          rgb(var(--aurora-warm) / 0.192) 56.3%, rgb(var(--aurora-warm) / 0.121) 64.8%,
+          rgb(var(--aurora-warm) / 0.078) 71.9%, rgb(var(--aurora-warm) / 0.044) 79.7%,
+          rgb(var(--aurora-warm) / 0.02) 89.1%, rgb(var(--aurora-warm) / 0.008) 99.2%,
+          rgb(var(--aurora-warm) / 0) 100%);
+    }
+  }
+
+  @media (min-width: 48rem) { body { --aurora-cool-x: -128px; } }
+  @media (min-width: 64rem) { body { --aurora-cool-x: -48px; } }
+  @media (min-width: 80rem) { body { --aurora-cool-x: 160px; } }
+  @media (min-width: 96rem) { body { --aurora-cool-x: 320px; } }
 }
 
 /* 記事の表記言語を指定するクラス。@layer の外なので、

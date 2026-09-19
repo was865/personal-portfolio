@@ -9,7 +9,6 @@ import { useSectionInView } from "@/lib/hooks"
 import { projectsData } from "@/lib/data"
 import { TypeAnimation } from "react-type-animation"
 import useSound from "use-sound"
-import ClickSpark from "@/components/reactbits/ClickSpark"
 import { fontSourceCodePro } from "@/config/fonts"
 
 import DecryptedText from "@/components/reactbits/DecryptedText"
@@ -48,29 +47,25 @@ export default function Intro() {
     >
       <div className="flex items-center justify-center">
         <div className="relative">
-          <ClickSpark
-            sparkColor='#fff'
-            sparkSize={10}
-            sparkRadius={15}
-            sparkCount={8}
-            duration={400}
+          {/* ここには ClickSpark（クリックで火花を散らす canvas）を被せていた。
+              白い火花を白枠のアバターに出しても元々ほぼ見えず、一方で
+              canvas が rAF を回し続けて合成レイヤに昇格し、iPad Safari では
+              その矩形ぶんだけ背景のぼかしが抜けて灰色の四角になっていた。 */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "tween", duration: 0.2 }}
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "tween", duration: 0.2 }}
-            >
-              <Image
-                src="/profile.png"
-                alt="developer-image"
-                width="250"
-                height="250"
-                quality="95"
-                priority={true}
-                className="h-28 w-28 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
-              />
-            </motion.div>
-          </ClickSpark>
+            <Image
+              src="/profile.png"
+              alt="developer-image"
+              width="250"
+              height="250"
+              quality="95"
+              priority={true}
+              className="h-28 w-28 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
+            />
+          </motion.div>
           <motion.span
             onHoverStart={() => {
               playHover()

@@ -80,8 +80,9 @@ export default function LocaleLayout(
       <body
         className="bg-[#f6f2f2] text-gray-950 relative dark:bg-[#0b0f11] dark:text-gray-50 dark:text-opacity-90"
       >
-        <div className="bg-[#ffe99b] absolute top-[-3rem] sm:top-[-6rem] -z-10 right-0 sm:right-[11rem] h-[20rem] sm:h-[31.25rem] w-[100%] sm:w-[31.25rem] rounded-full blur-[5rem] sm:blur-[10rem] dark:bg-[#5b3b3c]"></div>
-        <div className="bg-[#b9f1fb] absolute top-[-1rem] -z-10 left-[-10rem] sm:left-[-35rem] h-[20rem] sm:h-[31.25rem] w-[100%] sm:w-[50rem] rounded-full blur-[5rem] sm:blur-[10rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#433f68]"></div>
+        {/* 背景の淡い光は body の background-image（app/globals.css）にある。
+            以前はここに blur を掛けた div を 2 枚置いていたが、iPad Safari で
+            合成レイヤの下に潜ると描かれず、四角い抜けになっていた。 */}
 
         <NextIntlClientProvider locale={locale} messages={messages}>
           <MotionConfig reducedMotion="user">
