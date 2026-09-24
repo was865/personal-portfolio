@@ -129,6 +129,8 @@ const CardStack: React.FC<CardStackProps> = ({ photos }) => {
                   alt={t("photo_caption", { n: index + 1 })}
                   className="aspect-[4/3] w-full rounded-2xl object-cover shadow-[0_10px_30px_-12px_rgba(0,0,0,0.5)]"
                   height={480}
+                  // 先頭のカードは初期表示の LCP になるので遅延読み込みしない。
+                  loading={index === 0 ? "eager" : "lazy"}
                   quality={80}
                   src={card.imageUrl}
                   width={640}

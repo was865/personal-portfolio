@@ -74,6 +74,8 @@ export default function LocaleLayout(
   return (
     <html
       lang={locale}
+      // ルート遷移時は Next.js 側でスムーズスクロールを一時的に切る。
+      data-scroll-behavior="smooth"
       className={`${fontUbuntu.variable} ${fontOleoScript.variable} ${fontInter.variable} ${fontVariables} scroll-smooth! relative`}
       suppressHydrationWarning
     >
