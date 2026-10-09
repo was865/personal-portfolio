@@ -129,7 +129,17 @@ export async function getPageContent(pageId: string) {
 }
 
 export async function getAllBlogPosts(pageId: string) {
-  const recordMap = normalizeRecordMap(await notion.getPage(pageId));
+  // loadPageChunk は先頭 100 ブロックしか返さない。notion-client 内蔵の
+  // fetchMissingBlocks は入れ子の value を読めず残りを取りに行かないため、
+  // 正規化してから自前で補完する（でないと末尾の新しい記事が落ちる）。
+  const recordMap = normalizeRecordMap(
+    await notion.getPage(pageId, {
+      fetchMissingBlocks: false,
+      fetchCollections: false,
+      signFileUrls: false,
+    })
+  );
+  await fetchMissingBlocks(recordMap);
   const parentHyphenated = toHyphenatedId(pageId);
 
   const blogPosts = Object.entries(recordMap.block).flatMap<Blog>(([key, entry]) => {
