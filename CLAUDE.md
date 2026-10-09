@@ -15,8 +15,13 @@ There is no test suite configured in this repo.
 
 ## Required env vars
 
-`.env.local`:
-- `NEXT_PUBLIC_NOTION_BLOG_PARENT_ID` — ID of the Notion page that is the parent of all blog posts. The blog list/detail routes throw at request time if this is missing (see [app/[locale]/blog/page.tsx](app/[locale]/blog/page.tsx) and [config/site.ts](config/site.ts)).
+`.env.local` (see [.env.example](.env.example)):
+- `NOTION_TOKEN` — internal integration secret. The integration must be connected to the "Blog Posts" database.
+- `NOTION_BLOG_DATA_SOURCE_ID` — data source ID of that database.
+- `NOTION_WEBHOOK_VERIFICATION_TOKEN` — optional; enables `/api/revalidate` for Notion webhooks.
+- `NOTION_API_BASE_URL` — optional; points the client at a mock server for local testing.
+
+Blog routes throw at request time if the first two are missing (see [lib/notion/client.ts](lib/notion/client.ts)).
 
 ## Architecture
 
@@ -33,14 +38,14 @@ Translations live in [messages/en.json](messages/en.json), `ja.json`, `zh.json`.
 
 ### Notion as CMS
 
-The blog is powered by `notion-client` / `react-notion-x`, not a database. [lib/notion.ts](lib/notion.ts) does three things:
-1. `getAllBlogPosts(parentId)` walks `recordMap.block`, filters to `type === 'page'` children of the configured parent, and sorts by `created_time` descending.
-2. `getPageContent(pageId)` fetches a single post's `recordMap` for render by `react-notion-x`.
-3. `customMapImageUrl` rewrites Notion S3 URLs through `www.notion.so/image/...` so they work with Next's `<Image>`. `next.config.js` whitelists `www.notion.so`, `images.unsplash.com`, `firebasestorage.googleapis.com`, and `raw.githubusercontent.com` as remote image hosts.
+The blog reads a Notion **database** ("Blog Posts") through the **official API** (`@notionhq/client`). Do not reintroduce `notion-client` / `react-notion-x` (unofficial API: 100-block chunk limit, UA-based 403s, response-shape changes).
 
-Blog titles use an in-title tag convention `"Post title [tag1, tag2]"`. `extractTags` / `getTitleWithoutTags` in [lib/utils.ts](lib/utils.ts) parse them — don't hand-parse tags elsewhere.
-
-`revalidate = 0` on [app/[locale]/blog/page.tsx](app/[locale]/blog/page.tsx) disables caching for the blog list; posts are always fetched fresh from Notion.
+- [lib/notion/posts.ts](lib/notion/posts.ts) — `getPublishedPosts()` queries rows with `Status = Published`, sorted by `Published` date. Property names live in `PROP`; Title has no tags (tags are the `Tags` multi-select, language is the `Language` select). `Translations` relations are made symmetric in code.
+- [lib/notion/blocks.ts](lib/notion/blocks.ts) — `getPageBlocks()` fetches the full block tree (paginated, recursive, concurrency-limited to respect the 3 req/s limit), plus TOC / reading-time helpers.
+- [components/notion/NotionBlocks.tsx](components/notion/NotionBlocks.tsx) — server-side renderer for the block types; styles are the `n-*` classes under `.post-body` in `app/globals.css`. Code is highlighted server-side with Prism ([lib/notion/highlight.ts](lib/notion/highlight.ts)). Add new block types there.
+- Notion-hosted files have signed URLs that expire in 1 hour, so HTML points at [app/api/notion-asset/[kind]/[id]/route.ts](app/api/notion-asset/[kind]/[id]/route.ts), which re-signs and streams with CDN caching.
+- Caching: the list is ISR (`revalidate = 60`), posts `revalidate = 300`; [app/api/revalidate/route.ts](app/api/revalidate/route.ts) handles signed Notion webhooks to purge immediately. Pages call `setRequestLocale` so next-intl doesn't read headers (which would make them dynamic).
+- Post URLs are `/{locale}/blog/{notionPageId}`; links between posts inside Notion are rewritten to these, links to non-public Notion pages are dropped.
 
 ### Server vs client boundaries
 

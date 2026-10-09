@@ -64,7 +64,8 @@
     "empty": "暂无该语言的文章。",
     "toc": "目录",
     "reading_time": "约 {minutes} 分钟",
-    "back_to_list": "文章列表"
+    "back_to_list": "文章列表",
+    "translations": "本文的其他语言版本"
   },
   "OpenBadge": {
     "title": "OpenBadge",

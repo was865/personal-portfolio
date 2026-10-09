@@ -89,33 +89,6 @@
     font-family: var(--font-inter), var(--font-noto-sans-sc), sans-serif;
   }
 
-  /* Notionコンテンツの言語別フォント設定 */
-  :root:lang(ja) .notion, :root:lang(zh) .notion {
-    font-family: var(--font-family-sans) !important;
-  }
-  
-  /* Notionの特定要素に対するフォント設定 */
-  :root:lang(ja) .notion-page-title,
-  :root:lang(zh) .notion-page-title,
-  :root:lang(ja) .notion-text,
-  :root:lang(zh) .notion-text,
-  :root:lang(ja) .notion-h,
-  :root:lang(zh) .notion-h,
-  :root:lang(ja) .notion-list,
-  :root:lang(zh) .notion-list,
-  :root:lang(ja) .notion-callout,
-  :root:lang(zh) .notion-callout,
-  :root:lang(ja) .notion-quote,
-  :root:lang(zh) .notion-quote,
-  :root:lang(ja) .notion-collection-card-title,
-  :root:lang(zh) .notion-collection-card-title,
-  :root:lang(ja) .notion-property-text,
-  :root:lang(zh) .notion-property-text,
-  :root:lang(ja) .notion-link,
-  :root:lang(zh) .notion-link {
-    font-family: var(--font-family-sans) !important;
-  }
-  
   /* ボタンやリンクのテキスト */
   :root:lang(ja) button,
   :root:lang(zh) button,
@@ -124,17 +97,12 @@
     font-family: var(--font-family-sans);
   }
 
-  /* 上の Notion 向け !important は UI の言語で字形を固定してしまう。
-     記事自身に lang が付いている場合は、そちらを優先させる。 */
-  [lang="ja"]:not(:root) .notion,
-  [lang="ja"]:not(:root) [class*="notion-"],
+  /* 記事自身に lang が付いている場合は、UI の言語よりそちらの字形を優先させる。 */
   [lang="ja"]:not(:root) button,
   [lang="ja"]:not(:root) a {
     font-family: var(--font-inter), var(--font-noto-sans-jp), sans-serif !important;
   }
 
-  [lang="zh"]:not(:root) .notion,
-  [lang="zh"]:not(:root) [class*="notion-"],
   [lang="zh"]:not(:root) button,
   [lang="zh"]:not(:root) a {
     font-family: var(--font-inter), var(--font-noto-sans-sc), sans-serif !important;
@@ -324,17 +292,12 @@
   to   { --aurora-cool-gain: 1; }
 }
 
-/* 記事の表記言語を指定するクラス。@layer の外なので、
-   Notion 側の !important 以外にはこれが勝つ。 */
-.font-ja,
-.font-ja .notion,
-.font-ja [class*="notion-"] {
+/* 記事の表記言語を指定するクラス。@layer の外なので、レイヤ内の指定に勝つ。 */
+.font-ja {
   font-family: var(--font-inter), var(--font-noto-sans-jp), sans-serif;
 }
 
-.font-zh,
-.font-zh .notion,
-.font-zh [class*="notion-"] {
+.font-zh {
   font-family: var(--font-inter), var(--font-noto-sans-sc), sans-serif;
 }
 
@@ -364,66 +327,6 @@
 
 .medium-zoom-image {
   border-radius: 2rem;
-}
-
-.notion {
-  color: inherit;
-}
-
-.dark .notion {
-  color: #fff;
-}
-
-.notion-collection-row-property .notion-collection-column-title {
-  display: none;
-}
-
-.notion-code {
-  border-radius: 1rem;
-}
-
-.notion-code-copy-button {
-  display: none;
-}
-
-iframe.notion-asset-object-fit {
-  background-color: transparent;
-  border-radius: 1rem;
-}
-
-.video-stream html5-main-video {
-  border-radius: 1rem;
-  background-color: transparent;
-}
-
-.notion-yt-lite {
-  border-radius: 1rem;
-  background-color: transparent;
-}
-
-.notion-simple-table {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.notion-simple-table tbody {
-  display: table;
-  width: 100%;
-}
-
-.notion-simple-table-cell {
-  display: table-cell;
-  word-break: normal;
-  overflow-wrap: anywhere;
-  vertical-align: top;
-}
-
-.notion-simple-table-row > td:first-child {
-  width: 1% !important;
-  white-space: nowrap;
 }
 
 @supports (padding-top: env(safe-area-inset-top)) {
@@ -457,20 +360,231 @@ iframe.notion-asset-object-fit {
   }
 }
 
-/* 記事本文の行長。日本語は 1 行 40 文字前後が読みやすい。
+/* ------------------------------------------------------------------ */
+/* 記事本文（components/notion/NotionBlocks.tsx が出す n-* クラス）      */
+/* ------------------------------------------------------------------ */
+
+/* 行長。日本語は 1 行 40 文字前後が読みやすい。
    表・コード・画像だけは幅いっぱいまで使わせる。 */
-.notion-article .notion-text,
-.notion-article .notion-h,
-.notion-article .notion-list,
-.notion-article .notion-quote,
-.notion-article .notion-callout,
-.notion-article .notion-toggle {
+.post-body {
+  --n-muted: rgb(0 0 0 / 0.55);
+  --n-border: rgb(0 0 0 / 0.1);
+  --n-surface: rgb(0 0 0 / 0.04);
+  --n-accent: #e9882a;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgb(17 24 39);
+}
+
+.dark .post-body {
+  --n-muted: rgb(255 255 255 / 0.55);
+  --n-border: rgb(255 255 255 / 0.12);
+  --n-surface: rgb(255 255 255 / 0.06);
+  --n-accent: #eed062;
+  color: rgb(255 255 255 / 0.88);
+}
+
+.post-body > :is(.n-paragraph, .n-heading, .n-list, .n-quote, .n-callout, .n-toggle, .n-todo, .n-children) {
   max-width: 42rem;
 }
 
-.notion-article .notion-table,
-.notion-article .notion-simple-table,
-.notion-article .notion-code,
-.notion-article .notion-asset-wrapper {
-  max-width: none;
+.post-body .n-paragraph {
+  margin: 0.5rem 0;
+  overflow-wrap: anywhere;
 }
+
+.post-body .n-spacer {
+  height: 0.75rem;
+}
+
+.post-body .n-children {
+  padding-left: 1.5rem;
+}
+
+.post-body .n-heading {
+  scroll-margin-top: 6rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.post-body .n-heading_1 { margin: 2.5rem 0 0.75rem; font-size: 1.6rem; }
+.post-body .n-heading_2 { margin: 2rem 0 0.5rem; font-size: 1.3rem; }
+.post-body .n-heading_3,
+.post-body .n-heading_4 { margin: 1.5rem 0 0.5rem; font-size: 1.1rem; }
+
+.post-body .n-list {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+.post-body .n-ul { list-style: disc; }
+.post-body .n-ul .n-ul { list-style: circle; }
+.post-body .n-ol { list-style: decimal; }
+.post-body .n-list li { margin: 0.25rem 0; padding-left: 0.25rem; }
+.post-body .n-list li > .n-list { margin: 0.25rem 0; }
+
+.post-body .n-todo {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin: 0.25rem 0;
+}
+
+.post-body .n-quote {
+  margin: 1rem 0;
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 3px solid currentColor;
+}
+
+.post-body .n-callout {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: var(--n-surface);
+}
+.post-body .n-callout-icon { line-height: 1.85; }
+
+.post-body .n-toggle { margin: 0.5rem 0; }
+.post-body .n-toggle > summary {
+  cursor: pointer;
+  list-style-position: outside;
+  margin-left: 1rem;
+}
+.post-body .n-toggle > summary > .n-heading { display: inline; }
+.post-body .n-toggle > .n-children { padding-top: 0.25rem; }
+
+.post-body .n-divider {
+  margin: 2rem 0;
+  border-color: var(--n-border);
+}
+
+.post-body .n-link {
+  color: var(--n-accent);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--n-accent) 40%, transparent);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.post-body .n-link:hover { text-decoration-color: currentColor; }
+
+.post-body .n-inline-code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.3rem;
+  background: var(--n-surface);
+  font-family: var(--font-source-code-pro, ui-monospace), ui-monospace, monospace;
+  font-size: 0.875em;
+  color: #eb5757;
+}
+
+.post-body .n-code { margin: 1.25rem 0; }
+.post-body .n-code pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  background: #1d1f21;
+  color: #c5c8c6;
+}
+.post-body .n-code-lang {
+  margin-bottom: 0.35rem;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--n-muted);
+}
+
+.post-body .n-equation {
+  margin: 1rem 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.post-body .n-image,
+.post-body .n-embed { margin: 1.5rem 0; }
+.post-body .n-image img,
+.post-body .n-image video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+}
+.post-body .n-embed iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 1rem;
+}
+.post-body .n-caption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--n-muted);
+}
+
+.post-body .n-bookmark {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 1rem 0;
+  max-width: 42rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--n-border);
+  border-radius: 0.75rem;
+  transition: border-color 150ms;
+}
+.post-body .n-bookmark:hover { border-color: var(--n-accent); }
+.post-body .n-bookmark-title { font-weight: 600; overflow-wrap: anywhere; }
+.post-body .n-bookmark-host { font-size: 0.8rem; color: var(--n-muted); }
+
+/* 横に長い表は表だけを横スクロールさせ、ページ全体を揺らさない。 */
+.post-body .n-table-wrap {
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.post-body .n-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.post-body .n-table :is(th, td) {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--n-border);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  min-width: 6rem;
+}
+.post-body .n-table th { background: var(--n-surface); font-weight: 600; }
+
+.post-body .n-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+@media (min-width: 768px) {
+  .post-body .n-columns { flex-direction: row; }
+  .post-body .n-column { flex: 1 1 0; min-width: 0; }
+}
+
+/* Notion の文字色・背景色。 */
+.post-body .n-color-gray { color: #787774; }
+.post-body .n-color-brown { color: #9f6b53; }
+.post-body .n-color-orange { color: #d9730d; }
+.post-body .n-color-yellow { color: #cb912f; }
+.post-body .n-color-green { color: #448361; }
+.post-body .n-color-blue { color: #337ea9; }
+.post-body .n-color-purple { color: #9065b0; }
+.post-body .n-color-pink { color: #c14c8a; }
+.post-body .n-color-red { color: #d44c47; }
+.post-body .n-bg-gray { background: rgb(120 119 116 / 0.15); }
+.post-body .n-bg-brown { background: rgb(159 107 83 / 0.15); }
+.post-body .n-bg-orange { background: rgb(217 115 13 / 0.15); }
+.post-body .n-bg-yellow { background: rgb(203 145 47 / 0.18); }
+.post-body .n-bg-green { background: rgb(68 131 97 / 0.15); }
+.post-body .n-bg-blue { background: rgb(51 126 169 / 0.15); }
+.post-body .n-bg-purple { background: rgb(144 101 176 / 0.15); }
+.post-body .n-bg-pink { background: rgb(193 76 138 / 0.15); }
+.post-body .n-bg-red { background: rgb(212 76 71 / 0.15); }

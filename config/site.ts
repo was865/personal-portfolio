@@ -12,7 +12,3 @@ export const siteConfig = {
   },
 };
 
-export const notionBlogConfig = {
-  blogParentId: process.env.NEXT_PUBLIC_NOTION_BLOG_PARENT_ID,
-};
-

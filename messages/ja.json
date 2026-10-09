@@ -64,7 +64,8 @@
     "empty": "この言語の記事はまだありません。",
     "toc": "目次",
     "reading_time": "約{minutes}分",
-    "back_to_list": "記事一覧"
+    "back_to_list": "記事一覧",
+    "translations": "この記事の他の言語版"
   },
   "OpenBadge": {
     "title": "OpenBadge",

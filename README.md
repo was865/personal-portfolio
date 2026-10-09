@@ -19,6 +19,31 @@ Built using Next.js 15 and tailwind v4. The website features a blog powered by t
 - Multilingual Support: Added japanese language options using i18nNext.
 
 
+## ブログ（Notion）
+
+記事は Notion の「Blog Posts」データベースに置き、公式 Notion API で読む。
+
+| プロパティ | 型 | 用途 |
+| --- | --- | --- |
+| Title | タイトル | 記事タイトル（タグは入れない） |
+| Status | セレクト | `Draft` / `Published` / `Archived`。**`Published` だけがサイトに出る** |
+| Language | セレクト | `ja` / `zh` / `en`。本文の言語（一覧の言語フィルタ・字形） |
+| Tags | マルチセレクト | タグ |
+| Published | 日付 | 公開日。一覧の並び順。空なら作成日時 |
+| Summary | テキスト | 一覧カードと meta description（任意） |
+| Translations | リレーション | 同じ記事の他言語版。片側だけ張れば両方向に効く |
+
+公開の流れ: 行を作る（Status=Draft）→ 書く → Status を Published にする。ページを移動する必要はない。
+
+### セットアップ
+
+1. https://www.notion.so/profile/integrations で内部インテグレーションを作る（権限は「コンテンツを読み取る」だけでよい）
+2. Blog Posts データベースの「…」→「接続」から、そのインテグレーションを追加する
+3. Vercel の環境変数に `NOTION_TOKEN` と `NOTION_BLOG_DATA_SOURCE_ID` を入れる（`.env.example` 参照）
+4. 任意: インテグレーションの Webhooks に `https://<サイト>/api/revalidate` を登録すると、Notion を編集した直後に反映される。登録時に届く verification_token は Vercel のログに出るので、Notion の画面に貼って検証し、同じ値を `NOTION_WEBHOOK_VERIFICATION_TOKEN` に入れる。未設定でも一覧は 1 分、記事は 5 分で入れ替わる
+
+ワークスペースを「Web に公開」する必要はない。
+
 ## Contributions
 
 Contributions are welcome! Fork the repository and submit a pull request.
