@@ -7,6 +7,7 @@ import ThemeSwitch from "@/components/ThemeTwich"
 // import { usePathname } from "next/navigation"
 import LanguageSwitch from "@/components/LanguageSwitch"
 import { NextIntlClientProvider, useMessages } from "next-intl"
+import { setRequestLocale } from "next-intl/server"
 import { MotionConfig } from "motion/react"
 import WidgetWrapper from "@/components/WidgetWrapper"
 import { 
@@ -59,6 +60,10 @@ export default function LocaleLayout(
   const {
     children
   } = props;
+
+  // ロケールを明示しておくと next-intl がリクエストヘッダを読まずに済み、
+  // ブログのように ISR でキャッシュしたいページが動的レンダリングに落ちない。
+  setRequestLocale(locale)
 
   const messages = useMessages()
 

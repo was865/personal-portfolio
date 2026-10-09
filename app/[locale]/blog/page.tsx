@@ -1,23 +1,27 @@
-import { getAllBlogPosts } from "@/lib/notion";
-import { notionBlogConfig } from "@/config/site";
+import { setRequestLocale } from "next-intl/server";
+
 import BlogUI from "@/components/blog/BlogUI";
+import { getPublishedPosts } from "@/lib/notion/posts";
 
-export const revalidate = 0;
+// 一覧は ISR。Notion の Webhook（/api/revalidate）で更新時にすぐ作り直す。
+// Webhook が無くても 1 分で新しい記事が出る。
+export const revalidate = 60;
 
-type Props = {
-  params: Promise<{ locale: string }>
+// ビルド時には生成せず、最初のアクセスで作ってキャッシュする（Notion が落ちていてもビルドは通る）。
+export function generateStaticParams() {
+  return [];
 }
 
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
 const Page = async ({ params }: Props) => {
-
-  if (!notionBlogConfig.blogParentId) {
-    throw new Error("Blog Parent ID is missing.");
-  }
-
   const { locale } = await params;
-  const blogPosts = await getAllBlogPosts(notionBlogConfig.blogParentId);
+  setRequestLocale(locale);
 
-  return <BlogUI blogPosts={blogPosts} locale={locale} />;
+  const posts = await getPublishedPosts();
+  return <BlogUI posts={posts} locale={locale} />;
 };
 
 export default Page;

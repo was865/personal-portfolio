@@ -5,20 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// タイトルからタグを抽出する関数
-export const extractTags = (title: string | null) => {
-  if (!title) return [];
-  const tagMatch = title.match(/\[(.*?)\]$/);
-  if (!tagMatch) return [];
-  
-  return tagMatch[1].split(',').map(tag => tag.trim());
-}
-
-// タグなしのタイトルを取得する関数
-export const getTitleWithoutTags = (title: string | null) => {
-  if (!title) return '';
-  return title.replace(/\[.*?\]$/, '').trim();
-}
 /** 記事の表記言語。UI の言語とは別物で、日本語UIに中文記事が並ぶことがある。 */
 export type ContentLang = "ja" | "zh" | "en";
 

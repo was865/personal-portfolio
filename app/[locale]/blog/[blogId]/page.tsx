@@ -1,55 +1,81 @@
-import { getPageContent, getAllBlogPosts, buildToc, estimateReadingMinutes } from '@/lib/notion';
-import { notionBlogConfig } from '@/config/site';
-import { NotionPage } from '@/components/NotionPage';
-import { extractTags, getTitleWithoutTags } from '@/lib/utils';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 
-// 記事本文は頻繁には変わらない。毎リクエスト Notion を叩く必要はない。
+import { PostView } from "@/components/blog/PostView";
+import { normalizeId } from "@/lib/notion/client";
+import {
+  buildToc,
+  estimateReadingMinutes,
+  firstParagraph,
+  getPageBlocks,
+} from "@/lib/notion/blocks";
+import { getPublishedPost, getPublishedPosts } from "@/lib/notion/posts";
+
+// 本文は ISR でキャッシュする。Notion の Webhook（/api/revalidate）が
+// 設定されていれば更新時にすぐ作り直され、無くても 5 分で入れ替わる。
 export const revalidate = 300;
 
+// ビルド時には生成せず、最初のアクセスで作ってキャッシュする。
+export function generateStaticParams() {
+  return [];
+}
+
 type Props = {
-  params: Promise<{ locale: string, blogId: string }>
+  params: Promise<{ locale: string; blogId: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { blogId } = await params;
+  const post = await getPublishedPost(blogId);
+  if (!post) return {};
+
+  const description = post.summary || firstParagraph(await getPageBlocks(post.id));
+  return {
+    title: post.title,
+    description,
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description,
+      publishedTime: post.publishedAt,
+      tags: post.tags,
+      images: post.cover ? [post.cover] : undefined,
+    },
+  };
 }
 
 export default async function Page({ params }: Props) {
   const { locale, blogId } = await params;
-  const { recordMap, title } = await getPageContent(blogId);
+  setRequestLocale(locale);
 
-  // タイトルからタグを抽出
-  const tags = extractTags(title);
-  const cleanTitle = getTitleWithoutTags(title);
+  const [post, posts] = await Promise.all([getPublishedPost(blogId), getPublishedPosts()]);
+  if (!post) notFound();
 
-  // 前後の記事は一覧と同じ並び（作成日の新しい順）から取る。
-  let siblings: { prev: { id: string; title: string } | null; next: { id: string; title: string } | null } = {
-    prev: null,
-    next: null,
-  };
+  const blocks = await getPageBlocks(post.id);
 
-  if (notionBlogConfig.blogParentId) {
-    try {
-      const posts = await getAllBlogPosts(notionBlogConfig.blogParentId);
-      const index = posts.findIndex((p) => p.id.replace(/-/g, '') === blogId.replace(/-/g, ''));
-      if (index !== -1) {
-        const toLink = (i: number) =>
-          posts[i] ? { id: posts[i].id, title: getTitleWithoutTags(posts[i].title) } : null;
-        // 一覧は新しい順なので、画面上の「前の記事」は配列の次の要素。
-        siblings = { prev: toLink(index + 1), next: toLink(index - 1) };
-      }
-    } catch {
-      // 前後リンクは無くても記事は読める。取得に失敗しても本文の表示は続ける。
-    }
-  }
+  // 前後の記事は同じ言語の中で辿る。翻訳版が交互に並ぶと同じ話が続くため。
+  const sameLang = posts.filter((p) => p.lang === post.lang);
+  const index = sameLang.findIndex((p) => p.id === post.id);
+  const toLink = (i: number) => (sameLang[i] ? { id: sameLang[i].id, title: sameLang[i].title } : null);
+
+  const translations = post.translationIds
+    .map((id) => posts.find((p) => normalizeId(p.id) === normalizeId(id)))
+    .filter((p): p is NonNullable<typeof p> => p !== undefined)
+    .map((p) => ({ id: p.id, title: p.title, lang: p.lang }));
 
   return (
-    <NotionPage
-      recordMap={recordMap}
-      rootPageId={blogId}
-      title={cleanTitle}
-      tags={tags}
+    <PostView
+      post={post}
+      blocks={blocks}
       locale={locale}
-      toc={buildToc(recordMap, blogId)}
-      readingMinutes={estimateReadingMinutes(recordMap)}
-      prev={siblings.prev}
-      next={siblings.next}
+      posts={new Map(posts.map((p) => [normalizeId(p.id), p.title]))}
+      toc={buildToc(blocks)}
+      readingMinutes={estimateReadingMinutes(blocks)}
+      // 一覧は新しい順なので、画面上の「前の記事」は配列の次の要素。
+      prev={toLink(index + 1)}
+      next={toLink(index - 1)}
+      translations={translations}
     />
   );
 }

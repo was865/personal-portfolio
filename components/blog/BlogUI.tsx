@@ -6,22 +6,13 @@ import { useMemo, useState } from "react"
 import { motion } from "motion/react"
 import BackLink from "@/components/BackLink"
 import { useTranslations } from "next-intl"
-import { customMapImageUrl } from "@/lib/notion"
-import { extractTags, getTitleWithoutTags, detectContentLang, type ContentLang } from "@/lib/utils"
+import type { ContentLang } from "@/lib/utils"
+import type { Post } from "@/lib/notion/posts"
 import { fontSourceCodePro } from "@/config/fonts"
 import { cn } from "@/lib/utils"
 
-type BlogPost = {
-  id: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  block: any
-  title: string
-  pageCover: string
-  createdAt: Date
-}
-
 interface BlogUIProps {
-  blogPosts: BlogPost[]
+  posts: Post[]
   locale: string
 }
 
@@ -35,14 +26,16 @@ function initialFilter(locale: string): Filter {
   return "all"
 }
 
-/** Notion が配信するURLか。サーバ側 fetch が 403 になるので最適化を通さない。 */
-function isNotionHosted(src: string) {
-  return src.startsWith("https://www.notion.so/")
-}
+/** next/image の最適化に通せるか。remotePatterns に無い外部ホストはそのまま読ませる。 */
+const OPTIMIZABLE_HOSTS = ["images.unsplash.com", "raw.githubusercontent.com", "firebasestorage.googleapis.com"]
 
-function coverSrc(post: { pageCover: string; block: unknown }) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return customMapImageUrl(post.pageCover, post.block as any)
+function canOptimize(src: string) {
+  if (src.startsWith("/")) return true
+  try {
+    return OPTIMIZABLE_HOSTS.includes(new URL(src).hostname)
+  } catch {
+    return false
+  }
 }
 
 /**
@@ -55,7 +48,7 @@ function tintFor(id: string) {
   return h;
 }
 
-function formatDate(date: Date, locale: string) {
+function formatDate(date: string, locale: string) {
   return new Intl.DateTimeFormat(locale === "zh" ? "zh-CN" : locale === "ja" ? "ja-JP" : "en-US", {
     year: "numeric",
     month: "short",
@@ -63,27 +56,12 @@ function formatDate(date: Date, locale: string) {
   }).format(new Date(date))
 }
 
-const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
+const BlogUI = ({ posts, locale }: BlogUIProps) => {
   const t = useTranslations("Blog")
   const [filter, setFilter] = useState<Filter>(() => initialFilter(locale))
-  // Notion 経由のカバーは 403 で落ちることがある。落ちた記事は id で覚えて
+  // 外部のカバー画像はリンク切れがある。落ちた記事は id で覚えて
   // 空の箱ではなく穏やかな下地を出す。
   const [brokenCovers, setBrokenCovers] = useState<string[]>([])
-
-  // 記事ごとに表記言語を1回だけ判定しておく。
-  const posts = useMemo(
-    () =>
-      blogPosts.map((post) => {
-        const cleanTitle = getTitleWithoutTags(post.title)
-        return {
-          ...post,
-          cleanTitle,
-          tags: extractTags(post.title),
-          lang: detectContentLang(cleanTitle),
-        }
-      }),
-    [blogPosts],
-  )
 
   const counts = useMemo(() => {
     const c: Record<Filter, number> = { all: posts.length, ja: 0, zh: 0, en: 0 }
@@ -140,7 +118,7 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
         {visible.map((post) => (
           <li key={post.id}>
             <Link
-              href={`/${locale}/blog/${post.id}`}
+              href={`/${locale}/blog/${post.id.replace(/-/g, "")}`}
               className={cn(
                 "group flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white transition",
                 "hover:-translate-y-1 hover:border-black/10 hover:shadow-[0_18px_40px_-24px_rgba(0,0,0,0.45)]",
@@ -154,16 +132,14 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
               >
                 {/* 同じカバーを複数の記事で使い回していても、そのまま出す。
                     カバーが無い記事と読み込みに失敗した記事だけ下地にする。 */}
-                {post.pageCover && !brokenCovers.includes(post.id) ? (
+                {post.cover && !brokenCovers.includes(post.id) ? (
                   <Image
-                    src={coverSrc(post)}
+                    src={post.cover}
                     alt=""
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
                     quality={75}
-                    // Notion はサーバ側の fetch を User-Agent で弾く。
-                    // next/image の最適化を通すと 403 になるので、ブラウザに直接読ませる。
-                    unoptimized={isNotionHosted(coverSrc(post))}
+                    unoptimized={!canOptimize(post.cover)}
                     className="object-cover transition duration-500 group-hover:scale-[1.04]"
                     onError={() =>
                       setBrokenCovers((prev) => (prev.includes(post.id) ? prev : [...prev, post.id]))
@@ -185,13 +161,13 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
               {/* タイトルはカバー画像の上に載せない。読みやすさが画像に左右されるため。 */}
               <div className="flex flex-1 flex-col gap-3 p-5">
                 <time
-                  dateTime={new Date(post.createdAt).toISOString()}
+                  dateTime={post.publishedAt}
                   className={cn(
                     fontSourceCodePro.className,
                     "text-[11px] tracking-[0.12em] text-gray-500 dark:text-white/45",
                   )}
                 >
-                  {formatDate(post.createdAt, locale)}
+                  {formatDate(post.publishedAt, locale)}
                 </time>
 
                 {/* 記事の言語を要素に持たせて、UI の言語ではなく記事の言語で字形を決める。 */}
@@ -199,14 +175,20 @@ const BlogUI = ({ blogPosts, locale }: BlogUIProps) => {
                   lang={post.lang}
                   className="text-[15px] font-bold leading-snug text-gray-900 transition group-hover:text-[#e9882a] dark:text-white dark:group-hover:text-yellow"
                 >
-                  {post.cleanTitle}
+                  {post.title}
                 </h2>
+
+                {post.summary && (
+                  <p lang={post.lang} className="line-clamp-3 text-[13px] leading-relaxed text-gray-600 dark:text-white/60">
+                    {post.summary}
+                  </p>
+                )}
 
                 {post.tags.length > 0 && (
                   <ul className="mt-auto flex flex-wrap gap-1.5 pt-1">
-                    {post.tags.map((tag, i) => (
+                    {post.tags.map((tag) => (
                       <li
-                        key={i}
+                        key={tag}
                         className="rounded-md bg-black/[0.06] px-2 py-0.5 text-[11px] text-gray-600 dark:bg-white/10 dark:text-white/60"
                       >
                         {tag}
