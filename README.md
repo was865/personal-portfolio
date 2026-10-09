@@ -37,8 +37,8 @@ Built using Next.js 15 and tailwind v4. The website features a blog powered by t
 
 ### セットアップ
 
-1. https://www.notion.so/profile/integrations で内部インテグレーションを作る（権限は「コンテンツを読み取る」だけでよい）
-2. Blog Posts データベースの「…」→「接続」から、そのインテグレーションを追加する
+1. Notion の開発者ツール（https://app.notion.com/developers/connections ）で「新しい接続」を作る。認証方式は「API トークン」、権限は「コンテンツを読み取る」だけでよい
+2. Blog Posts データベースの「•••」→「連携（インテグレーション）」から、その接続を追加する
 3. Vercel の環境変数に `NOTION_TOKEN` と `NOTION_BLOG_DATA_SOURCE_ID` を入れる（`.env.example` 参照）
 4. 任意: インテグレーションの Webhooks に `https://<サイト>/api/revalidate` を登録すると、Notion を編集した直後に反映される。登録時に届く verification_token は Vercel のログに出るので、Notion の画面に貼って検証し、同じ値を `NOTION_WEBHOOK_VERIFICATION_TOKEN` に入れる。未設定でも一覧は 1 分、記事は 5 分で入れ替わる
 
